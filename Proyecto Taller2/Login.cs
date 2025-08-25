@@ -36,7 +36,7 @@ namespace Proyecto_Taller2
 
             if (usuario != null) // si el usuario existe
             {
-                Inicio formulario = new Inicio(); //crea una instancia del formulario que se quiere abrir
+                Inicio formulario = new Inicio(usuario); //crea una instancia del formulario que se quiere abrir
 
                 formulario.Show();//muestra el formulario
                 this.Hide();//oculta el formulario actual

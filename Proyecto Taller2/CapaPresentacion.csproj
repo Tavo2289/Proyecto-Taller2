@@ -53,6 +53,72 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frm_acercaDe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_acercaDe.Designer.cs">
+      <DependentUpon>frm_acercaDe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_categoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_categoria.Designer.cs">
+      <DependentUpon>frm_categoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_clientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_clientes.Designer.cs">
+      <DependentUpon>frm_clientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_compras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_compras.Designer.cs">
+      <DependentUpon>frm_compras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_detalleCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_detalleCompra.Designer.cs">
+      <DependentUpon>frm_detalleCompra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_detalleVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_detalleVenta.Designer.cs">
+      <DependentUpon>frm_detalleVenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_producto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_producto.Designer.cs">
+      <DependentUpon>frm_producto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_proveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_proveedores.Designer.cs">
+      <DependentUpon>frm_proveedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_reportes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_reportes.Designer.cs">
+      <DependentUpon>frm_reportes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_usuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_usuarios.Designer.cs">
+      <DependentUpon>frm_usuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_venta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_venta.Designer.cs">
+      <DependentUpon>frm_venta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +133,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frm_categoria.resx">
+      <DependentUpon>frm_categoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_producto.resx">
+      <DependentUpon>frm_producto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_usuarios.resx">
+      <DependentUpon>frm_usuarios.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
     </EmbeddedResource>
