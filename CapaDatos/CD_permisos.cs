@@ -1,11 +1,9 @@
 ﻿using CapaEntidad;
-using CapaEntidad; // se agrega la referencia a la capa entidad
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;  // Libreria para trabajar con bases de datos
 using System.Data.SqlClient;
-using System.Data.SqlClient;// Libreria para trabajar con SQL Server
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,21 +24,21 @@ namespace CapaDatos
                 {  // por si ocurre un error
 
                     StringBuilder query = new StringBuilder(); // se crea un objeto de tipo string builder para concatenar cadenas de texto
-                    query.Append("select p.id_rol ,p.nombre_menu from Permisos p"); // se agrega la consulta sql
-                    query.Append("inner join Rol r on r.id_rol = p.id_rol"); //lo que hace es unir dos tablas por medio de una columna en comun
-                    query.Append("inner join Usuario u on u.id_rol = r.id_rol");//consulta por medio de la cual se obtienen los permisos asociados a un usuario especifico
-                    query.Append(" where u.id_usuario = @idUsuario"); 
+                    query.AppendLine("select p.id_rol ,p.nombre_menu from Permisos p"); // se agrega la consulta sql
+                    query.AppendLine("inner join Rol r on r.id_rol = p.id_rol"); //lo que hace es unir dos tablas por medio de una columna en comun
+                    query.AppendLine("inner join Usuario u on u.id_rol = r.id_rol");//consulta por medio de la cual se obtienen los permisos asociados a un usuario especifico
+                    query.AppendLine("where u.id_usuario = @idUsuario"); 
 
                  
 
                     
-                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion); // esto hace que el objeto cmd contenga la consulta sql completaS
+                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion); // se crea el comando sql sql coman (consulta, conexion) objeto que ejecuta la consulta
                     cmd.Parameters.AddWithValue("@idUsuario", idUsuario); // se agrega el parametro idUsuario para evitar inyeccion sqlS
                     cmd.CommandType = CommandType.Text; // se especifica que es un comando de texto
 
                     conexion.Open(); // se abre la conexion 
 
-                    using (SqlDataReader dr = cmd.ExecuteReader()) //sql dara reader sirve para leer los datos de la base de datos 
+                    using (SqlDataReader dr = cmd.ExecuteReader()) // asignacion de un data reader para leer los datos de la base de datos 
 
                     //cmd.execute reader ejecuta el comando y devuelve un data reader
                     { // se ejecuta el comando y se obtiene un data reader que es una tabla virtual 

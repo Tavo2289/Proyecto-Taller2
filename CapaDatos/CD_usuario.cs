@@ -7,7 +7,7 @@ using System.Data;  // Libreria para trabajar con bases de datos
 using System.Data.SqlClient;// Libreria para trabajar con SQL Server
 using CapaEntidad; // se agrega la referencia a la capa entidad
 
-namespace CapaDatos
+namespace CapaDatos 
 {
     public class CD_usuario
     {
@@ -45,7 +45,9 @@ namespace CapaDatos
                                 nro_documento = dr["nro_documento"].ToString(),
                                 contraseña = dr["contraseña"].ToString(),
                                 fecha_alta = dr["fecha_alta"].ToString(),
+                            
                                 estado = Convert.ToBoolean(dr["estado"]), // se convierte a booleano
+                                
                                 
 
 
