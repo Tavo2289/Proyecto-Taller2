@@ -19,9 +19,12 @@ namespace Proyecto_Taller2
         private static Usuario usuarioActual; //variable estatica de tipo usuario para almacenar el usuario que ha iniciado sesión
         private static IconMenuItem menuActivo = null; // representa a los iconos del menu de formularios
         private static Form formularioActivo = null; //indica el formulario que va estar activo
-        public Inicio(Usuario objUsuario)
+        public Inicio(Usuario objUsuario =null)
         {
-            usuarioActual = objUsuario; // se asigna el usuario que ha iniciado sesión a la variable estatica
+
+            if (objUsuario == null) { usuarioActual = new Usuario() { nombre = "Admin", apellido = "predifinido", id_usuario = 1 }; }// si no se pasa ningun usuario por defecto se crea un usuario admin predeterminado
+            else { usuarioActual = objUsuario; } // si no se pasa ningun usuario por defecto se crea un usuario admin predeterminado
+             // se asigna el usuario que ha iniciado sesión a la variable estatica
             InitializeComponent();
         }
 

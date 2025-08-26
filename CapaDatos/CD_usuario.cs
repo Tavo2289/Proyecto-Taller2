@@ -21,8 +21,11 @@ namespace CapaDatos
                 try
                 {  // por si ocurre un error
 
-                    string query = "select id_usuario, nombre, apellido, nro_documento, contraseña, fecha_alta,estado from usuario"; // consulta sql para listar los usuarios
-                    SqlCommand cmd = new SqlCommand(query, conexion); // se crea el comando sql sql coman (consulta, conexion) objeto que ejecuta la consulta
+                    StringBuilder query = new StringBuilder(); // se crea un objeto de la clase StringBuilder para construir la consulta sql
+                    query.AppendLine("\r\nselect u.id_usuario, u.nombre, u.apellido, u.nro_documento, u.gmail, u.contraseña, u.fecha_alta ,u.estado, r.id_rol, r.nombre_rol from usuario u"); // se construye la consulta sql
+                    query.AppendLine("inner join rol r on r.id_rol = u.id_rol"); // se construye la consulta sql
+
+                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion); // se crea el comando sql sql coman (consulta, conexion) objeto que ejecuta la consulta
                     cmd.CommandType = CommandType.Text; // se especifica que es un comando de texto
 
                     conexion.Open(); // se abre la conexion 
@@ -43,12 +46,19 @@ namespace CapaDatos
                                 nombre = dr["nombre"].ToString(), // se convierte a string
                                 apellido = dr["apellido"].ToString(),
                                 nro_documento = dr["nro_documento"].ToString(),
+                                gmail = dr["gmail"].ToString(),
                                 contraseña = dr["contraseña"].ToString(),
                                 fecha_alta = dr["fecha_alta"].ToString(),
-                            
                                 estado = Convert.ToBoolean(dr["estado"]), // se convierte a booleano
-                                
-                                
+                                id_rol = new Rol() // se crea un nuevo objeto rol
+                                {
+                                    id_rol = Convert.ToInt32(dr["id_rol"]), // se convierte a entero
+                                    nombre_rol = dr["nombre_rol"].ToString() // se convierte a string
+                                }   
+
+
+
+
 
 
 

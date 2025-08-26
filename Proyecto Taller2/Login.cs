@@ -28,7 +28,7 @@ namespace Proyecto_Taller2
         private void btn_ingresar_Click(object sender, EventArgs e)
         {
 
-            if (!verificar_campos()) { return;  } // si la verificación falla, salimos del método
+           // if (!verificar_campos()) { return;  } // si la verificación falla, salimos del método
                
 
             //se crea un objeto usuario que busca en la lista de usuarios el que coincida con el número de documento y la contraseña ingresados
