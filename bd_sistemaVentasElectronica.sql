@@ -50,7 +50,7 @@ CREATE TABLE Usuario (
     nombre VARCHAR(100) NOT NULL,
     apellido VARCHAR(100) NOT NULL,
     nro_documento VARCHAR(20) UNIQUE NOT NULL,
-    contrase�a VARCHAR(255) NOT NULL,
+    contraseña VARCHAR(255) NOT NULL,
     fecha_alta DATETIME default getdate(),
     fecha_baja DATETIME default getdate(),
     estado BIT NOT NULL,
@@ -158,3 +158,51 @@ CREATE TABLE Permisos (
     nombre_permiso VARCHAR(100) NOT NULL,
     fecha_creacion DATETIME default getdate() NOT NULL
 );
+go
+/*    PARA AGREGAR DATOS*/
+ALTER TABLE Usuario
+ADD CONSTRAINT DF_Usuario_estado DEFAULT 1 FOR estado; /*restriccion para  que el valor del estado por defecto sea 1*/
+go
+
+EXEC sp_rename 'Permisos.nombre_permiso', 'nombre_menu', 'COLUMN'; /*cambia nombre a permisos*/
+
+go
+
+alter table Usuario add  gmail varchar (100) /*agrega a tabla usuario el atributo gmail*/
+
+
+go
+
+
+insert into Rol (nombre_rol,fecha_baja) values ('administrador',null);  /*se agrega un rol administrador, id=1 */
+insert into Rol (nombre_rol,fecha_baja) values ('vendedor',null);  /*se agrega un rol administrador, id=2 */
+
+
+insert into Usuario(nombre,apellido, nro_documento, contraseña,fecha_baja,estado,id_rol,gmail) 
+values ('antonio','romero', '44212381','admin123',null ,1,1,'iaraperez@gmail.com'); /*se agrega usuario en la tabla usuario */
+
+insert into Usuario(nombre,apellido, nro_documento, contraseña,fecha_baja,estado,id_rol,gmail) 
+values ('iara','perez esquivel', '44212382','vendedor123',null ,1,2,'iaraperez@gmail.com'); /*se agrega usuario en la tabla usuario */
+
+
+select * from Usuario; /*muestra todos los datos de usuarios*/
+
+/*AGREGAR PERMISOS POR ROL*/
+insert into Permisos (id_rol, nombre_menu) values /*se agrega los nombres de los menus a los que tiene permiso*/
+(1,'iconUsuario'),
+(1,'iconMantenedor'),
+(1,'iconVentas'),
+(1,'iconCompras'),
+(1,'iconClientes'),
+(1,'iconProveedores'),
+(1,'iconReportes'),
+(1,'iconAcercaDe');
+
+
+insert into Permisos (id_rol, nombre_menu) values /*se agrega los nombres de los menus a los que tiene permiso id-rol=2*/
+(2,'iconVentas'),
+(2,'iconCompras'),
+(2,'iconClientes'),
+(2,'iconProveedores'),
+(2,'iconAcercaDe');
+
