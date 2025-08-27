@@ -1,0 +1,170 @@
+select * from Usuario;
+
+
+ALTER TABLE Usuario
+ADD CONSTRAINT DF_Usuario_estado DEFAULT 1 FOR estado; /*restriccion para  que el valor del estado por defecto sea 1*/
+EXEC sp_rename 'Permisos.nombre_permiso', 'nombre_menu', 'COLUMN';
+
+insert into Rol (nombre_rol,fecha_baja) values ('administrador',null);  /*se agrega un rol administrador, id=1 */
+insert into Rol (nombre_rol,fecha_baja) values ('vendedor',null);  /*se agrega un rol administrador, id=2 */
+
+
+insert into Usuario(nombre,apellido, nro_documento, contraseña,fecha_baja,estado,id_rol) 
+values ('antonio','romero', '44212381','admin123',null ,1,1); /*se agrega usuario en la tabla usuario */
+
+insert into Usuario(nombre,apellido, nro_documento, contraseña,fecha_baja,estado,id_rol) 
+values ('iara','perez esquivel', '44212382','vendedor123',null ,1,2); /*se agrega usuario en la tabla usuario */
+
+
+select * from Permisos;
+EXEC sp_rename 'Permisos.nombre_permiso', 'nombre_menu', 'COLUMN';
+
+insert into Permisos (id_rol, nombre_menu) values /*se agrega los nombres de los menus a los que tiene permiso*/
+(1,'iconUsuario'),
+(1,'iconMantenedor'),
+(1,'iconVentas'),
+(1,'iconCompras'),
+(1,'iconClientes'),
+(1,'iconProveedores'),
+(1,'iconReportes'),
+(1,'iconAcercaDe');
+
+
+insert into Permisos (id_rol, nombre_menu) values /*se agrega los nombres de los menus a los que tiene permiso id-rol=2*/
+(2,'iconVentas'),
+(2,'iconCompras'),
+(2,'iconClientes'),
+(2,'iconProveedores'),
+(2,'iconAcercaDe');
+
+delete from Permisos
+
+
+select p.id_rol ,p.nombre_menu from Permisos p  /* */
+inner join Rol r on r.id_rol = p.id_rol
+inner join Usuario u on u.id_rol = r.id_rol
+where u.id_usuario = 2;
+
+select * from Rol
+
+select * from Usuario
+
+alter table Usuario add  gmail varchar (100)
+go
+ALTER TABLE Usuario
+ALTER COLUMN gmail VARCHAR(100);
+
+
+UPDATE Usuario
+SET gmail = 'antonioramonromero246@gmail.com'
+WHERE id_usuario = 1;
+
+
+UPDATE Usuario
+SET gmail = 'iaraperezesquivel@gmail.com'
+WHERE id_usuario = 2;
+
+
+select u.id_usuario, u.nombre, u.apellido, u.nro_documento, u.contraseña, u.fecha_alta ,u.estado, u.gmail, r.id_rol, r.nombre_rol from usuario u
+inner join rol r on r.id_rol = u.id_rol
+
+
+/**REGISTRAR USUARIO**/
+create PROC SP_REGISTRAR_USUARIO(
+	@documento varchar(50),
+	@nombre varchar(50),
+	@apellido varchar(50),
+	@gmail varchar(50),
+	@contraseña varchar(50),
+	@id_rol int,
+	@estado bit,
+	@idUsuarioResultado int output,
+	@mensaje varchar(500) output
+
+)
+as
+begin
+	set @idUsuarioResultado =0
+	set @mensaje=''
+
+	if not exists(select * from Usuario where nro_documento =  @documento)
+	begin
+
+		insert into Usuario(nro_documento,nombre,apellido,gmail,contraseña,id_rol,estado) values
+		(@documento,@nombre, @apellido,@gmail,@contraseña,@id_rol,@estado)
+
+		set @idUsuarioResultado = SCOPE_IDENTITY()
+
+	end
+	else
+		set  @mensaje = 'No se puede repetir el documento para mas de un usurio'
+
+end
+
+go
+
+/**CONSULTA***/
+declare  @idUsuarioGenerado int
+declare @mensaje varchar(500)
+
+exec  SP_REGISTRAR_USUARIO '12346' ,'pruebas','originales', 'testing@gmail.com','456',2,1,@idUsuarioGenerado output,@mensaje output
+
+select  @idUsuarioGenerado
+
+select @mensaje
+
+select * from Usuario
+
+GO
+
+/*EDITAR USUARIO*/
+create PROC SP_EDITAR_USUARIO(
+    @id_usuario int,
+	@documento varchar(50),
+	@nombre varchar(50),
+	@apellido varchar(50),
+	@gmail varchar(50),
+	@contraseña varchar(50),
+	@id_rol int,
+	@estado bit,
+	@respuesta int output,
+	@mensaje varchar(500) output
+
+)
+as
+begin
+	set @respuesta =0
+	set @mensaje=''
+
+	if not exists(select * from Usuario where nro_documento =  @documento and id_usuario !=  @id_usuario)
+	begin
+
+		update Usuario set
+		nro_documento = @documento,
+		nombre = @nombre,
+		apellido = @apellido,
+		gmail= @gmail,
+		contraseña = @contraseña,
+		id_rol= @id_rol,
+		estado= @estado
+		where id_usuario = @id_usuario
+
+
+		set @respuesta = 1;
+
+	end
+	else
+		set  @mensaje = 'No se puede repetir el documento para mas de un usurio'
+
+end
+
+go
+declare  @respuesta int
+declare @mensaje varchar(500)
+
+exec  SP_EDITAR_USUARIO '1','123' ,'pruebas','originales', 'testing@gmail.com','456',2,1,@respuesta output,@mensaje output
+
+select  @respuesta
+select @mensaje
+
+select *from Usuario
