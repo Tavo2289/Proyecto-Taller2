@@ -1,11 +1,13 @@
-﻿using System;
+﻿using CapaEntidad; // se agrega la referencia a la capa entidad
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;  // Libreria para trabajar con bases de datos
 using System.Data.SqlClient;// Libreria para trabajar con SQL Server
-using CapaEntidad; // se agrega la referencia a la capa entidad
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace CapaDatos 
 {
@@ -84,6 +86,148 @@ namespace CapaDatos
             }
 
             return lista; // se devuelve la lista de usuarios
+        }
+
+
+        /*PARA REGISTRAR USUARIO*/
+
+        public int Registrar(Usuario obj, out string Mensaje ) { // 
+            int id_usuarioGenerado = 0;  //
+            Mensaje= string.Empty;  //  
+
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(Conexion.conexion)) { //conexion a base de datos
+
+                    SqlCommand cmd = new SqlCommand("SP_REGISTRAR_USUARIO", conexion); // se crea el comando sql sql coman (consulta, conexion) objeto que ejecuta la consulta
+                                                                                       // se guardan los valores de las variables del procedimiento sp_registrar a los parametros del objeto usuario
+                    cmd.Parameters.AddWithValue("documento", obj.nro_documento);    //se agrega los valores de las variables del procedimiento sp_registrar a los parametros del objeto usuario
+                    cmd.Parameters.AddWithValue("nombre", obj.nombre);
+                    cmd.Parameters.AddWithValue("apellido", obj.apellido);
+                    cmd.Parameters.AddWithValue("gmail", obj.gmail);
+                    cmd.Parameters.AddWithValue("contraseña", obj.contraseña);
+                    cmd.Parameters.AddWithValue("id_rol", obj.id_rol.id_rol); 
+                    cmd.Parameters.AddWithValue("estado", obj.estado);
+                    cmd.Parameters.Add("idUsuarioResultado", SqlDbType.Int).Direction = ParameterDirection.Output; //parametros de salida
+                    cmd.Parameters.Add("mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output; // parametro de salida
+
+                    cmd.CommandType = CommandType.StoredProcedure; // se especifica que es un comando de texto
+                    conexion.Open(); // se abre la conexion 
+
+                    cmd.ExecuteNonQuery();//ejecuta comando
+
+                    id_usuarioGenerado = Convert.ToInt32(cmd.Parameters["idUsuarioResultado"].Value); //   asigna el valor del parametro de salida al id_usuarioGenerado
+                    Mensaje= cmd.Parameters["mensaje"].Value.ToString(); // asigna el valor del parametro de salida al mensaje
+                }
+
+
+            }
+            catch (Exception ex) {
+
+                id_usuarioGenerado = 0;  // se inicializa en 0
+                Mensaje = ex.Message;  // se asigna el mensaje de error
+
+
+
+            }
+
+            return id_usuarioGenerado;
+        }
+
+
+
+
+
+        /*PARA EDITAR USUARIO*/
+        public bool Editar(Usuario obj, out string Mensaje)
+        { // 
+            bool respuesta = false;  //
+            Mensaje = string.Empty;  //  
+
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(Conexion.conexion))
+                { //conexion a base de datos
+
+                    SqlCommand cmd = new SqlCommand("SP_EDITAR_USUARIO", conexion); // se crea el comando sql sql coman (consulta, conexion) objeto que ejecuta la consulta
+                    cmd.Parameters.AddWithValue("id_usuario", obj.id_usuario);                                                                  // se guardan los valores de las variables del procedimiento sp_registrar a los parametros del objeto usuario
+                    cmd.Parameters.AddWithValue("documento", obj.nro_documento);    //se agrega los valores de las variables del procedimiento sp_registrar a los parametros del objeto usuario
+                    cmd.Parameters.AddWithValue("nombre", obj.nombre);
+                    cmd.Parameters.AddWithValue("apellido", obj.apellido);
+                    cmd.Parameters.AddWithValue("contraseña", obj.contraseña);
+                    cmd.Parameters.AddWithValue("gmail", obj.gmail);
+                    cmd.Parameters.AddWithValue("id_rol", obj.id_rol.id_rol);
+                    cmd.Parameters.AddWithValue("estado", obj.estado);
+                    cmd.Parameters.Add("respuesta", SqlDbType.Int).Direction = ParameterDirection.Output; //parametros de salida
+                    cmd.Parameters.Add("mensaje", SqlDbType.VarChar,500).Direction = ParameterDirection.Output; // parametro de salida
+
+                    cmd.CommandType = CommandType.StoredProcedure; // se especifica que es un comando de texto
+                    conexion.Open(); // se abre la conexion 
+
+                    cmd.ExecuteNonQuery();//ejecuta comando
+
+                    respuesta= Convert.ToBoolean(cmd.Parameters["respuesta"].Value); //   asigna el valor del parametro de salida al resultado, tambien se convierte a booleano
+                    Mensaje = cmd.Parameters["mensaje"].Value.ToString(); // asigna el valor del parametro de salida al mensaje
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+
+                respuesta = false;  
+                Mensaje = ex.Message;  // se asigna el mensaje de error
+
+
+
+            }
+
+            return respuesta;
+        }
+
+
+
+
+
+        /*PARA ELIMINAR USUARIO*/
+        public bool Eliminar(Usuario obj, out string Mensaje)
+        { // 
+            bool respuesta = false;  //
+            Mensaje = string.Empty;  //  
+
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(Conexion.conexion))
+                { //conexion a base de datos
+
+                    SqlCommand cmd = new SqlCommand("SP_ELIMINAR_USUARIO", conexion); // se crea el comando sql sql coman (consulta, conexion) objeto que ejecuta la consulta
+                    cmd.Parameters.AddWithValue("id_usuario", obj.id_usuario);                                                                  // se guardan los valores de las variables del procedimiento sp_registrar a los parametros del objeto usuario
+
+                    cmd.Parameters.Add("respuesta", SqlDbType.Int).Direction = ParameterDirection.Output; //parametros de salida
+                    cmd.Parameters.Add("mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output; // parametro de salida
+
+                    cmd.CommandType = CommandType.StoredProcedure; // se especifica que es un comando de texto
+                    conexion.Open(); // se abre la conexion 
+
+                    cmd.ExecuteNonQuery();//ejecuta comando
+
+                    respuesta = Convert.ToBoolean(cmd.Parameters["respuesta"].Value); //   asigna el valor del parametro de salida al resultado, tambien se convierte a booleano
+                    Mensaje = cmd.Parameters["mensaje"].Value.ToString(); // asigna el valor del parametro de salida al mensaje
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+
+                respuesta = false;
+                Mensaje = ex.Message;  // se asigna el mensaje de error
+
+
+
+            }
+
+            return respuesta;
         }
 
     }

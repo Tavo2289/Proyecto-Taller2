@@ -89,15 +89,48 @@ namespace Proyecto_Taller2
 
         private void btn_guardar_Click(object sender, EventArgs e)
         {
+
             if (!verificar_campos()) { return; } // si la verificación falla, salimos del método
-            dataGrid_listaUsuario.Rows.Add(new object[]
-            {"",txt_id.Text,txt_documentoUsuario.Text,txt_nombreUsuario.Text,txt_apellidoUsuario.Text,txt_gmail.Text,txt_contraseñaUsuario.Text ,
+            string mensaje = string.Empty; // variable para almacenar el mensaje de error
+            Usuario usuario = new Usuario()
+            {  // crear un objeto de tipo usuario y asignar los valores de los campos del formulario
+                id_usuario = Convert.ToInt32(txt_id.Text), 
+                nro_documento = txt_documentoUsuario.Text,// asignar el valor del textbox documento
+                nombre = txt_nombreUsuario.Text,
+                apellido = txt_apellidoUsuario.Text,
+                gmail = txt_gmail.Text,
+                contraseña = txt_contraseñaUsuario.Text,
+                id_rol = new Rol() { id_rol = Convert.ToInt32(((OpcionCombo)comboRol.SelectedItem).Valor) },
+                estado = Convert.ToInt32(((OpcionCombo)comboEstado.SelectedItem).Valor) == 1 ? true : false
+
+
+
+            };
+
+            int id_usuarioGenerado = new CN_usuario().Registrar(usuario, out mensaje); // llamar al metodo registrar de la clase CN_usuario que esta en la capa de negocio
+
+            if (id_usuarioGenerado != 0)
+            {
+
+                dataGrid_listaUsuario.Rows.Add(new object[]
+                {"",id_usuarioGenerado,txt_documentoUsuario.Text,txt_nombreUsuario.Text,txt_apellidoUsuario.Text,txt_gmail.Text,txt_contraseñaUsuario.Text ,
                 ((OpcionCombo)comboRol.SelectedItem).Valor.ToString(),
                 ((OpcionCombo)comboRol.SelectedItem).Texto.ToString(),
                 ((OpcionCombo)comboEstado.SelectedItem).Valor.ToString(),
                 ((OpcionCombo)comboEstado.SelectedItem).Texto.ToString()
-            });
-            limpiar();
+                });
+
+                limpiar();
+
+            }
+            else { 
+            
+                MessageBox.Show(mensaje,"Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); // mostrar el mensaje de error
+            }
+
+
+                
+
         }
 
 

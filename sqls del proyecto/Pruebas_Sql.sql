@@ -1,4 +1,5 @@
 select * from Usuario;
+use bd_sistemaVentasElectronica;
 
 
 ALTER TABLE Usuario
@@ -43,7 +44,7 @@ delete from Permisos
 select p.id_rol ,p.nombre_menu from Permisos p  /* */
 inner join Rol r on r.id_rol = p.id_rol
 inner join Usuario u on u.id_rol = r.id_rol
-where u.id_usuario = 2;
+where u.id_usuario = 1;
 
 select * from Rol
 
@@ -70,7 +71,7 @@ inner join rol r on r.id_rol = u.id_rol
 
 
 /**REGISTRAR USUARIO**/
-create PROC SP_REGISTRAR_USUARIO(
+alter PROC SP_REGISTRAR_USUARIO(
 	@documento varchar(50),
 	@nombre varchar(50),
 	@apellido varchar(50),
@@ -97,7 +98,7 @@ begin
 
 	end
 	else
-		set  @mensaje = 'No se puede repetir el documento para mas de un usurio'
+		set  @mensaje = 'No se puede repetir el documento para mas de un Usuario'
 
 end
 
@@ -118,7 +119,7 @@ select * from Usuario
 GO
 
 /*EDITAR USUARIO*/
-create PROC SP_EDITAR_USUARIO(
+alter PROC SP_EDITAR_USUARIO(
     @id_usuario int,
 	@documento varchar(50),
 	@nombre varchar(50),
@@ -127,7 +128,7 @@ create PROC SP_EDITAR_USUARIO(
 	@contraseña varchar(50),
 	@id_rol int,
 	@estado bit,
-	@respuesta int output,
+	@respuesta bit output,
 	@mensaje varchar(500) output
 
 )
@@ -154,17 +155,74 @@ begin
 
 	end
 	else
-		set  @mensaje = 'No se puede repetir el documento para mas de un usurio'
+		set  @mensaje = 'No se puede repetir el documento para mas de un Usuario'
 
 end
 
 go
+
+
+/*PRUEBA DE EDITAR USUARIO*/
 declare  @respuesta int
 declare @mensaje varchar(500)
 
-exec  SP_EDITAR_USUARIO '1','123' ,'pruebas','originales', 'testing@gmail.com','456',2,1,@respuesta output,@mensaje output
+exec  SP_EDITAR_USUARIO 1,'44212381' ,'antonio','romero', 'antonioramonromero246@gmail.com','123',1,1,@respuesta output,@mensaje output
 
 select  @respuesta
 select @mensaje
 
 select *from Usuario
+
+
+/*PROCEDIMIENTO ELIMINAR USUARIO */
+
+GO
+
+
+alter PROC SP_ELIMINAR_USUARIO(
+    @id_usuario int,
+	@respuesta int output,
+	@mensaje varchar(500) output
+
+)
+as
+begin
+	set @respuesta =0 /*si se elimina un usuario cambia a 1*/
+	set @mensaje=''
+	declare @pasoReglas bit =1
+
+	IF EXISTS ( SELECT * FROM COMPRA C 
+	INNER JOIN USUARIO U ON U.id_usuario = C.id_usuario
+	WHERE U.id_usuario = @id_usuario
+	)/*SI EL USUARIO ESTA RELACIONADO A UNA COMPRA*/
+		BEGIN
+			set @pasoReglas =0 /*no paso las condiciones para eliminar usuario*/
+			set @respuesta =0
+			set @mensaje= @mensaje +'No se puede Eliminar  usuarios que se encuentren relacionados a una Compra\n'
+
+		END
+
+
+	IF EXISTS ( SELECT * FROM VENTA V 
+	INNER JOIN USUARIO U ON U.id_usuario = V.id_usuario
+	WHERE U.id_usuario = @id_usuario
+	)/*SI EL USUARIO ESTA RELACIONADO A UNA VENTA*/
+		BEGIN
+			set @pasoReglas =0 /*no paso las condiciones para eliminar usuario*/
+			set @respuesta =0
+			set @mensaje= @mensaje + 'No se puede Eliminar  usuarios que se encuentren relacionados a una Venta\n'
+
+		END
+
+
+		if(@pasoReglas = 1) /*si no esta relacionado a un compra o venta*/
+		begin
+			delete from Usuario where id_usuario= @id_usuario
+			set @respuesta =1
+		end
+
+end
+
+select * from Permisos
+select * from Rol
+select * from Usuario

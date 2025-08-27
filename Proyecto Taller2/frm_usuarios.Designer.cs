@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.lbl_documentoUsuario = new System.Windows.Forms.Label();
             this.lbl_nombreUsuario = new System.Windows.Forms.Label();
@@ -69,7 +69,7 @@
             this.btn_limpiarBusqueda = new FontAwesome.Sharp.IconButton();
             this.btn_busqueda = new FontAwesome.Sharp.IconButton();
             this.btn_eliminar = new FontAwesome.Sharp.IconButton();
-            this.brt_editar = new FontAwesome.Sharp.IconButton();
+            this.brt_limpiar = new FontAwesome.Sharp.IconButton();
             this.btn_guardar = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_listaUsuario)).BeginInit();
             this.SuspendLayout();
@@ -229,15 +229,15 @@
             // dataGrid_listaUsuario
             // 
             this.dataGrid_listaUsuario.AllowUserToAddRows = false;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGrid_listaUsuario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGrid_listaUsuario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGrid_listaUsuario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGrid_listaUsuario.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btn_seleccionar,
@@ -255,9 +255,9 @@
             this.dataGrid_listaUsuario.MultiSelect = false;
             this.dataGrid_listaUsuario.Name = "dataGrid_listaUsuario";
             this.dataGrid_listaUsuario.ReadOnly = true;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGrid_listaUsuario.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGrid_listaUsuario.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGrid_listaUsuario.RowTemplate.Height = 28;
             this.dataGrid_listaUsuario.Size = new System.Drawing.Size(805, 458);
             this.dataGrid_listaUsuario.TabIndex = 19;
@@ -462,25 +462,25 @@
             this.btn_eliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_eliminar.UseVisualStyleBackColor = false;
             // 
-            // brt_editar
+            // brt_limpiar
             // 
-            this.brt_editar.BackColor = System.Drawing.Color.RoyalBlue;
-            this.brt_editar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.brt_editar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.brt_editar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.brt_editar.ForeColor = System.Drawing.Color.White;
-            this.brt_editar.IconChar = FontAwesome.Sharp.IconChar.Edit;
-            this.brt_editar.IconColor = System.Drawing.Color.White;
-            this.brt_editar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.brt_editar.IconSize = 16;
-            this.brt_editar.Location = new System.Drawing.Point(56, 485);
-            this.brt_editar.Name = "brt_editar";
-            this.brt_editar.Size = new System.Drawing.Size(191, 23);
-            this.brt_editar.TabIndex = 16;
-            this.brt_editar.Text = "Editar";
-            this.brt_editar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.brt_editar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.brt_editar.UseVisualStyleBackColor = false;
+            this.brt_limpiar.BackColor = System.Drawing.Color.RoyalBlue;
+            this.brt_limpiar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.brt_limpiar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.brt_limpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.brt_limpiar.ForeColor = System.Drawing.Color.White;
+            this.brt_limpiar.IconChar = FontAwesome.Sharp.IconChar.Broom;
+            this.brt_limpiar.IconColor = System.Drawing.Color.White;
+            this.brt_limpiar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.brt_limpiar.IconSize = 18;
+            this.brt_limpiar.Location = new System.Drawing.Point(56, 485);
+            this.brt_limpiar.Name = "brt_limpiar";
+            this.brt_limpiar.Size = new System.Drawing.Size(191, 23);
+            this.brt_limpiar.TabIndex = 16;
+            this.brt_limpiar.Text = "Limpiar";
+            this.brt_limpiar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.brt_limpiar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.brt_limpiar.UseVisualStyleBackColor = false;
             // 
             // btn_guardar
             // 
@@ -521,7 +521,7 @@
             this.Controls.Add(this.dataGrid_listaUsuario);
             this.Controls.Add(this.lbl_detallaUsuario);
             this.Controls.Add(this.btn_eliminar);
-            this.Controls.Add(this.brt_editar);
+            this.Controls.Add(this.brt_limpiar);
             this.Controls.Add(this.btn_guardar);
             this.Controls.Add(this.comboEstado);
             this.Controls.Add(this.lbl_estadoUsuario);
@@ -565,7 +565,7 @@
         private System.Windows.Forms.ComboBox comboEstado;
         private System.Windows.Forms.Label lbl_estadoUsuario;
         private FontAwesome.Sharp.IconButton btn_guardar;
-        private FontAwesome.Sharp.IconButton brt_editar;
+        private FontAwesome.Sharp.IconButton brt_limpiar;
         private FontAwesome.Sharp.IconButton btn_eliminar;
         private System.Windows.Forms.Label lbl_detallaUsuario;
         private System.Windows.Forms.DataGridView dataGrid_listaUsuario;
