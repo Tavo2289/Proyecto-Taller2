@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.lbl_documentoUsuario = new System.Windows.Forms.Label();
             this.lbl_nombreUsuario = new System.Windows.Forms.Label();
@@ -45,9 +45,6 @@
             this.comboRol = new System.Windows.Forms.ComboBox();
             this.comboEstado = new System.Windows.Forms.ComboBox();
             this.lbl_estadoUsuario = new System.Windows.Forms.Label();
-            this.btn_guardar = new FontAwesome.Sharp.IconButton();
-            this.brt_editar = new FontAwesome.Sharp.IconButton();
-            this.btn_eliminar = new FontAwesome.Sharp.IconButton();
             this.lbl_detallaUsuario = new System.Windows.Forms.Label();
             this.dataGrid_listaUsuario = new System.Windows.Forms.DataGridView();
             this.btn_seleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
@@ -66,11 +63,14 @@
             this.lbl_buscar = new System.Windows.Forms.Label();
             this.comboBox_busqueda = new System.Windows.Forms.ComboBox();
             this.txt_busqueda = new System.Windows.Forms.TextBox();
-            this.btn_limpiarBusqueda = new FontAwesome.Sharp.IconButton();
-            this.btn_busqueda = new FontAwesome.Sharp.IconButton();
             this.txt_gmail = new System.Windows.Forms.TextBox();
             this.lbl_gmail = new System.Windows.Forms.Label();
             this.txt_indice = new System.Windows.Forms.TextBox();
+            this.btn_limpiarBusqueda = new FontAwesome.Sharp.IconButton();
+            this.btn_busqueda = new FontAwesome.Sharp.IconButton();
+            this.btn_eliminar = new FontAwesome.Sharp.IconButton();
+            this.brt_editar = new FontAwesome.Sharp.IconButton();
+            this.btn_guardar = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_listaUsuario)).BeginInit();
             this.SuspendLayout();
             // 
@@ -213,67 +213,6 @@
             this.lbl_estadoUsuario.TabIndex = 13;
             this.lbl_estadoUsuario.Text = "Estado";
             // 
-            // btn_guardar
-            // 
-            this.btn_guardar.BackColor = System.Drawing.Color.ForestGreen;
-            this.btn_guardar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_guardar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btn_guardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_guardar.ForeColor = System.Drawing.Color.White;
-            this.btn_guardar.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
-            this.btn_guardar.IconColor = System.Drawing.Color.White;
-            this.btn_guardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btn_guardar.IconSize = 16;
-            this.btn_guardar.Location = new System.Drawing.Point(56, 456);
-            this.btn_guardar.Name = "btn_guardar";
-            this.btn_guardar.Size = new System.Drawing.Size(191, 23);
-            this.btn_guardar.TabIndex = 15;
-            this.btn_guardar.Text = "Guardar";
-            this.btn_guardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_guardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_guardar.UseVisualStyleBackColor = false;
-            this.btn_guardar.Click += new System.EventHandler(this.btn_guardar_Click);
-            // 
-            // brt_editar
-            // 
-            this.brt_editar.BackColor = System.Drawing.Color.RoyalBlue;
-            this.brt_editar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.brt_editar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.brt_editar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.brt_editar.ForeColor = System.Drawing.Color.White;
-            this.brt_editar.IconChar = FontAwesome.Sharp.IconChar.Edit;
-            this.brt_editar.IconColor = System.Drawing.Color.White;
-            this.brt_editar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.brt_editar.IconSize = 16;
-            this.brt_editar.Location = new System.Drawing.Point(56, 485);
-            this.brt_editar.Name = "brt_editar";
-            this.brt_editar.Size = new System.Drawing.Size(191, 23);
-            this.brt_editar.TabIndex = 16;
-            this.brt_editar.Text = "Editar";
-            this.brt_editar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.brt_editar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.brt_editar.UseVisualStyleBackColor = false;
-            // 
-            // btn_eliminar
-            // 
-            this.btn_eliminar.BackColor = System.Drawing.Color.Firebrick;
-            this.btn_eliminar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_eliminar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btn_eliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_eliminar.ForeColor = System.Drawing.Color.White;
-            this.btn_eliminar.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
-            this.btn_eliminar.IconColor = System.Drawing.Color.White;
-            this.btn_eliminar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btn_eliminar.IconSize = 16;
-            this.btn_eliminar.Location = new System.Drawing.Point(56, 514);
-            this.btn_eliminar.Name = "btn_eliminar";
-            this.btn_eliminar.Size = new System.Drawing.Size(191, 23);
-            this.btn_eliminar.TabIndex = 17;
-            this.btn_eliminar.Text = "Eliminar";
-            this.btn_eliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_eliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_eliminar.UseVisualStyleBackColor = false;
-            // 
             // lbl_detallaUsuario
             // 
             this.lbl_detallaUsuario.AutoSize = true;
@@ -290,15 +229,15 @@
             // dataGrid_listaUsuario
             // 
             this.dataGrid_listaUsuario.AllowUserToAddRows = false;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGrid_listaUsuario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGrid_listaUsuario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGrid_listaUsuario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGrid_listaUsuario.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btn_seleccionar,
@@ -316,9 +255,9 @@
             this.dataGrid_listaUsuario.MultiSelect = false;
             this.dataGrid_listaUsuario.Name = "dataGrid_listaUsuario";
             this.dataGrid_listaUsuario.ReadOnly = true;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGrid_listaUsuario.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGrid_listaUsuario.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGrid_listaUsuario.RowTemplate.Height = 28;
             this.dataGrid_listaUsuario.Size = new System.Drawing.Size(805, 458);
             this.dataGrid_listaUsuario.TabIndex = 19;
@@ -444,6 +383,31 @@
             this.txt_busqueda.Size = new System.Drawing.Size(140, 20);
             this.txt_busqueda.TabIndex = 24;
             // 
+            // txt_gmail
+            // 
+            this.txt_gmail.Location = new System.Drawing.Point(56, 212);
+            this.txt_gmail.Name = "txt_gmail";
+            this.txt_gmail.Size = new System.Drawing.Size(191, 20);
+            this.txt_gmail.TabIndex = 28;
+            // 
+            // lbl_gmail
+            // 
+            this.lbl_gmail.AutoSize = true;
+            this.lbl_gmail.BackColor = System.Drawing.Color.White;
+            this.lbl_gmail.Location = new System.Drawing.Point(53, 196);
+            this.lbl_gmail.Name = "lbl_gmail";
+            this.lbl_gmail.Size = new System.Drawing.Size(94, 13);
+            this.lbl_gmail.TabIndex = 27;
+            this.lbl_gmail.Text = "Correo Electronico";
+            // 
+            // txt_indice
+            // 
+            this.txt_indice.Location = new System.Drawing.Point(173, 52);
+            this.txt_indice.Name = "txt_indice";
+            this.txt_indice.Size = new System.Drawing.Size(33, 20);
+            this.txt_indice.TabIndex = 29;
+            this.txt_indice.Text = "0";
+            // 
             // btn_limpiarBusqueda
             // 
             this.btn_limpiarBusqueda.BackColor = System.Drawing.Color.White;
@@ -478,30 +442,66 @@
             this.btn_busqueda.TabIndex = 25;
             this.btn_busqueda.UseVisualStyleBackColor = false;
             // 
-            // txt_gmail
+            // btn_eliminar
             // 
-            this.txt_gmail.Location = new System.Drawing.Point(56, 212);
-            this.txt_gmail.Name = "txt_gmail";
-            this.txt_gmail.Size = new System.Drawing.Size(191, 20);
-            this.txt_gmail.TabIndex = 28;
+            this.btn_eliminar.BackColor = System.Drawing.Color.Firebrick;
+            this.btn_eliminar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_eliminar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_eliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_eliminar.ForeColor = System.Drawing.Color.White;
+            this.btn_eliminar.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
+            this.btn_eliminar.IconColor = System.Drawing.Color.White;
+            this.btn_eliminar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_eliminar.IconSize = 16;
+            this.btn_eliminar.Location = new System.Drawing.Point(56, 514);
+            this.btn_eliminar.Name = "btn_eliminar";
+            this.btn_eliminar.Size = new System.Drawing.Size(191, 23);
+            this.btn_eliminar.TabIndex = 17;
+            this.btn_eliminar.Text = "Eliminar";
+            this.btn_eliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_eliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_eliminar.UseVisualStyleBackColor = false;
             // 
-            // lbl_gmail
+            // brt_editar
             // 
-            this.lbl_gmail.AutoSize = true;
-            this.lbl_gmail.BackColor = System.Drawing.Color.White;
-            this.lbl_gmail.Location = new System.Drawing.Point(53, 196);
-            this.lbl_gmail.Name = "lbl_gmail";
-            this.lbl_gmail.Size = new System.Drawing.Size(94, 13);
-            this.lbl_gmail.TabIndex = 27;
-            this.lbl_gmail.Text = "Correo Electronico";
+            this.brt_editar.BackColor = System.Drawing.Color.RoyalBlue;
+            this.brt_editar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.brt_editar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.brt_editar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.brt_editar.ForeColor = System.Drawing.Color.White;
+            this.brt_editar.IconChar = FontAwesome.Sharp.IconChar.Edit;
+            this.brt_editar.IconColor = System.Drawing.Color.White;
+            this.brt_editar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.brt_editar.IconSize = 16;
+            this.brt_editar.Location = new System.Drawing.Point(56, 485);
+            this.brt_editar.Name = "brt_editar";
+            this.brt_editar.Size = new System.Drawing.Size(191, 23);
+            this.brt_editar.TabIndex = 16;
+            this.brt_editar.Text = "Editar";
+            this.brt_editar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.brt_editar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.brt_editar.UseVisualStyleBackColor = false;
             // 
-            // txt_indice
+            // btn_guardar
             // 
-            this.txt_indice.Location = new System.Drawing.Point(173, 52);
-            this.txt_indice.Name = "txt_indice";
-            this.txt_indice.Size = new System.Drawing.Size(33, 20);
-            this.txt_indice.TabIndex = 29;
-            this.txt_indice.Text = "0";
+            this.btn_guardar.BackColor = System.Drawing.Color.ForestGreen;
+            this.btn_guardar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_guardar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_guardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_guardar.ForeColor = System.Drawing.Color.White;
+            this.btn_guardar.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
+            this.btn_guardar.IconColor = System.Drawing.Color.White;
+            this.btn_guardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_guardar.IconSize = 16;
+            this.btn_guardar.Location = new System.Drawing.Point(56, 456);
+            this.btn_guardar.Name = "btn_guardar";
+            this.btn_guardar.Size = new System.Drawing.Size(191, 23);
+            this.btn_guardar.TabIndex = 15;
+            this.btn_guardar.Text = "Guardar";
+            this.btn_guardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_guardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_guardar.UseVisualStyleBackColor = false;
+            this.btn_guardar.Click += new System.EventHandler(this.btn_guardar_Click);
             // 
             // frm_usuarios
             // 

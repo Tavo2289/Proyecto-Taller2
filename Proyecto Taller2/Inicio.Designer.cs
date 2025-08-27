@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.menuPrincipal = new System.Windows.Forms.MenuStrip();
+            this.menuTitulo = new System.Windows.Forms.MenuStrip();
+            this.lbl_titulo = new System.Windows.Forms.Label();
+            this.panel_contenedor = new System.Windows.Forms.Panel();
+            this.lbl_tituloUsuario = new System.Windows.Forms.Label();
+            this.lbl_nombreUsuario = new System.Windows.Forms.Label();
             this.iconUsuario = new FontAwesome.Sharp.IconMenuItem();
             this.iconMantenedor = new FontAwesome.Sharp.IconMenuItem();
             this.subMenu_categoria = new FontAwesome.Sharp.IconMenuItem();
@@ -43,11 +48,6 @@
             this.iconClientes = new FontAwesome.Sharp.IconMenuItem();
             this.iconReportes = new FontAwesome.Sharp.IconMenuItem();
             this.iconAcercaDe = new FontAwesome.Sharp.IconMenuItem();
-            this.menuTitulo = new System.Windows.Forms.MenuStrip();
-            this.lbl_titulo = new System.Windows.Forms.Label();
-            this.panel_contenedor = new System.Windows.Forms.Panel();
-            this.lbl_tituloUsuario = new System.Windows.Forms.Label();
-            this.lbl_nombreUsuario = new System.Windows.Forms.Label();
             this.menuPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,6 +67,63 @@
             this.menuPrincipal.Size = new System.Drawing.Size(1143, 73);
             this.menuPrincipal.TabIndex = 0;
             this.menuPrincipal.Text = "menuPrincipal";
+            // 
+            // menuTitulo
+            // 
+            this.menuTitulo.AutoSize = false;
+            this.menuTitulo.BackColor = System.Drawing.Color.SlateBlue;
+            this.menuTitulo.Location = new System.Drawing.Point(0, 0);
+            this.menuTitulo.Name = "menuTitulo";
+            this.menuTitulo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.menuTitulo.Size = new System.Drawing.Size(1143, 62);
+            this.menuTitulo.TabIndex = 1;
+            this.menuTitulo.Text = "menuTitulo";
+            // 
+            // lbl_titulo
+            // 
+            this.lbl_titulo.AutoSize = true;
+            this.lbl_titulo.BackColor = System.Drawing.Color.SlateBlue;
+            this.lbl_titulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_titulo.ForeColor = System.Drawing.Color.White;
+            this.lbl_titulo.Location = new System.Drawing.Point(26, 13);
+            this.lbl_titulo.Name = "lbl_titulo";
+            this.lbl_titulo.Size = new System.Drawing.Size(260, 31);
+            this.lbl_titulo.TabIndex = 2;
+            this.lbl_titulo.Text = "Sistemas De Ventas";
+            // 
+            // panel_contenedor
+            // 
+            this.panel_contenedor.BackColor = System.Drawing.Color.White;
+            this.panel_contenedor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_contenedor.Location = new System.Drawing.Point(0, 135);
+            this.panel_contenedor.Name = "panel_contenedor";
+            this.panel_contenedor.Size = new System.Drawing.Size(1143, 575);
+            this.panel_contenedor.TabIndex = 3;
+            // 
+            // lbl_tituloUsuario
+            // 
+            this.lbl_tituloUsuario.AutoSize = true;
+            this.lbl_tituloUsuario.BackColor = System.Drawing.Color.SlateBlue;
+            this.lbl_tituloUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_tituloUsuario.ForeColor = System.Drawing.Color.White;
+            this.lbl_tituloUsuario.Location = new System.Drawing.Point(806, 13);
+            this.lbl_tituloUsuario.Name = "lbl_tituloUsuario";
+            this.lbl_tituloUsuario.Size = new System.Drawing.Size(68, 18);
+            this.lbl_tituloUsuario.TabIndex = 4;
+            this.lbl_tituloUsuario.Text = "Usuario: ";
+            // 
+            // lbl_nombreUsuario
+            // 
+            this.lbl_nombreUsuario.AutoSize = true;
+            this.lbl_nombreUsuario.BackColor = System.Drawing.Color.SlateBlue;
+            this.lbl_nombreUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_nombreUsuario.ForeColor = System.Drawing.Color.White;
+            this.lbl_nombreUsuario.Location = new System.Drawing.Point(868, 13);
+            this.lbl_nombreUsuario.Name = "lbl_nombreUsuario";
+            this.lbl_nombreUsuario.Size = new System.Drawing.Size(82, 18);
+            this.lbl_nombreUsuario.TabIndex = 5;
+            this.lbl_nombreUsuario.Text = "lbl_Usuario";
+            this.lbl_nombreUsuario.Click += new System.EventHandler(this.lbl_nombreUsuario_Click);
             // 
             // iconUsuario
             // 
@@ -244,63 +301,6 @@
             this.iconAcercaDe.Size = new System.Drawing.Size(122, 69);
             this.iconAcercaDe.Text = "Acerca De";
             this.iconAcercaDe.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // menuTitulo
-            // 
-            this.menuTitulo.AutoSize = false;
-            this.menuTitulo.BackColor = System.Drawing.Color.SlateBlue;
-            this.menuTitulo.Location = new System.Drawing.Point(0, 0);
-            this.menuTitulo.Name = "menuTitulo";
-            this.menuTitulo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.menuTitulo.Size = new System.Drawing.Size(1143, 62);
-            this.menuTitulo.TabIndex = 1;
-            this.menuTitulo.Text = "menuTitulo";
-            // 
-            // lbl_titulo
-            // 
-            this.lbl_titulo.AutoSize = true;
-            this.lbl_titulo.BackColor = System.Drawing.Color.SlateBlue;
-            this.lbl_titulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_titulo.ForeColor = System.Drawing.Color.White;
-            this.lbl_titulo.Location = new System.Drawing.Point(26, 13);
-            this.lbl_titulo.Name = "lbl_titulo";
-            this.lbl_titulo.Size = new System.Drawing.Size(260, 31);
-            this.lbl_titulo.TabIndex = 2;
-            this.lbl_titulo.Text = "Sistemas De Ventas";
-            // 
-            // panel_contenedor
-            // 
-            this.panel_contenedor.BackColor = System.Drawing.Color.White;
-            this.panel_contenedor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_contenedor.Location = new System.Drawing.Point(0, 135);
-            this.panel_contenedor.Name = "panel_contenedor";
-            this.panel_contenedor.Size = new System.Drawing.Size(1143, 575);
-            this.panel_contenedor.TabIndex = 3;
-            // 
-            // lbl_tituloUsuario
-            // 
-            this.lbl_tituloUsuario.AutoSize = true;
-            this.lbl_tituloUsuario.BackColor = System.Drawing.Color.SlateBlue;
-            this.lbl_tituloUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_tituloUsuario.ForeColor = System.Drawing.Color.White;
-            this.lbl_tituloUsuario.Location = new System.Drawing.Point(806, 13);
-            this.lbl_tituloUsuario.Name = "lbl_tituloUsuario";
-            this.lbl_tituloUsuario.Size = new System.Drawing.Size(68, 18);
-            this.lbl_tituloUsuario.TabIndex = 4;
-            this.lbl_tituloUsuario.Text = "Usuario: ";
-            // 
-            // lbl_nombreUsuario
-            // 
-            this.lbl_nombreUsuario.AutoSize = true;
-            this.lbl_nombreUsuario.BackColor = System.Drawing.Color.SlateBlue;
-            this.lbl_nombreUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_nombreUsuario.ForeColor = System.Drawing.Color.White;
-            this.lbl_nombreUsuario.Location = new System.Drawing.Point(868, 13);
-            this.lbl_nombreUsuario.Name = "lbl_nombreUsuario";
-            this.lbl_nombreUsuario.Size = new System.Drawing.Size(82, 18);
-            this.lbl_nombreUsuario.TabIndex = 5;
-            this.lbl_nombreUsuario.Text = "lbl_Usuario";
-            this.lbl_nombreUsuario.Click += new System.EventHandler(this.lbl_nombreUsuario_Click);
             // 
             // Inicio
             // 

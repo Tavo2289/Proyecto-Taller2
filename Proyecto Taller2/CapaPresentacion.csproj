@@ -137,8 +137,14 @@
     <EmbeddedResource Include="frm_categoria.resx">
       <DependentUpon>frm_categoria.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm_clientes.resx">
+      <DependentUpon>frm_clientes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_producto.resx">
       <DependentUpon>frm_producto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_proveedores.resx">
+      <DependentUpon>frm_proveedores.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_usuarios.resx">
       <DependentUpon>frm_usuarios.cs</DependentUpon>
