@@ -60,7 +60,7 @@
             this.txt_gmail = new System.Windows.Forms.TextBox();
             this.lbl_gmail = new System.Windows.Forms.Label();
             this.btn_seleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.id_usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -70,6 +70,7 @@
             this.rol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txt_indice = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_listaUsuario)).BeginInit();
             this.SuspendLayout();
             // 
@@ -276,11 +277,12 @@
             this.lbl_detallaUsuario.BackColor = System.Drawing.Color.White;
             this.lbl_detallaUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_detallaUsuario.ForeColor = System.Drawing.Color.Black;
-            this.lbl_detallaUsuario.Location = new System.Drawing.Point(62, 34);
+            this.lbl_detallaUsuario.Location = new System.Drawing.Point(62, 24);
             this.lbl_detallaUsuario.Name = "lbl_detallaUsuario";
             this.lbl_detallaUsuario.Size = new System.Drawing.Size(144, 25);
             this.lbl_detallaUsuario.TabIndex = 18;
             this.lbl_detallaUsuario.Text = "Detalle Usuario";
+            this.lbl_detallaUsuario.Click += new System.EventHandler(this.lbl_detallaUsuario_Click);
             // 
             // dataGrid_listaUsuario
             // 
@@ -297,7 +299,7 @@
             this.dataGrid_listaUsuario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGrid_listaUsuario.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btn_seleccionar,
-            this.id_usuario,
+            this.id,
             this.documento,
             this.nombre,
             this.apellido,
@@ -317,6 +319,8 @@
             this.dataGrid_listaUsuario.RowTemplate.Height = 28;
             this.dataGrid_listaUsuario.Size = new System.Drawing.Size(805, 458);
             this.dataGrid_listaUsuario.TabIndex = 19;
+            this.dataGrid_listaUsuario.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGrid_listaUsuario_CellContentClick);
+            this.dataGrid_listaUsuario.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dataGrid_listaUsuario_CellPainting);
             // 
             // label3
             // 
@@ -422,12 +426,12 @@
             this.btn_seleccionar.ReadOnly = true;
             this.btn_seleccionar.Width = 30;
             // 
-            // id_usuario
+            // id
             // 
-            this.id_usuario.HeaderText = "IdUsuario";
-            this.id_usuario.Name = "id_usuario";
-            this.id_usuario.ReadOnly = true;
-            this.id_usuario.Visible = false;
+            this.id.HeaderText = "IdUsuario";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Visible = false;
             // 
             // documento
             // 
@@ -488,11 +492,20 @@
             this.estado.Name = "estado";
             this.estado.ReadOnly = true;
             // 
+            // txt_indice
+            // 
+            this.txt_indice.Location = new System.Drawing.Point(173, 52);
+            this.txt_indice.Name = "txt_indice";
+            this.txt_indice.Size = new System.Drawing.Size(33, 20);
+            this.txt_indice.TabIndex = 29;
+            this.txt_indice.Text = "0";
+            // 
             // frm_usuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1115, 550);
+            this.Controls.Add(this.txt_indice);
             this.Controls.Add(this.txt_gmail);
             this.Controls.Add(this.lbl_gmail);
             this.Controls.Add(this.btn_limpiarBusqueda);
@@ -563,7 +576,7 @@
         private System.Windows.Forms.TextBox txt_gmail;
         private System.Windows.Forms.Label lbl_gmail;
         private System.Windows.Forms.DataGridViewButtonColumn btn_seleccionar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_usuario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn documento;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn apellido;
@@ -573,5 +586,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn rol;
         private System.Windows.Forms.DataGridViewTextBoxColumn estadoValor;
         private System.Windows.Forms.DataGridViewTextBoxColumn estado;
+        private System.Windows.Forms.TextBox txt_indice;
     }
 }
