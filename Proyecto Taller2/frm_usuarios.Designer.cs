@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.lbl_documentoUsuario = new System.Windows.Forms.Label();
             this.lbl_nombreUsuario = new System.Windows.Forms.Label();
@@ -50,15 +50,6 @@
             this.btn_eliminar = new FontAwesome.Sharp.IconButton();
             this.lbl_detallaUsuario = new System.Windows.Forms.Label();
             this.dataGrid_listaUsuario = new System.Windows.Forms.DataGridView();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txt_id = new System.Windows.Forms.TextBox();
-            this.lbl_buscar = new System.Windows.Forms.Label();
-            this.comboBox_busqueda = new System.Windows.Forms.ComboBox();
-            this.txt_busqueda = new System.Windows.Forms.TextBox();
-            this.btn_limpiarBusqueda = new FontAwesome.Sharp.IconButton();
-            this.btn_busqueda = new FontAwesome.Sharp.IconButton();
-            this.txt_gmail = new System.Windows.Forms.TextBox();
-            this.lbl_gmail = new System.Windows.Forms.Label();
             this.btn_seleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -70,6 +61,15 @@
             this.rol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txt_id = new System.Windows.Forms.TextBox();
+            this.lbl_buscar = new System.Windows.Forms.Label();
+            this.comboBox_busqueda = new System.Windows.Forms.ComboBox();
+            this.txt_busqueda = new System.Windows.Forms.TextBox();
+            this.btn_limpiarBusqueda = new FontAwesome.Sharp.IconButton();
+            this.btn_busqueda = new FontAwesome.Sharp.IconButton();
+            this.txt_gmail = new System.Windows.Forms.TextBox();
+            this.lbl_gmail = new System.Windows.Forms.Label();
             this.txt_indice = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_listaUsuario)).BeginInit();
             this.SuspendLayout();
@@ -121,6 +121,7 @@
             this.txt_documentoUsuario.Size = new System.Drawing.Size(191, 20);
             this.txt_documentoUsuario.TabIndex = 4;
             this.txt_documentoUsuario.TextChanged += new System.EventHandler(this.txt_documentoUsuario_TextChanged);
+            this.txt_documentoUsuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_soloNumeros_KeyPress);
             // 
             // txt_nombreUsuario
             // 
@@ -128,6 +129,7 @@
             this.txt_nombreUsuario.Name = "txt_nombreUsuario";
             this.txt_nombreUsuario.Size = new System.Drawing.Size(191, 20);
             this.txt_nombreUsuario.TabIndex = 5;
+            this.txt_nombreUsuario.Leave += new System.EventHandler(this.txtnombreUsuario_Leave);
             // 
             // txt_contraseñaUsuario
             // 
@@ -153,6 +155,7 @@
             this.txt_apellidoUsuario.Name = "txt_apellidoUsuario";
             this.txt_apellidoUsuario.Size = new System.Drawing.Size(191, 20);
             this.txt_apellidoUsuario.TabIndex = 8;
+            this.txt_apellidoUsuario.Leave += new System.EventHandler(this.txtapellidoUsuario_Leave);
             // 
             // txt_confirmarContraseña
             // 
@@ -287,15 +290,15 @@
             // dataGrid_listaUsuario
             // 
             this.dataGrid_listaUsuario.AllowUserToAddRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGrid_listaUsuario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGrid_listaUsuario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dataGrid_listaUsuario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGrid_listaUsuario.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btn_seleccionar,
@@ -313,14 +316,87 @@
             this.dataGrid_listaUsuario.MultiSelect = false;
             this.dataGrid_listaUsuario.Name = "dataGrid_listaUsuario";
             this.dataGrid_listaUsuario.ReadOnly = true;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGrid_listaUsuario.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGrid_listaUsuario.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dataGrid_listaUsuario.RowTemplate.Height = 28;
             this.dataGrid_listaUsuario.Size = new System.Drawing.Size(805, 458);
             this.dataGrid_listaUsuario.TabIndex = 19;
             this.dataGrid_listaUsuario.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGrid_listaUsuario_CellContentClick);
             this.dataGrid_listaUsuario.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dataGrid_listaUsuario_CellPainting);
+            // 
+            // btn_seleccionar
+            // 
+            this.btn_seleccionar.HeaderText = "";
+            this.btn_seleccionar.Name = "btn_seleccionar";
+            this.btn_seleccionar.ReadOnly = true;
+            this.btn_seleccionar.Width = 30;
+            // 
+            // id
+            // 
+            this.id.HeaderText = "IdUsuario";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Visible = false;
+            // 
+            // documento
+            // 
+            this.documento.HeaderText = "Numero Documento";
+            this.documento.Name = "documento";
+            this.documento.ReadOnly = true;
+            this.documento.Width = 150;
+            // 
+            // nombre
+            // 
+            this.nombre.HeaderText = "Nombre";
+            this.nombre.Name = "nombre";
+            this.nombre.ReadOnly = true;
+            // 
+            // apellido
+            // 
+            this.apellido.HeaderText = "Apellido";
+            this.apellido.Name = "apellido";
+            this.apellido.ReadOnly = true;
+            // 
+            // gmail
+            // 
+            this.gmail.HeaderText = "Correo Electronico";
+            this.gmail.Name = "gmail";
+            this.gmail.ReadOnly = true;
+            this.gmail.Width = 180;
+            // 
+            // contraseña
+            // 
+            this.contraseña.HeaderText = "Contraseña";
+            this.contraseña.Name = "contraseña";
+            this.contraseña.ReadOnly = true;
+            this.contraseña.Visible = false;
+            // 
+            // id_rol
+            // 
+            this.id_rol.HeaderText = "IdRol";
+            this.id_rol.Name = "id_rol";
+            this.id_rol.ReadOnly = true;
+            this.id_rol.Visible = false;
+            // 
+            // rol
+            // 
+            this.rol.HeaderText = "Rol";
+            this.rol.Name = "rol";
+            this.rol.ReadOnly = true;
+            // 
+            // estadoValor
+            // 
+            this.estadoValor.HeaderText = "Estado Valor";
+            this.estadoValor.Name = "estadoValor";
+            this.estadoValor.ReadOnly = true;
+            this.estadoValor.Visible = false;
+            // 
+            // estado
+            // 
+            this.estado.HeaderText = "Estado";
+            this.estado.Name = "estado";
+            this.estado.ReadOnly = true;
             // 
             // label3
             // 
@@ -418,79 +494,6 @@
             this.lbl_gmail.Size = new System.Drawing.Size(94, 13);
             this.lbl_gmail.TabIndex = 27;
             this.lbl_gmail.Text = "Correo Electronico";
-            // 
-            // btn_seleccionar
-            // 
-            this.btn_seleccionar.HeaderText = "";
-            this.btn_seleccionar.Name = "btn_seleccionar";
-            this.btn_seleccionar.ReadOnly = true;
-            this.btn_seleccionar.Width = 30;
-            // 
-            // id
-            // 
-            this.id.HeaderText = "IdUsuario";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Visible = false;
-            // 
-            // documento
-            // 
-            this.documento.HeaderText = "Numero Documento";
-            this.documento.Name = "documento";
-            this.documento.ReadOnly = true;
-            this.documento.Width = 150;
-            // 
-            // nombre
-            // 
-            this.nombre.HeaderText = "Nombre";
-            this.nombre.Name = "nombre";
-            this.nombre.ReadOnly = true;
-            // 
-            // apellido
-            // 
-            this.apellido.HeaderText = "Apellido";
-            this.apellido.Name = "apellido";
-            this.apellido.ReadOnly = true;
-            // 
-            // gmail
-            // 
-            this.gmail.HeaderText = "Correo Electronico";
-            this.gmail.Name = "gmail";
-            this.gmail.ReadOnly = true;
-            this.gmail.Width = 180;
-            // 
-            // contraseña
-            // 
-            this.contraseña.HeaderText = "Contraseña";
-            this.contraseña.Name = "contraseña";
-            this.contraseña.ReadOnly = true;
-            this.contraseña.Visible = false;
-            // 
-            // id_rol
-            // 
-            this.id_rol.HeaderText = "IdRol";
-            this.id_rol.Name = "id_rol";
-            this.id_rol.ReadOnly = true;
-            this.id_rol.Visible = false;
-            // 
-            // rol
-            // 
-            this.rol.HeaderText = "Rol";
-            this.rol.Name = "rol";
-            this.rol.ReadOnly = true;
-            // 
-            // estadoValor
-            // 
-            this.estadoValor.HeaderText = "Estado Valor";
-            this.estadoValor.Name = "estadoValor";
-            this.estadoValor.ReadOnly = true;
-            this.estadoValor.Visible = false;
-            // 
-            // estado
-            // 
-            this.estado.HeaderText = "Estado";
-            this.estado.Name = "estado";
-            this.estado.ReadOnly = true;
             // 
             // txt_indice
             // 
