@@ -63,9 +63,9 @@ namespace Proyecto_Taller2.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap check20 {
+        internal static System.Drawing.Bitmap claro {
             get {
-                object obj = ResourceManager.GetObject("check20", resourceCulture);
+                object obj = ResourceManager.GetObject("claro", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,19 @@ namespace Proyecto_Taller2.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap delete32 {
+        internal static System.Drawing.Bitmap icons8_carrito_de_compras_94 {
             get {
-                object obj = ResourceManager.GetObject("delete32", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8-carrito-de-compras-94", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap oscuro {
+            get {
+                object obj = ResourceManager.GetObject("oscuro", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
