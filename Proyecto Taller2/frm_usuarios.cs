@@ -101,7 +101,7 @@ namespace Proyecto_Taller2
 
         private void limpiar()
         {
-            txt_indice.Text = "-1";
+            //txt_indice.Text = "-1";
             txt_id.Text = "0";
             txt_documentoUsuario.Text = "";
             txt_nombreUsuario.Text = "";
