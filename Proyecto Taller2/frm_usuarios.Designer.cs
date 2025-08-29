@@ -70,10 +70,9 @@
             this.btn_busqueda = new FontAwesome.Sharp.IconButton();
             this.txt_gmail = new System.Windows.Forms.TextBox();
             this.lbl_gmail = new System.Windows.Forms.Label();
-<<<<<<< HEAD
-=======
-            this.txt_indice = new System.Windows.Forms.TextBox();
->>>>>>> 1668acd97448a56b29b583d58100f295c5a443b0
+
+          //  this.txt_indice = new System.Windows.Forms.TextBox();
+
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_listaUsuario)).BeginInit();
             this.SuspendLayout();
             // 
@@ -292,18 +291,18 @@
             // dataGrid_listaUsuario
             // 
             this.dataGrid_listaUsuario.AllowUserToAddRows = false;
-<<<<<<< HEAD
-            this.dataGrid_listaUsuario.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGrid_listaUsuario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-=======
+//<<<<<<< HEAD
+           // this.dataGrid_listaUsuario.BackgroundColor = System.Drawing.Color.White;
+           // dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+           // dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+           // dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+          //  dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+          //  dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
+          //  dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+          //  dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+          //  dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+           // this.dataGrid_listaUsuario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+//=======
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -313,7 +312,7 @@
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGrid_listaUsuario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
->>>>>>> 1668acd97448a56b29b583d58100f295c5a443b0
+//>>>>>>> 1668acd97448a56b29b583d58100f295c5a443b0
             this.dataGrid_listaUsuario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGrid_listaUsuario.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btn_seleccionar,
@@ -420,10 +419,10 @@
             // 
             // id
             // 
-            this.id.HeaderText = "IdUsuario";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Visible = false;
+           // this.id.HeaderText = "IdUsuario";
+           // this.id.Name = "id";
+           // this.id.ReadOnly = true;
+           // this.id.Visible = false;
             // 
             // documento
             // 
@@ -581,17 +580,15 @@
             this.lbl_gmail.TabIndex = 27;
             this.lbl_gmail.Text = "Correo Electronico";
             // 
-<<<<<<< HEAD
-=======
+
             // txt_indice
             // 
-            this.txt_indice.Location = new System.Drawing.Point(173, 52);
-            this.txt_indice.Name = "txt_indice";
-            this.txt_indice.Size = new System.Drawing.Size(33, 20);
-            this.txt_indice.TabIndex = 29;
-            this.txt_indice.Text = "0";
+            //this.txt_indice.Location = new System.Drawing.Point(173, 52);
+           // this.txt_indice.Name = "txt_indice";
+           // this.txt_indice.Size = new System.Drawing.Size(33, 20);
+           // this.txt_indice.TabIndex = 29;
+           // this.txt_indice.Text = "0";
             // 
->>>>>>> 1668acd97448a56b29b583d58100f295c5a443b0
             // frm_usuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);

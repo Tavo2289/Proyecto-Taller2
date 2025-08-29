@@ -148,7 +148,7 @@ namespace Proyecto_Taller2
 
                 if (indiceFila >= 0)
                 {  // si el indice es mayor o igual a 0
-                    txt_indice.Text = indiceFila.ToString(); // mostrar el indice en el textbox
+                    //txt_indice.Text = indiceFila.ToString(); // mostrar el indice en el textbox
                     txt_id.Text = dataGrid_listaUsuario.Rows[indiceFila].Cells["id"].Value.ToString();
                     txt_documentoUsuario.Text = dataGrid_listaUsuario.Rows[indiceFila].Cells["documento"].Value.ToString();
                     txt_nombreUsuario.Text = dataGrid_listaUsuario.Rows[indiceFila].Cells["nombre"].Value.ToString();
