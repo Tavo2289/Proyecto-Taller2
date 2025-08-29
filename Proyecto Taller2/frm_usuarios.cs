@@ -1,15 +1,16 @@
-﻿using System;
+﻿using CapaEntidad;
+using CapaNegocio;
+using Proyecto_Taller2.Utilidades;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Proyecto_Taller2.Utilidades;
-using CapaEntidad;
-using CapaNegocio;
 
 namespace Proyecto_Taller2
 {
@@ -88,6 +89,7 @@ namespace Proyecto_Taller2
 
         private void btn_guardar_Click(object sender, EventArgs e)
         {
+            if (!verificar_campos()) { return; } // si la verificación falla, salimos del método
             dataGrid_listaUsuario.Rows.Add(new object[]
             {"",txt_id.Text,txt_documentoUsuario.Text,txt_nombreUsuario.Text,txt_apellidoUsuario.Text,txt_gmail.Text,txt_contraseñaUsuario.Text ,
                 ((OpcionCombo)comboRol.SelectedItem).Valor.ToString(),
@@ -188,5 +190,117 @@ namespace Proyecto_Taller2
         {
 
         }
+
+        /******************VALIDACIONES DE CAMPOS**********************/
+
+        public bool verificar_campos()
+        {// metodo para verificar que los campos no esten vacios y que el numero de documento sea numerico
+
+            if (new[] { txt_nombreUsuario, txt_apellidoUsuario, txt_documentoUsuario, txt_contraseñaUsuario, txt_confirmarContraseña, txt_gmail }.Any(tb => string.IsNullOrWhiteSpace(tb.Text))) // verifica que los campos no esten vacios
+            {
+                MessageBox.Show("Todos los campos deben estar completos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (int.TryParse(txt_documentoUsuario.Text, out _)) { } //int.tryparse verificar que el valor ingresado sea numerico
+
+            else
+            {
+
+                MessageBox.Show("El Documento debe ser Numerico", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+
+            //verficar campos apellido y nombre solo contengan letras
+
+            if (Regex.IsMatch(txt_apellidoUsuario.Text, @"^[a-zA-Z]+$")) //verifica que solo contenga letras (mayúsculas o minúsculas)
+            {
+                // Es solo texto (letras mayúsculas o minúsculas)
+
+            }
+            else
+            {
+                MessageBox.Show("Ingresa correctamente su Apellido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (Regex.IsMatch(txt_nombreUsuario.Text, @"^[a-zA-Z]+$"))
+            {
+                // Es solo texto (letras mayúsculas o minúsculas)
+
+            }
+            else
+            {
+
+                MessageBox.Show("Ingresa correctamente su Nombre", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+
+            //verificamos que el gmail tenga un formato correcto
+
+            if (Regex.IsMatch(txt_gmail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$")) //verifica que el formato del gmail sea correcto
+            {
+                // El formato del correo electrónico es válido
+
+            }
+            else
+            {
+                MessageBox.Show("El formato del Gmail es incorrecto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+
+            //verificamos que las contraseñas sean iguales
+
+            if (txt_contraseñaUsuario.Text != txt_confirmarContraseña.Text) // verifica que las contraseñas sean iguales
+            {
+                MessageBox.Show("Las contraseñas no coinciden", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else
+            {
+
+
+                return true; // si todo esta bien devuelve true
+
+            }
+        }
+
+        /*poner la primera letra en mayusculas*/
+
+
+        private void txtnombreUsuario_Leave(object sender, EventArgs e)
+        {
+            txt_nombreUsuario.Text = FormatearTexto(txt_nombreUsuario.Text);
+        }
+
+        private void txtapellidoUsuario_Leave(object sender, EventArgs e)
+        {
+            txt_apellidoUsuario.Text = FormatearTexto(txt_apellidoUsuario.Text);
+        }
+        private string FormatearTexto(string texto)
+        {
+            if (string.IsNullOrWhiteSpace(texto))
+                return string.Empty;
+
+            texto = texto.Trim().ToLower(); // todo minúscula y sin espacios sobrantes
+            return char.ToUpper(texto[0]) + texto.Substring(1);
+        }
+
+        //ACEPTAR SOLO NUMEROS EN EL CAMPO DOCUMENTO
+        private void txt_soloNumeros_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo permitir dígitos y la tecla de retroceso
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloquea la tecla
+            }
+        }
+
     }
+
+
+
 }
