@@ -114,6 +114,7 @@ namespace Proyecto_Taller2
             comboRol.SelectedIndex = 0; // seleccionar la primera opcion del combo
             comboEstado.SelectedIndex = 0;// seleccionar la primera opcion del combo
 
+            //aca hice cagada
 
         }
 
