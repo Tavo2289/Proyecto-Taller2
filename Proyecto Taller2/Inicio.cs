@@ -1,15 +1,11 @@
-﻿using System;
+﻿using CapaEntidad; // referencia capa de entidad
+using CapaNegocio; // referencia a capa de negocio
+using FontAwesome.Sharp;  // referencia a plugin de iconos
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using CapaEntidad; // referencia capa de entidad
-using FontAwesome.Sharp;  // referencia a plugin de iconos
-using CapaNegocio; // referencia a capa de negocio
 
 namespace Proyecto_Taller2
 {
@@ -19,6 +15,7 @@ namespace Proyecto_Taller2
         private static Usuario usuarioActual; //variable estatica de tipo usuario para almacenar el usuario que ha iniciado sesión
         private static IconMenuItem menuActivo = null; // representa a los iconos del menu de formularios
         private static Form formularioActivo = null; //indica el formulario que va estar activo
+        private bool _esTemaOscuro = false;
         public Inicio(Usuario objUsuario =null)
         {
 
@@ -130,5 +127,68 @@ namespace Proyecto_Taller2
         {
             abrirFormulario((IconMenuItem)sender, new frm_reportes()); //abre el formulario de reportes al hacer clic en el icono de reportes
         }
+
+        /// <summary>
+        /// Aplica un tema (claro u oscuro) a los controles del contenedor de forma recursiva.
+        /// </summary>
+        /// <param name="contenedor">El control padre al que se aplicará el tema.</param>
+        /// <param name="esOscuro">Indica si se debe aplicar el tema oscuro (true) o el claro (false).</param>
+        private void AplicarTema(Control contenedor, bool esOscuro)
+        {
+            // Lógica para cambiar el color de fondo de los controles principales
+            if (contenedor is MenuStrip menuStrip)
+            {
+                menuStrip.BackColor = esOscuro ? Color.Black : Color.Orange;
+            }
+            else if (contenedor is Panel panel)
+            {
+                panel.BackColor = esOscuro ? Color.Black : Color.Orange;
+                panel.BackgroundImage = esOscuro ? Properties.Resources.oscuro : Properties.Resources.claro;
+                panel.BackgroundImageLayout = ImageLayout.Stretch;
+            }
+
+            // Ahora se aplica recursividad a los controles anidados.
+            foreach (Control control in contenedor.Controls)
+            {
+                // Aplica colores específicos a diferentes tipos de control.
+                if (control is Button button)
+                {
+                    button.BackColor = esOscuro ? Color.FromArgb(60, 60, 63) : Color.FromArgb(240, 240, 240);
+                    button.ForeColor = esOscuro ? Color.White : Color.Black;
+                }
+                else if (control is Label || control is LinkLabel)
+                {
+                    control.ForeColor = esOscuro ? Color.White : Color.Black;
+                }
+                else if (control is Panel panelControl)
+                {
+                    panelControl.BackColor = esOscuro ? Color.Black : Color.White;
+                }
+
+                // Llamada recursiva para los controles que están dentro de otros contenedores.
+                AplicarTema(control, esOscuro);
+            }
+        }
+
+        private void btnClaroOscuro_Click(object sender, EventArgs e)
+        {
+            _esTemaOscuro = !_esTemaOscuro;
+
+            // Con una sola llamada al formulario principal (this), el método recursivo
+            // se encarga de aplicar el tema a todos los controles, incluyendo los que
+            // se cargan dinámicamente en el panel.
+            AplicarTema(this, _esTemaOscuro);
+        }
+
+
+
+
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            // Actualiza el texto del Label con la fecha y hora actual
+            lblFechaHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+        }
+
     }
 }
