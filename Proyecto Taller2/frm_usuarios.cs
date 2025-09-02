@@ -157,7 +157,7 @@ namespace Proyecto_Taller2
 
         private void limpiar()
         {
-            txt_indice.Text = "-1";
+            //txt_indice.Text = "-1";
             txt_id.Text = "0";
             txt_documentoUsuario.Text = "";
             txt_nombreUsuario.Text = "";
@@ -168,7 +168,12 @@ namespace Proyecto_Taller2
             comboRol.SelectedIndex = 0; // seleccionar la primera opcion del combo
             comboEstado.SelectedIndex = 0;// seleccionar la primera opcion del combo
 
+<<<<<<< HEAD
             txt_nombreUsuario.Select(); // colocar el foco en el textbox documento
+=======
+            //aca hice cagada
+
+>>>>>>> origin
         }
 
         private void txt_documentoUsuario_TextChanged(object sender, EventArgs e)
@@ -202,7 +207,7 @@ namespace Proyecto_Taller2
 
                 if (indiceFila >= 0)
                 {  // si el indice es mayor o igual a 0
-                    txt_indice.Text = indiceFila.ToString(); // mostrar el indice en el textbox
+                    //txt_indice.Text = indiceFila.ToString(); // mostrar el indice en el textbox
                     txt_id.Text = dataGrid_listaUsuario.Rows[indiceFila].Cells["id"].Value.ToString();
                     txt_documentoUsuario.Text = dataGrid_listaUsuario.Rows[indiceFila].Cells["documento"].Value.ToString();
                     txt_nombreUsuario.Text = dataGrid_listaUsuario.Rows[indiceFila].Cells["nombre"].Value.ToString();
