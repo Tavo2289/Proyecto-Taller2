@@ -29,7 +29,7 @@ namespace Proyecto_Taller2
             comboEstado.ValueMember = "Valor";// asociar el valor al texto
             comboEstado.SelectedIndex = 0;// seleccionar la primera opcion del combo
 
-            foreach (DataGridViewColumn columna in dataGrid_lista.Columns)
+            foreach (DataGridViewColumn columna in dataGrid_listaCategoria.Columns)
             {  // recorrer las columnas del datagrid
 
                 if (columna.Visible == true && columna.Name != "btn_seleccionar")
@@ -48,10 +48,10 @@ namespace Proyecto_Taller2
 
             foreach (Categoria item in lista) // recorre la lista
             {
-                dataGrid_lista.Rows.Add(new object[] // agregar una fila al datagrid
-                 {"",item.IdCategoria,item.Descripcion,
-                 item.Estado == true ?1:0, // operador ternario para mostrar 1 o 0 en el datagrid
-                 item.Estado == true ?"Activo":"No Activo" // operador ternario para mostrar Activo o No Activo en el datagrid
+                dataGrid_listaCategoria.Rows.Add(new object[] // agregar una fila al datagrid
+                 {"",item.id_categoria,item.nombre_categoria,
+                 item.estado == true ?1:0, // operador ternario para mostrar 1 o 0 en el datagrid
+                 item.estado == true ?"Activo":"No Activo" // operador ternario para mostrar Activo o No Activo en el datagrid
                     });
             }
         }
@@ -62,19 +62,19 @@ namespace Proyecto_Taller2
 
             Categoria obj = new Categoria()
             {  // crear un objeto de tipo usuario y asignar los valores de los campos del formulario
-                IdCategoria = Convert.ToInt32(txt_id.Text),
-                Descripcion = txt_descripcion.Text,// asignar el valor del textbox documento
-                Estado = Convert.ToInt32(((OpcionCombo)comboEstado.SelectedItem).Valor) == 1 ? true : false
+                id_categoria = Convert.ToInt32(txt_id.Text),
+                nombre_categoria= txt_descripcion.Text,// asignar el valor del textbox documento
+                estado = Convert.ToInt32(((OpcionCombo)comboEstado.SelectedItem).Valor) == 1 ? true : false
             };
 
-            if (obj.IdCategoria == 0)
+            if (obj.id_categoria == 0)
             {
 
                 int idgenerado = new CN_Categoria().Registrar(obj, out mensaje); // llamar al metodo registrar de la clase CN_usuario que esta en la capa de negocio
 
                 if (idgenerado != 0)
                 {
-                    dgvdata.Rows.Add(new object[]
+                    dataGrid_listaCategoria.Rows.Add(new object[]
                     {"",idgenerado,txt_descripcion.Text,
                     ((OpcionCombo)comboEstado.SelectedItem).Valor.ToString(),
                     ((OpcionCombo)comboEstado.SelectedItem).Texto.ToString()
@@ -92,7 +92,7 @@ namespace Proyecto_Taller2
 
                 if (resultado)
                 {
-                    DataGridViewRow row = dgv.Rows[Convert.ToInt32(txt_indice.Text)];// dgvdata remplace por dataGrid_listaUsuario
+                    DataGridViewRow row = dataGrid_listaCategoria.Rows[Convert.ToInt32(txt_indice.Text)];// dgvdata remplace por dataGrid_listaUsuario
                     row.Cells["id"].Value = txt_id.Text;
                     row.Cells["Descripcion"].Value = txt_descripcion.Text;
                     row.Cells["estadoValor"].Value = ((OpcionCombo)comboEstado.SelectedItem).Valor.ToString();
@@ -105,6 +105,7 @@ namespace Proyecto_Taller2
                     MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); // mostrar el mensaje de error
                 }
             }
+        }
 
             private void limpiar()
         {
@@ -136,7 +137,7 @@ namespace Proyecto_Taller2
 
         private void dataGrid_lista_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvdata.Columns[e.ColumnIndex].Name == "btn_seleccionar")
+            if (dataGrid_listaCategoria.Columns[e.ColumnIndex].Name == "btn_seleccionar")
             {
 
                 int indiceFila = e.RowIndex; // obtener el indice de la fila seleccionada
@@ -144,12 +145,12 @@ namespace Proyecto_Taller2
                 if (indiceFila >= 0)
                 {  // si el indice es mayor o igual a 0
                     txt_indice.Text = indiceFila.ToString(); // mostrar el indice en el textbox
-                    txt_id.Text = dgvdata.Rows[indiceFila].Cells["id"].Value.ToString();
-                    txt_descripcion.Text = dgvdata.Rows[indiceFila].Cells["Descripcion"].Value.ToString();
+                    txt_id.Text = dataGrid_listaCategoria.Rows[indiceFila].Cells["id"].Value.ToString();
+                    txt_descripcion.Text = dataGrid_listaCategoria.Rows[indiceFila].Cells["Descripcion"].Value.ToString();
 
                     foreach (OpcionCombo oc in comboEstado.Items)// recorrer las opciones del combo estado
                     {
-                        if (Convert.ToInt32(oc.Valor) == Convert.ToInt32(dgvdata.Rows[indiceFila].Cells["estadoValor"].Value))// si el valor de la opcion es igual al estado_valor de la fila seleccionada
+                        if (Convert.ToInt32(oc.Valor) == Convert.ToInt32(dataGrid_listaCategoria.Rows[indiceFila].Cells["estadoValor"].Value))// si el valor de la opcion es igual al estado_valor de la fila seleccionada
                         {
                             int indiceCombo = comboEstado.Items.IndexOf(oc);// obtener el indice de la opcion
                             comboEstado.SelectedIndex = indiceCombo;// seleccionar la opcion en el combo
@@ -168,20 +169,22 @@ namespace Proyecto_Taller2
         {
             if (Convert.ToInt32(txt_id.Text) != 0)
             {
-                if (MessageBox.Show("¿ Desea elimina el categoria ? ", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                string descripcion = txt_descripcion.Text;
+                if (MessageBox.Show("¿ Desea elimina la categoria "+ descripcion+" ?" , "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     string mensaje = string.Empty;
                     Categoria obj = new Categoria()
                     {
-                        IdCategoria = Convert.ToInt32(txt_id.Text),
+                        id_categoria = Convert.ToInt32(txt_id.Text),
                     };
 
                     bool respuesta = new CN_Categoria().Eliminar(obj, out mensaje);
 
                     if (respuesta)
                     {
-                        dgvdata.Rows.RemoveAt(Convert.ToInt32(txt_indice.Text));
+                        dataGrid_listaCategoria.Rows.RemoveAt(Convert.ToInt32(txt_indice.Text));
                         limpiar();
+                        MessageBox.Show("Categoria "+descripcion + " eliminada correctamente","Categoria Eliminada",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                     }
                     else
                     {
@@ -195,9 +198,9 @@ namespace Proyecto_Taller2
         {
             string columnaFiltro = ((OpcionCombo)comboBox_busqueda.SelectedItem).Valor.ToString();
 
-            if (dgbdata.Rows.Count > 0)
+            if (dataGrid_listaCategoria.Rows.Count > 0)
             {
-                foreach (DataGridViewRow row in dgbdata.Rows)
+                foreach (DataGridViewRow row in dataGrid_listaCategoria.Rows)
                 {
                     if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(txt_busqueda.Text.Trim().ToUpper()))
                         row.Visible = true;
@@ -210,7 +213,7 @@ namespace Proyecto_Taller2
         private void btn_limpiarBusqueda_Click(object sender, EventArgs e)
         {
             txt_busqueda.Text = "";
-            foreach (DataGridViewRow row in dgbdata.Rows)
+            foreach (DataGridViewRow row in dataGrid_listaCategoria.Rows)
             {
                 row.Visible = true;
             }
@@ -221,8 +224,9 @@ namespace Proyecto_Taller2
             limpiar();
         }
 
-
-
-
+        private void btn_limpiar_Click(object sender, EventArgs e)
+        {
+            limpiar();
+        }
     }
 }

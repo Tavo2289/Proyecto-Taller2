@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txt_indice = new System.Windows.Forms.TextBox();
             this.btn_limpiarBusqueda = new FontAwesome.Sharp.IconButton();
             this.btn_busqueda = new FontAwesome.Sharp.IconButton();
@@ -39,9 +39,9 @@
             this.btn_eliminar = new FontAwesome.Sharp.IconButton();
             this.txt_id = new System.Windows.Forms.TextBox();
             this.lblListaCategorias = new System.Windows.Forms.Label();
-            this.brt_limpiar = new FontAwesome.Sharp.IconButton();
+            this.btn_limpiar = new FontAwesome.Sharp.IconButton();
             this.btn_guardar = new FontAwesome.Sharp.IconButton();
-            this.dataGrid_lista = new System.Windows.Forms.DataGridView();
+            this.dataGrid_listaCategoria = new System.Windows.Forms.DataGridView();
             this.btn_seleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,7 +53,7 @@
             this.txt_descripcion = new System.Windows.Forms.TextBox();
             this.lblDescripcion = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGrid_lista)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGrid_listaCategoria)).BeginInit();
             this.SuspendLayout();
             // 
             // txt_indice
@@ -170,26 +170,26 @@
             this.lblListaCategorias.Text = "Lista de Categorias";
             this.lblListaCategorias.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // brt_limpiar
+            // btn_limpiar
             // 
-            this.brt_limpiar.BackColor = System.Drawing.Color.RoyalBlue;
-            this.brt_limpiar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.brt_limpiar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.brt_limpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.brt_limpiar.ForeColor = System.Drawing.Color.White;
-            this.brt_limpiar.IconChar = FontAwesome.Sharp.IconChar.Broom;
-            this.brt_limpiar.IconColor = System.Drawing.Color.White;
-            this.brt_limpiar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.brt_limpiar.IconSize = 18;
-            this.brt_limpiar.Location = new System.Drawing.Point(45, 214);
-            this.brt_limpiar.Name = "brt_limpiar";
-            this.brt_limpiar.Size = new System.Drawing.Size(191, 23);
-            this.brt_limpiar.TabIndex = 46;
-            this.brt_limpiar.Text = "Limpiar";
-            this.brt_limpiar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.brt_limpiar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.brt_limpiar.UseVisualStyleBackColor = false;
-            this.brt_limpiar.Click += new System.EventHandler(this.brt_limpiar_Click);
+            this.btn_limpiar.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btn_limpiar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_limpiar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_limpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_limpiar.ForeColor = System.Drawing.Color.White;
+            this.btn_limpiar.IconChar = FontAwesome.Sharp.IconChar.Broom;
+            this.btn_limpiar.IconColor = System.Drawing.Color.White;
+            this.btn_limpiar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_limpiar.IconSize = 18;
+            this.btn_limpiar.Location = new System.Drawing.Point(45, 214);
+            this.btn_limpiar.Name = "btn_limpiar";
+            this.btn_limpiar.Size = new System.Drawing.Size(191, 23);
+            this.btn_limpiar.TabIndex = 46;
+            this.btn_limpiar.Text = "Limpiar";
+            this.btn_limpiar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_limpiar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_limpiar.UseVisualStyleBackColor = false;
+            this.btn_limpiar.Click += new System.EventHandler(this.btn_limpiar_Click);
             // 
             // btn_guardar
             // 
@@ -212,37 +212,37 @@
             this.btn_guardar.UseVisualStyleBackColor = false;
             this.btn_guardar.Click += new System.EventHandler(this.btn_guardar_Click);
             // 
-            // dataGrid_lista
+            // dataGrid_listaCategoria
             // 
-            this.dataGrid_lista.AllowUserToAddRows = false;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGrid_lista.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            this.dataGrid_lista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGrid_lista.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGrid_listaCategoria.AllowUserToAddRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGrid_listaCategoria.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGrid_listaCategoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGrid_listaCategoria.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btn_seleccionar,
             this.id,
             this.Descripcion,
             this.estadoValor,
             this.estado});
-            this.dataGrid_lista.Location = new System.Drawing.Point(310, 80);
-            this.dataGrid_lista.MultiSelect = false;
-            this.dataGrid_lista.Name = "dataGrid_lista";
-            this.dataGrid_lista.ReadOnly = true;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGrid_lista.RowsDefaultCellStyle = dataGridViewCellStyle10;
-            this.dataGrid_lista.RowTemplate.Height = 28;
-            this.dataGrid_lista.Size = new System.Drawing.Size(799, 274);
-            this.dataGrid_lista.TabIndex = 49;
-            this.dataGrid_lista.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGrid_lista_CellContentClick);
-            this.dataGrid_lista.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dataGrid_lista_CellPainting);
+            this.dataGrid_listaCategoria.Location = new System.Drawing.Point(310, 80);
+            this.dataGrid_listaCategoria.MultiSelect = false;
+            this.dataGrid_listaCategoria.Name = "dataGrid_listaCategoria";
+            this.dataGrid_listaCategoria.ReadOnly = true;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGrid_listaCategoria.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGrid_listaCategoria.RowTemplate.Height = 28;
+            this.dataGrid_listaCategoria.Size = new System.Drawing.Size(799, 298);
+            this.dataGrid_listaCategoria.TabIndex = 49;
+            this.dataGrid_listaCategoria.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGrid_lista_CellContentClick);
+            this.dataGrid_listaCategoria.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dataGrid_lista_CellPainting);
             // 
             // btn_seleccionar
             // 
@@ -350,9 +350,9 @@
             this.Controls.Add(this.btn_eliminar);
             this.Controls.Add(this.txt_id);
             this.Controls.Add(this.lblListaCategorias);
-            this.Controls.Add(this.brt_limpiar);
+            this.Controls.Add(this.btn_limpiar);
             this.Controls.Add(this.btn_guardar);
-            this.Controls.Add(this.dataGrid_lista);
+            this.Controls.Add(this.dataGrid_listaCategoria);
             this.Controls.Add(this.lbl_detalleCategoria);
             this.Controls.Add(this.comboEstado);
             this.Controls.Add(this.lbl_estadoUsuario);
@@ -362,7 +362,7 @@
             this.Name = "frm_categoria";
             this.Text = "Formulario Categoria";
             this.Load += new System.EventHandler(this.frm_categoria_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGrid_lista)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGrid_listaCategoria)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -379,9 +379,9 @@
         private FontAwesome.Sharp.IconButton btn_eliminar;
         private System.Windows.Forms.TextBox txt_id;
         private System.Windows.Forms.Label lblListaCategorias;
-        private FontAwesome.Sharp.IconButton brt_limpiar;
+        private FontAwesome.Sharp.IconButton btn_limpiar;
         private FontAwesome.Sharp.IconButton btn_guardar;
-        private System.Windows.Forms.DataGridView dataGrid_lista;
+        private System.Windows.Forms.DataGridView dataGrid_listaCategoria;
         private System.Windows.Forms.DataGridViewButtonColumn btn_seleccionar;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;

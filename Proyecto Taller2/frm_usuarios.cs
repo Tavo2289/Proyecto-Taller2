@@ -126,11 +126,12 @@ namespace Proyecto_Taller2
                     MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); // mostrar el mensaje de error
                 }
             }
-            else { 
+            else
+            { // si no es 0 es porque ya existe y se va a editar 
 
-                bool resultado = new CN_usuario().Editar(usuario, out mensaje);
+                bool resultado = new CN_usuario().Editar(usuario, out mensaje); // llamar al metodo editar de la clase CN_usuario que esta en la capa de negocio
 
-                if (resultado)
+                if (resultado)    // si el resultado es true
                 {
                     DataGridViewRow row = dataGrid_listaUsuario.Rows[Convert.ToInt32(txt_indice.Text)];// dgvdata remplace por dataGrid_listaUsuario
                     row.Cells["id"].Value = txt_id.Text;
@@ -144,7 +145,7 @@ namespace Proyecto_Taller2
                     row.Cells["estadoValor"].Value = ((OpcionCombo)comboEstado.SelectedItem).Valor.ToString();
                     row.Cells["estado"].Value = ((OpcionCombo)comboEstado.SelectedItem).Texto.ToString();
 
-                    limpiar();
+                    limpiar();// limpiar los campos del formulario
                 }
                 else 
                 {
@@ -167,7 +168,7 @@ namespace Proyecto_Taller2
             comboRol.SelectedIndex = 0; // seleccionar la primera opcion del combo
             comboEstado.SelectedIndex = 0;// seleccionar la primera opcion del combo
 
-            txt_documentoUsuario.Select();
+            txt_documentoUsuario.Select(); // colocar el foco en el textbox documento
         }
 
         private void txt_documentoUsuario_TextChanged(object sender, EventArgs e)
@@ -352,27 +353,29 @@ namespace Proyecto_Taller2
             }
         }
 
-        private void btn_eliminar_Click(object sender, EventArgs e)
+        private void btn_eliminar_Click(object sender, EventArgs e) // eliminar usuario
         {
             if (Convert.ToInt32(txt_id.Text) != 0)
             {
-                if (MessageBox.Show("¿ Desea elimina el usuario ? ", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+               string nombreUsuario = txt_nombreUsuario.Text+" "+ txt_apellidoUsuario.Text; // obtener el nombre del usuario
+                if (MessageBox.Show("¿ Desea elimina el usuario "+ nombreUsuario, "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     string mensaje = string.Empty;
                     Usuario usuario = new Usuario()
-                    { 
+                    {
                         id_usuario = Convert.ToInt32(txt_id.Text),
                     };
 
                     bool respuesta = new CN_usuario().Eliminar(usuario, out mensaje);
 
-                    if (respuesta)
+                    if (respuesta) // si la respuesta es true (se elimino el usuario)
                     {
-                        dataGrid_listaUsuario.Rows.RemoveAt(Convert.ToInt32(txt_indice.Text));
+                        dataGrid_listaUsuario.Rows.RemoveAt(Convert.ToInt32(txt_indice.Text)); //eliminar la fila del datagrid
+                        MessageBox.Show("Usuario "+nombreUsuario+" Eliminado correctamente","Usuario eliminado",MessageBoxButtons.OK,MessageBoxIcon.Information );
                     }
                     else
                     {
-                        MessageBox.Show(mensaje,"Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                 }                
             } 
@@ -382,24 +385,27 @@ namespace Proyecto_Taller2
         {
             string columnaFiltro = ((OpcionCombo)comboBox_busqueda.SelectedItem).Valor.ToString();
 
-            if(dataGrid_listaUsuario.Rows.Count > 0)
+            if (dataGrid_listaUsuario.Rows.Count > 0)
             {
                 foreach (DataGridViewRow row in dataGrid_listaUsuario.Rows)
                 {
                     if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(txt_busqueda.Text.Trim().ToUpper()))
-                        row.Visible = true;          
-                    else                  
-                        row.Visible = false;                                  
+                        row.Visible = true;//si la celda contiene el texto de busqueda, se muestra la fila
+                    else
+                        row.Visible = false;//si no, se oculta la fila
                 }
+            }
+            else {
+                MessageBox.Show("No hay usuarios cargados que pueda buscar","Advertencia",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
 
         private void btn_limpiarBusqueda_Click(object sender, EventArgs e)
         {
-            txt_busqueda.Text = "";
+            txt_busqueda.Text = ""; // limpiar el textbox de busqueda
             foreach (DataGridViewRow row in dataGrid_listaUsuario.Rows)
             {
-                row.Visible = true;
+                row.Visible = true;// mostrar todas las filas
             }
         }
 
@@ -510,7 +516,12 @@ namespace Proyecto_Taller2
 
         private void brt_limpiar_Click(object sender, EventArgs e)
         {
+            limpiar(); // limpiar los campos del formulario
+        }
 
+        private void btn_limpiar_Click(object sender, EventArgs e)
+        {
+            limpiar(); // limpiar los campos del formulario
         }
     }
 

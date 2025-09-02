@@ -8,19 +8,14 @@ namespace CapaEntidad
 {
     public class Categoria
     {
-        public int id_Categoria;
+        public int id_categoria { get; set; }
+        public string nombre_categoria { get; set; }
 
-        public string Descripcion { get; set; }
-        public bool Estado { get; set; }
-        public object IdCategoria { get; set; }
-        int id_categoria { get; set; }
-        string nombre_categoria { get; set; }
+        public string fecha_alta { get; set; }
 
-        string fecha_alta { get; set; }
+        public bool estado { get; set; }
 
-        bool estado { get; set; }
-
-        string fecha_baja { get; set; }
+        public   string fecha_baja { get; set; }
 
 
 

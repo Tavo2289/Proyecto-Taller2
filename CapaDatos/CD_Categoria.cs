@@ -11,14 +11,7 @@ namespace CapaDatos
 {
     public class CD_Categoria
     {
-        private bool estado;
-
-        /*public List<Categoria> Listar() => Listar(estado, estado: GetEstado());*/
-
-        public bool GetEstado()
-        {
-            return estado;
-        }
+        
 
         public List<Categoria> Listar(bool estado)
         {
@@ -30,7 +23,7 @@ namespace CapaDatos
                 {  // por si ocurre un error
 
                     StringBuilder query = new StringBuilder(); // se crea un objeto de la clase StringBuilder para construir la consulta sql
-                    query.AppendLine("select id_Categoria,Descripcion,estado from CATEGORIA"); // se construye la consulta sql
+                    query.AppendLine("select id_categoria,nombre_categoria,estado from Categoria"); // se construye la consulta sql
                     SqlCommand cmd = new SqlCommand(query.ToString(), conexion); // se crea el comando sql sql coman (consulta, conexion) objeto que ejecuta la consulta
                     cmd.CommandType = CommandType.Text; // se especifica que es un comando de texto
 
@@ -48,9 +41,9 @@ namespace CapaDatos
                             lista.Add(new Categoria() // se agrega un nuevo Categoria a la lista
                             {
                                 //se asignan los valores a las propiedades del objeto Categoria
-                                id_Categoria = Convert.ToInt32(dr["id_Categoria"]), // se convierte a entero
-                                Descripcion = dr["Descripcion"].ToString(),
-                                Estado = Convert.ToBoolean(dr["Estado"]) // se convierte a booleano
+                                id_categoria = Convert.ToInt32(dr["id_categoria"]), // se convierte a entero
+                                nombre_categoria = dr["nombre_categoria"].ToString(),
+                                estado = Convert.ToBoolean(dr["estado"]) // se convierte a booleano
                             });
                         }
 
@@ -77,9 +70,10 @@ namespace CapaDatos
                 using (SqlConnection conexion = new SqlConnection(Conexion.conexion))
                 { //conexion a base de datos
 
-                    SqlCommand cmd = new SqlCommand(" SP_RegistrarCategoria", conexion); // se crea el comando sql sql coman (consulta, conexion) objeto que ejecuta la consulta
-                                                                                       // se guardan los valores de las variables del procedimiento sp_registrar a los parametros del objeto Categoria
-                    cmd.Parameters.AddWithValue("Descripcion", obj.Descripcion);    //se agrega los valores de las variables del procedimiento sp_registrar a los parametros del objeto Categoria
+                    SqlCommand cmd = new SqlCommand("SP_RegistrarCategoria", conexion); // se crea el comando sql sql coman (consulta, conexion) objeto que ejecuta la consulta
+                    cmd.Parameters.AddWithValue("estado", obj.estado);                                                                  // se guardan los valores de las variables del procedimiento sp_registrar a los parametros del objeto Categoria
+                    cmd.Parameters.AddWithValue("Descripcion", obj.nombre_categoria);    //se agrega los valores de las variables del procedimiento sp_registrar a los parametros del objeto Categoria
+                    
                     cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output; //parametros de salida
                     cmd.Parameters.Add("mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output; // parametro de salida
 
@@ -88,7 +82,7 @@ namespace CapaDatos
 
                     cmd.ExecuteNonQuery();//ejecuta comando
 
-                    id_CategoriaGenerado = Convert.ToInt32(cmd.Parameters["idCategoriaResultado"].Value); //   asigna el valor del parametro de salida al id_CategoriaGenerado
+                    id_CategoriaGenerado = Convert.ToInt32(cmd.Parameters["Resultado"].Value); //   asigna el valor del parametro de salida al id_CategoriaGenerado
                     Mensaje = cmd.Parameters["mensaje"].Value.ToString(); // asigna el valor del parametro de salida al mensaje
                 }
 
@@ -122,9 +116,10 @@ namespace CapaDatos
                 using (SqlConnection conexion = new SqlConnection(Conexion.conexion))
                 { //conexion a base de datos
 
-                    SqlCommand cmd = new SqlCommand("sp_EditarCategoria", conexion); // se crea el comando sql sql coman (consulta, conexion) objeto que ejecuta la consulta
-                    cmd.Parameters.AddWithValue("id_Categoria", obj.id_Categoria);                                                                  // se guardan los valores de las variables del procedimiento sp_registrar a los parametros del objeto Categoria
-                    cmd.Parameters.AddWithValue("Descripcion", obj.Descripcion);    //se agrega los valores de las variables del procedimiento sp_registrar a los parametros del objeto Categoria
+                    SqlCommand cmd = new SqlCommand("SP_EditarCategoria", conexion); // se crea el comando sql sql coman (consulta, conexion) objeto que ejecuta la consulta
+                    cmd.Parameters.AddWithValue("id_Categoria", obj.id_categoria);                                                                  // se guardan los valores de las variables del procedimiento sp_registrar a los parametros del objeto Categoria
+                    cmd.Parameters.AddWithValue("nombre_categoria", obj.nombre_categoria);    //se agrega los valores de las variables del procedimiento sp_registrar a los parametros del objeto Categoria
+                    cmd.Parameters.AddWithValue("estado", obj.estado);
                     cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output; //parametros de salida
                     cmd.Parameters.Add("mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output; // parametro de salida
 
@@ -167,8 +162,8 @@ namespace CapaDatos
                 using (SqlConnection conexion = new SqlConnection(Conexion.conexion))
                 { //conexion a base de datos
 
-                    SqlCommand cmd = new SqlCommand("sp_EliminarCategoria", conexion); // se crea el comando sql sql coman (consulta, conexion) objeto que ejecuta la consulta
-                    cmd.Parameters.AddWithValue("id_Categoria", obj.id_Categoria);                                                                  // se guardan los valores de las variables del procedimiento sp_registrar a los parametros del objeto Categoria
+                    SqlCommand cmd = new SqlCommand("SP_EliminarCategoria", conexion); // se crea el comando sql sql coman (consulta, conexion) objeto que ejecuta la consulta
+                    cmd.Parameters.AddWithValue("id_Categoria", obj.id_categoria);                                                                  // se guardan los valores de las variables del procedimiento sp_registrar a los parametros del objeto Categoria
 
                     cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output; //parametros de salida
                     cmd.Parameters.Add("mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output; // parametro de salida

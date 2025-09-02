@@ -33,7 +33,7 @@ namespace CapaNegocio
 
 
             //  VALIDACIONES
-            if (obj.Descripcion == "")
+            if (obj.nombre_categoria == "")
             {// se valida que la descripcion no este vacio
                 Mensaje += "Es necesario la descripcion de la categoria\n"; // se agrega el mensaje de error 
             }
@@ -54,7 +54,7 @@ namespace CapaNegocio
             Mensaje = string.Empty; // se inicializa el mensaje como vacio
 
             //  VALIDACIONES
-            if (obj.Descripcion == "")
+            if (obj.nombre_categoria == "")
             {// se valida que la descripcion no este vacio
                 Mensaje += "Es necesario la descripcion de la categoria\n"; // se agrega el mensaje de error 
             }
