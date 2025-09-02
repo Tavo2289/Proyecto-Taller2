@@ -11,6 +11,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media;
 
 namespace Proyecto_Taller2
 {
@@ -102,35 +103,54 @@ namespace Proyecto_Taller2
                 contraseña = txt_contraseñaUsuario.Text,
                 id_rol = new Rol() { id_rol = Convert.ToInt32(((OpcionCombo)comboRol.SelectedItem).Valor) },
                 estado = Convert.ToInt32(((OpcionCombo)comboEstado.SelectedItem).Valor) == 1 ? true : false
-
-
-
             };
 
-            int id_usuarioGenerado = new CN_usuario().Registrar(usuario, out mensaje); // llamar al metodo registrar de la clase CN_usuario que esta en la capa de negocio
-
-            if (id_usuarioGenerado != 0)
+            if (usuario.id_usuario == 0)
             {
 
-                dataGrid_listaUsuario.Rows.Add(new object[]
-                {"",id_usuarioGenerado,txt_documentoUsuario.Text,txt_nombreUsuario.Text,txt_apellidoUsuario.Text,txt_gmail.Text,txt_contraseñaUsuario.Text ,
-                ((OpcionCombo)comboRol.SelectedItem).Valor.ToString(),
-                ((OpcionCombo)comboRol.SelectedItem).Texto.ToString(),
-                ((OpcionCombo)comboEstado.SelectedItem).Valor.ToString(),
-                ((OpcionCombo)comboEstado.SelectedItem).Texto.ToString()
-                });
+                int id_usuarioGenerado = new CN_usuario().Registrar(usuario, out mensaje); // llamar al metodo registrar de la clase CN_usuario que esta en la capa de negocio
 
-                limpiar();
-
+                if (id_usuarioGenerado != 0)
+                {
+                    dataGrid_listaUsuario.Rows.Add(new object[]
+                    {"",id_usuarioGenerado,txt_documentoUsuario.Text,txt_nombreUsuario.Text,txt_apellidoUsuario.Text,txt_gmail.Text,txt_contraseñaUsuario.Text ,
+                    ((OpcionCombo)comboRol.SelectedItem).Valor.ToString(),
+                    ((OpcionCombo)comboRol.SelectedItem).Texto.ToString(),
+                    ((OpcionCombo)comboEstado.SelectedItem).Valor.ToString(),
+                    ((OpcionCombo)comboEstado.SelectedItem).Texto.ToString()
+                    });
+                    limpiar();
+                }
+                else
+                {
+                    MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); // mostrar el mensaje de error
+                }
             }
             else { 
-            
-                MessageBox.Show(mensaje,"Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); // mostrar el mensaje de error
+
+                bool resultado = new CN_usuario().Editar(usuario, out mensaje);
+
+                if (resultado)
+                {
+                    DataGridViewRow row = dataGrid_listaUsuario.Rows[Convert.ToInt32(txt_indice.Text)];// dgvdata remplace por dataGrid_listaUsuario
+                    row.Cells["id"].Value = txt_id.Text;
+                    row.Cells["documento"].Value = txt_documentoUsuario.Text;
+                    row.Cells["nombre"].Value = txt_nombreUsuario.Text;
+                    row.Cells["apellido"].Value = txt_apellidoUsuario.Text;
+                    row.Cells["gmail"].Value = txt_gmail.Text;
+                    row.Cells["contraseña"].Value = txt_contraseñaUsuario.Text;
+                    row.Cells["id_rol"].Value = ((OpcionCombo)comboRol.SelectedItem).Valor.ToString();
+                    row.Cells["rol"].Value = ((OpcionCombo)comboRol.SelectedItem).Texto.ToString();
+                    row.Cells["estadoValor"].Value = ((OpcionCombo)comboEstado.SelectedItem).Valor.ToString();
+                    row.Cells["estado"].Value = ((OpcionCombo)comboEstado.SelectedItem).Texto.ToString();
+
+                    limpiar();
+                }
+                else 
+                {
+                    MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); // mostrar el mensaje de error
+                }
             }
-
-
-                
-
         }
 
 
@@ -147,7 +167,7 @@ namespace Proyecto_Taller2
             comboRol.SelectedIndex = 0; // seleccionar la primera opcion del combo
             comboEstado.SelectedIndex = 0;// seleccionar la primera opcion del combo
 
-
+            txt_documentoUsuario.Select();
         }
 
         private void txt_documentoUsuario_TextChanged(object sender, EventArgs e)
@@ -332,6 +352,166 @@ namespace Proyecto_Taller2
             }
         }
 
+        private void btn_eliminar_Click(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(txt_id.Text) != 0)
+            {
+                if (MessageBox.Show("¿ Desea elimina el usuario ? ", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    string mensaje = string.Empty;
+                    Usuario usuario = new Usuario()
+                    { 
+                        id_usuario = Convert.ToInt32(txt_id.Text),
+                    };
+
+                    bool respuesta = new CN_usuario().Eliminar(usuario, out mensaje);
+
+                    if (respuesta)
+                    {
+                        dataGrid_listaUsuario.Rows.RemoveAt(Convert.ToInt32(txt_indice.Text));
+                    }
+                    else
+                    {
+                        MessageBox.Show(mensaje,"Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                }                
+            } 
+        }
+
+        private void btn_busqueda_Click(object sender, EventArgs e)
+        {
+            string columnaFiltro = ((OpcionCombo)comboBox_busqueda.SelectedItem).Valor.ToString();
+
+            if(dataGrid_listaUsuario.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow row in dataGrid_listaUsuario.Rows)
+                {
+                    if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(txt_busqueda.Text.Trim().ToUpper()))
+                        row.Visible = true;          
+                    else                  
+                        row.Visible = false;                                  
+                }
+            }
+        }
+
+        private void btn_limpiarBusqueda_Click(object sender, EventArgs e)
+        {
+            txt_busqueda.Text = "";
+            foreach (DataGridViewRow row in dataGrid_listaUsuario.Rows)
+            {
+                row.Visible = true;
+            }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl_documentoUsuario_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl_nombreUsuario_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl_contraseñaUsuario_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_nombreUsuario_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_contraseñaUsuario_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_apellidoUsuario_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_confirmarContraseña_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl_confirmarContraseña_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl_rolUsuario_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboRol_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboEstado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl_estadoUsuario_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_id_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl_buscar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox_busqueda_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_busqueda_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_gmail_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl_gmail_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_indice_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void brt_limpiar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 

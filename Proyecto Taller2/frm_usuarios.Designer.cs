@@ -83,6 +83,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(283, 550);
             this.label1.TabIndex = 0;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // lbl_documentoUsuario
             // 
@@ -93,6 +94,7 @@
             this.lbl_documentoUsuario.Size = new System.Drawing.Size(82, 13);
             this.lbl_documentoUsuario.TabIndex = 1;
             this.lbl_documentoUsuario.Text = "Nro Documento";
+            this.lbl_documentoUsuario.Click += new System.EventHandler(this.lbl_documentoUsuario_Click);
             // 
             // lbl_nombreUsuario
             // 
@@ -103,6 +105,7 @@
             this.lbl_nombreUsuario.Size = new System.Drawing.Size(44, 13);
             this.lbl_nombreUsuario.TabIndex = 2;
             this.lbl_nombreUsuario.Text = "Nombre";
+            this.lbl_nombreUsuario.Click += new System.EventHandler(this.lbl_nombreUsuario_Click);
             // 
             // lbl_contraseñaUsuario
             // 
@@ -113,6 +116,7 @@
             this.lbl_contraseñaUsuario.Size = new System.Drawing.Size(66, 13);
             this.lbl_contraseñaUsuario.TabIndex = 3;
             this.lbl_contraseñaUsuario.Text = "Constraseña";
+            this.lbl_contraseñaUsuario.Click += new System.EventHandler(this.lbl_contraseñaUsuario_Click);
             // 
             // txt_documentoUsuario
             // 
@@ -129,6 +133,7 @@
             this.txt_nombreUsuario.Name = "txt_nombreUsuario";
             this.txt_nombreUsuario.Size = new System.Drawing.Size(191, 20);
             this.txt_nombreUsuario.TabIndex = 5;
+            this.txt_nombreUsuario.TextChanged += new System.EventHandler(this.txt_nombreUsuario_TextChanged);
             this.txt_nombreUsuario.Leave += new System.EventHandler(this.txtnombreUsuario_Leave);
             // 
             // txt_contraseñaUsuario
@@ -138,6 +143,7 @@
             this.txt_contraseñaUsuario.PasswordChar = '*';
             this.txt_contraseñaUsuario.Size = new System.Drawing.Size(191, 20);
             this.txt_contraseñaUsuario.TabIndex = 6;
+            this.txt_contraseñaUsuario.TextChanged += new System.EventHandler(this.txt_contraseñaUsuario_TextChanged);
             // 
             // label2
             // 
@@ -148,6 +154,7 @@
             this.label2.Size = new System.Drawing.Size(44, 13);
             this.label2.TabIndex = 7;
             this.label2.Text = "Apellido";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // txt_apellidoUsuario
             // 
@@ -155,6 +162,7 @@
             this.txt_apellidoUsuario.Name = "txt_apellidoUsuario";
             this.txt_apellidoUsuario.Size = new System.Drawing.Size(191, 20);
             this.txt_apellidoUsuario.TabIndex = 8;
+            this.txt_apellidoUsuario.TextChanged += new System.EventHandler(this.txt_apellidoUsuario_TextChanged);
             this.txt_apellidoUsuario.Leave += new System.EventHandler(this.txtapellidoUsuario_Leave);
             // 
             // txt_confirmarContraseña
@@ -164,6 +172,7 @@
             this.txt_confirmarContraseña.PasswordChar = '*';
             this.txt_confirmarContraseña.Size = new System.Drawing.Size(191, 20);
             this.txt_confirmarContraseña.TabIndex = 10;
+            this.txt_confirmarContraseña.TextChanged += new System.EventHandler(this.txt_confirmarContraseña_TextChanged);
             // 
             // lbl_confirmarContraseña
             // 
@@ -174,6 +183,7 @@
             this.lbl_confirmarContraseña.Size = new System.Drawing.Size(113, 13);
             this.lbl_confirmarContraseña.TabIndex = 9;
             this.lbl_confirmarContraseña.Text = "Confirmar Constraseña";
+            this.lbl_confirmarContraseña.Click += new System.EventHandler(this.lbl_confirmarContraseña_Click);
             // 
             // lbl_rolUsuario
             // 
@@ -184,6 +194,7 @@
             this.lbl_rolUsuario.Size = new System.Drawing.Size(23, 13);
             this.lbl_rolUsuario.TabIndex = 11;
             this.lbl_rolUsuario.Text = "Rol";
+            this.lbl_rolUsuario.Click += new System.EventHandler(this.lbl_rolUsuario_Click);
             // 
             // comboRol
             // 
@@ -193,6 +204,7 @@
             this.comboRol.Name = "comboRol";
             this.comboRol.Size = new System.Drawing.Size(191, 21);
             this.comboRol.TabIndex = 12;
+            this.comboRol.SelectedIndexChanged += new System.EventHandler(this.comboRol_SelectedIndexChanged);
             // 
             // comboEstado
             // 
@@ -202,6 +214,7 @@
             this.comboEstado.Name = "comboEstado";
             this.comboEstado.Size = new System.Drawing.Size(191, 21);
             this.comboEstado.TabIndex = 14;
+            this.comboEstado.SelectedIndexChanged += new System.EventHandler(this.comboEstado_SelectedIndexChanged);
             // 
             // lbl_estadoUsuario
             // 
@@ -212,6 +225,7 @@
             this.lbl_estadoUsuario.Size = new System.Drawing.Size(40, 13);
             this.lbl_estadoUsuario.TabIndex = 13;
             this.lbl_estadoUsuario.Text = "Estado";
+            this.lbl_estadoUsuario.Click += new System.EventHandler(this.lbl_estadoUsuario_Click);
             // 
             // lbl_detallaUsuario
             // 
@@ -340,9 +354,11 @@
             // label3
             // 
             this.label3.BackColor = System.Drawing.Color.White;
+            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(304, 24);
             this.label3.Name = "label3";
+            this.label3.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.label3.Size = new System.Drawing.Size(799, 49);
             this.label3.TabIndex = 20;
             this.label3.Text = "Lista de Usuario";
@@ -356,6 +372,8 @@
             this.txt_id.Size = new System.Drawing.Size(33, 20);
             this.txt_id.TabIndex = 21;
             this.txt_id.Text = "0";
+            this.txt_id.Visible = false;
+            this.txt_id.TextChanged += new System.EventHandler(this.txt_id_TextChanged);
             // 
             // lbl_buscar
             // 
@@ -366,6 +384,7 @@
             this.lbl_buscar.Size = new System.Drawing.Size(62, 13);
             this.lbl_buscar.TabIndex = 22;
             this.lbl_buscar.Text = "Buscar Por:";
+            this.lbl_buscar.Click += new System.EventHandler(this.lbl_buscar_Click);
             // 
             // comboBox_busqueda
             // 
@@ -375,6 +394,7 @@
             this.comboBox_busqueda.Name = "comboBox_busqueda";
             this.comboBox_busqueda.Size = new System.Drawing.Size(140, 21);
             this.comboBox_busqueda.TabIndex = 23;
+            this.comboBox_busqueda.SelectedIndexChanged += new System.EventHandler(this.comboBox_busqueda_SelectedIndexChanged);
             // 
             // txt_busqueda
             // 
@@ -382,6 +402,7 @@
             this.txt_busqueda.Name = "txt_busqueda";
             this.txt_busqueda.Size = new System.Drawing.Size(140, 20);
             this.txt_busqueda.TabIndex = 24;
+            this.txt_busqueda.TextChanged += new System.EventHandler(this.txt_busqueda_TextChanged);
             // 
             // txt_gmail
             // 
@@ -389,6 +410,7 @@
             this.txt_gmail.Name = "txt_gmail";
             this.txt_gmail.Size = new System.Drawing.Size(191, 20);
             this.txt_gmail.TabIndex = 28;
+            this.txt_gmail.TextChanged += new System.EventHandler(this.txt_gmail_TextChanged);
             // 
             // lbl_gmail
             // 
@@ -399,6 +421,7 @@
             this.lbl_gmail.Size = new System.Drawing.Size(94, 13);
             this.lbl_gmail.TabIndex = 27;
             this.lbl_gmail.Text = "Correo Electronico";
+            this.lbl_gmail.Click += new System.EventHandler(this.lbl_gmail_Click);
             // 
             // txt_indice
             // 
@@ -407,6 +430,8 @@
             this.txt_indice.Size = new System.Drawing.Size(33, 20);
             this.txt_indice.TabIndex = 29;
             this.txt_indice.Text = "0";
+            this.txt_indice.Visible = false;
+            this.txt_indice.TextChanged += new System.EventHandler(this.txt_indice_TextChanged);
             // 
             // btn_limpiarBusqueda
             // 
@@ -424,6 +449,7 @@
             this.btn_limpiarBusqueda.Size = new System.Drawing.Size(40, 23);
             this.btn_limpiarBusqueda.TabIndex = 26;
             this.btn_limpiarBusqueda.UseVisualStyleBackColor = false;
+            this.btn_limpiarBusqueda.Click += new System.EventHandler(this.btn_limpiarBusqueda_Click);
             // 
             // btn_busqueda
             // 
@@ -441,6 +467,7 @@
             this.btn_busqueda.Size = new System.Drawing.Size(40, 23);
             this.btn_busqueda.TabIndex = 25;
             this.btn_busqueda.UseVisualStyleBackColor = false;
+            this.btn_busqueda.Click += new System.EventHandler(this.btn_busqueda_Click);
             // 
             // btn_eliminar
             // 
@@ -461,6 +488,7 @@
             this.btn_eliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_eliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_eliminar.UseVisualStyleBackColor = false;
+            this.btn_eliminar.Click += new System.EventHandler(this.btn_eliminar_Click);
             // 
             // brt_limpiar
             // 
@@ -481,6 +509,7 @@
             this.brt_limpiar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.brt_limpiar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.brt_limpiar.UseVisualStyleBackColor = false;
+            this.brt_limpiar.Click += new System.EventHandler(this.brt_limpiar_Click);
             // 
             // btn_guardar
             // 

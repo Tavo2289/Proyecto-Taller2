@@ -58,24 +58,11 @@ namespace CapaDatos
                                     nombre_rol = dr["nombre_rol"].ToString() // se convierte a string
                                 }   
 
-
-
-
-
-
-
-
-
                             });
-
-
-
 
                         }
 
                     }
-
-
 
                 }
                 catch (Exception ex) // si ocurre un error se captura la excepcion
