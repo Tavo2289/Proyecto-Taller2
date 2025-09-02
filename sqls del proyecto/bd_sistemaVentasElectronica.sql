@@ -12,7 +12,7 @@ CREATE TABLE Categoria (
     nombre_categoria VARCHAR(100) NOT NULL,
     fecha_alta DATETIME default getdate(),
     fecha_baja DATETIME default getdate(),
-    estado BIT NOT NULL
+    estado BIT NOT NULL default 1
 );
 
 go

@@ -67,12 +67,12 @@ namespace Proyecto_Taller2
                 estado = Convert.ToInt32(((OpcionCombo)comboEstado.SelectedItem).Valor) == 1 ? true : false
             };
 
-            if (obj.id_categoria == 0)
+            if (obj.id_categoria == 0) // si el id es 0 es porque es un nuevo usuario
             {
 
                 int idgenerado = new CN_Categoria().Registrar(obj, out mensaje); // llamar al metodo registrar de la clase CN_usuario que esta en la capa de negocio
 
-                if (idgenerado != 0)
+                if (idgenerado != 0) // si el id generado es diferente de 0 es porque se registro correctamente
                 {
                     dataGrid_listaCategoria.Rows.Add(new object[]
                     {"",idgenerado,txt_descripcion.Text,

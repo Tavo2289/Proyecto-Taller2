@@ -118,7 +118,7 @@ namespace CapaDatos
 
                     SqlCommand cmd = new SqlCommand("SP_EditarCategoria", conexion); // se crea el comando sql sql coman (consulta, conexion) objeto que ejecuta la consulta
                     cmd.Parameters.AddWithValue("id_Categoria", obj.id_categoria);                                                                  // se guardan los valores de las variables del procedimiento sp_registrar a los parametros del objeto Categoria
-                    cmd.Parameters.AddWithValue("nombre_categoria", obj.nombre_categoria);    //se agrega los valores de las variables del procedimiento sp_registrar a los parametros del objeto Categoria
+                    cmd.Parameters.AddWithValue("Descripcion", obj.nombre_categoria);    //se agrega los valores de las variables del procedimiento sp_registrar a los parametros del objeto Categoria
                     cmd.Parameters.AddWithValue("estado", obj.estado);
                     cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output; //parametros de salida
                     cmd.Parameters.Add("mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output; // parametro de salida

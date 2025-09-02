@@ -168,7 +168,7 @@ namespace Proyecto_Taller2
             comboRol.SelectedIndex = 0; // seleccionar la primera opcion del combo
             comboEstado.SelectedIndex = 0;// seleccionar la primera opcion del combo
 
-            txt_documentoUsuario.Select(); // colocar el foco en el textbox documento
+            txt_nombreUsuario.Select(); // colocar el foco en el textbox documento
         }
 
         private void txt_documentoUsuario_TextChanged(object sender, EventArgs e)
@@ -371,6 +371,7 @@ namespace Proyecto_Taller2
                     if (respuesta) // si la respuesta es true (se elimino el usuario)
                     {
                         dataGrid_listaUsuario.Rows.RemoveAt(Convert.ToInt32(txt_indice.Text)); //eliminar la fila del datagrid
+                        limpiar(); // limpiar los campos del formulario
                         MessageBox.Show("Usuario "+nombreUsuario+" Eliminado correctamente","Usuario eliminado",MessageBoxButtons.OK,MessageBoxIcon.Information );
                     }
                     else
