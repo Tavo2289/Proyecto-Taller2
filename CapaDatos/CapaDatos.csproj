@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="CD_Categoria.cs" />
     <Compile Include="CD_permisos.cs" />
+    <Compile Include="CD_Poducto.cs" />
     <Compile Include="CD_rol.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

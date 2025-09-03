@@ -28,14 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inicio));
             this.menuPrincipal = new System.Windows.Forms.MenuStrip();
-            this.menuTitulo = new System.Windows.Forms.MenuStrip();
-            this.lbl_titulo = new System.Windows.Forms.Label();
-            this.panel_contenedor = new System.Windows.Forms.Panel();
-            this.lbl_tituloUsuario = new System.Windows.Forms.Label();
-            this.lbl_nombreUsuario = new System.Windows.Forms.Label();
             this.iconUsuario = new FontAwesome.Sharp.IconMenuItem();
             this.iconMantenedor = new FontAwesome.Sharp.IconMenuItem();
             this.subMenu_categoria = new FontAwesome.Sharp.IconMenuItem();
@@ -48,20 +41,16 @@
             this.iconClientes = new FontAwesome.Sharp.IconMenuItem();
             this.iconReportes = new FontAwesome.Sharp.IconMenuItem();
             this.iconAcercaDe = new FontAwesome.Sharp.IconMenuItem();
-<<<<<<< HEAD
-=======
             this.menuTitulo = new System.Windows.Forms.MenuStrip();
             this.lbl_titulo = new System.Windows.Forms.Label();
+            this.panel_contenedor = new System.Windows.Forms.Panel();
             this.lbl_tituloUsuario = new System.Windows.Forms.Label();
             this.lbl_nombreUsuario = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblFechaHora = new System.Windows.Forms.Label();
             this.btnClaroOscuro = new System.Windows.Forms.Button();
-            this.panel_contenedor = new System.Windows.Forms.Panel();
             this.subMenu_registrarCompra = new FontAwesome.Sharp.IconMenuItem();
             this.subMenu_verDetallesCompra = new FontAwesome.Sharp.IconMenuItem();
->>>>>>> origin
             this.menuPrincipal.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -82,63 +71,6 @@
             this.menuPrincipal.Size = new System.Drawing.Size(984, 73);
             this.menuPrincipal.TabIndex = 0;
             this.menuPrincipal.Text = "menuPrincipal";
-            // 
-            // menuTitulo
-            // 
-            this.menuTitulo.AutoSize = false;
-            this.menuTitulo.BackColor = System.Drawing.Color.SlateBlue;
-            this.menuTitulo.Location = new System.Drawing.Point(0, 0);
-            this.menuTitulo.Name = "menuTitulo";
-            this.menuTitulo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.menuTitulo.Size = new System.Drawing.Size(1143, 62);
-            this.menuTitulo.TabIndex = 1;
-            this.menuTitulo.Text = "menuTitulo";
-            // 
-            // lbl_titulo
-            // 
-            this.lbl_titulo.AutoSize = true;
-            this.lbl_titulo.BackColor = System.Drawing.Color.SlateBlue;
-            this.lbl_titulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_titulo.ForeColor = System.Drawing.Color.White;
-            this.lbl_titulo.Location = new System.Drawing.Point(26, 13);
-            this.lbl_titulo.Name = "lbl_titulo";
-            this.lbl_titulo.Size = new System.Drawing.Size(260, 31);
-            this.lbl_titulo.TabIndex = 2;
-            this.lbl_titulo.Text = "Sistemas De Ventas";
-            // 
-            // panel_contenedor
-            // 
-            this.panel_contenedor.BackColor = System.Drawing.Color.White;
-            this.panel_contenedor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_contenedor.Location = new System.Drawing.Point(0, 135);
-            this.panel_contenedor.Name = "panel_contenedor";
-            this.panel_contenedor.Size = new System.Drawing.Size(1143, 575);
-            this.panel_contenedor.TabIndex = 3;
-            // 
-            // lbl_tituloUsuario
-            // 
-            this.lbl_tituloUsuario.AutoSize = true;
-            this.lbl_tituloUsuario.BackColor = System.Drawing.Color.SlateBlue;
-            this.lbl_tituloUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_tituloUsuario.ForeColor = System.Drawing.Color.White;
-            this.lbl_tituloUsuario.Location = new System.Drawing.Point(806, 13);
-            this.lbl_tituloUsuario.Name = "lbl_tituloUsuario";
-            this.lbl_tituloUsuario.Size = new System.Drawing.Size(68, 18);
-            this.lbl_tituloUsuario.TabIndex = 4;
-            this.lbl_tituloUsuario.Text = "Usuario: ";
-            // 
-            // lbl_nombreUsuario
-            // 
-            this.lbl_nombreUsuario.AutoSize = true;
-            this.lbl_nombreUsuario.BackColor = System.Drawing.Color.SlateBlue;
-            this.lbl_nombreUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_nombreUsuario.ForeColor = System.Drawing.Color.White;
-            this.lbl_nombreUsuario.Location = new System.Drawing.Point(868, 13);
-            this.lbl_nombreUsuario.Name = "lbl_nombreUsuario";
-            this.lbl_nombreUsuario.Size = new System.Drawing.Size(82, 18);
-            this.lbl_nombreUsuario.TabIndex = 5;
-            this.lbl_nombreUsuario.Text = "lbl_Usuario";
-            this.lbl_nombreUsuario.Click += new System.EventHandler(this.lbl_nombreUsuario_Click);
             // 
             // iconUsuario
             // 
@@ -304,8 +236,6 @@
             this.iconAcercaDe.Text = "Acerca De";
             this.iconAcercaDe.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-<<<<<<< HEAD
-=======
             // menuTitulo
             // 
             this.menuTitulo.AutoSize = false;
@@ -328,6 +258,17 @@
             this.lbl_titulo.Size = new System.Drawing.Size(260, 31);
             this.lbl_titulo.TabIndex = 2;
             this.lbl_titulo.Text = "Sistemas De Ventas";
+            // 
+            // panel_contenedor
+            // 
+            this.panel_contenedor.BackColor = System.Drawing.Color.White;
+            this.panel_contenedor.BackgroundImage = global::Proyecto_Taller2.Properties.Resources.claro;
+            this.panel_contenedor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel_contenedor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_contenedor.Location = new System.Drawing.Point(0, 135);
+            this.panel_contenedor.Name = "panel_contenedor";
+            this.panel_contenedor.Size = new System.Drawing.Size(984, 526);
+            this.panel_contenedor.TabIndex = 3;
             // 
             // lbl_tituloUsuario
             // 
@@ -354,12 +295,6 @@
             this.lbl_nombreUsuario.Text = "lbl_Usuario";
             this.lbl_nombreUsuario.Click += new System.EventHandler(this.lbl_nombreUsuario_Click);
             // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
@@ -383,7 +318,6 @@
             // btnClaroOscuro
             // 
             this.btnClaroOscuro.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.btnClaroOscuro.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnClaroOscuro.BackgroundImage")));
             this.btnClaroOscuro.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnClaroOscuro.FlatAppearance.BorderSize = 0;
             this.btnClaroOscuro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -394,16 +328,6 @@
             this.btnClaroOscuro.TabIndex = 6;
             this.btnClaroOscuro.UseVisualStyleBackColor = false;
             this.btnClaroOscuro.Click += new System.EventHandler(this.btnClaroOscuro_Click);
-            // 
-            // panel_contenedor
-            // 
-            this.panel_contenedor.BackColor = System.Drawing.Color.White;
-            this.panel_contenedor.BackgroundImage = global::Proyecto_Taller2.Properties.Resources.claro;
-            this.panel_contenedor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel_contenedor.Location = new System.Drawing.Point(0, 135);
-            this.panel_contenedor.Name = "panel_contenedor";
-            this.panel_contenedor.Size = new System.Drawing.Size(984, 476);
-            this.panel_contenedor.TabIndex = 3;
             // 
             // subMenu_registrarCompra
             // 
@@ -425,7 +349,6 @@
             this.subMenu_verDetallesCompra.Text = "Ver Detalles";
             this.subMenu_verDetallesCompra.Click += new System.EventHandler(this.subMenu_verDetallesCompra_Click);
             // 
->>>>>>> origin
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);

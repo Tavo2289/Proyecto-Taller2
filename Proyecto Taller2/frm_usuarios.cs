@@ -133,7 +133,7 @@ namespace Proyecto_Taller2
 
                 if (resultado)    // si el resultado es true
                 {
-                    DataGridViewRow row = dataGrid_listaUsuario.Rows[Convert.ToInt32(txt_indice.Text)];// dgvdata remplace por dataGrid_listaUsuario
+                    DataGridViewRow row = dataGrid_listaUsuario.Rows[Convert.ToInt32(txt_id.Text)];// dgvdata remplace por dataGrid_listaUsuario
                     row.Cells["id"].Value = txt_id.Text;
                     row.Cells["documento"].Value = txt_documentoUsuario.Text;
                     row.Cells["nombre"].Value = txt_nombreUsuario.Text;
@@ -168,12 +168,9 @@ namespace Proyecto_Taller2
             comboRol.SelectedIndex = 0; // seleccionar la primera opcion del combo
             comboEstado.SelectedIndex = 0;// seleccionar la primera opcion del combo
 
-<<<<<<< HEAD
-            txt_nombreUsuario.Select(); // colocar el foco en el textbox documento
-=======
-            //aca hice cagada
 
->>>>>>> origin
+            txt_nombreUsuario.Select(); // colocar el foco en el textbox documento
+
         }
 
         private void txt_documentoUsuario_TextChanged(object sender, EventArgs e)
@@ -375,7 +372,7 @@ namespace Proyecto_Taller2
 
                     if (respuesta) // si la respuesta es true (se elimino el usuario)
                     {
-                        dataGrid_listaUsuario.Rows.RemoveAt(Convert.ToInt32(txt_indice.Text)); //eliminar la fila del datagrid
+                        dataGrid_listaUsuario.Rows.RemoveAt(Convert.ToInt32(txt_id.Text)); //eliminar la fila del datagrid
                         limpiar(); // limpiar los campos del formulario
                         MessageBox.Show("Usuario "+nombreUsuario+" Eliminado correctamente","Usuario eliminado",MessageBoxButtons.OK,MessageBoxIcon.Information );
                     }
@@ -413,6 +410,7 @@ namespace Proyecto_Taller2
             {
                 row.Visible = true;// mostrar todas las filas
             }
+            limpiar();
         }
 
         private void label1_Click(object sender, EventArgs e)

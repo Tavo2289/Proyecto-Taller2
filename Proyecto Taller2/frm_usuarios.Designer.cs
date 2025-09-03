@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.lbl_documentoUsuario = new System.Windows.Forms.Label();
             this.lbl_nombreUsuario = new System.Windows.Forms.Label();
@@ -65,18 +65,12 @@
             this.txt_busqueda = new System.Windows.Forms.TextBox();
             this.txt_gmail = new System.Windows.Forms.TextBox();
             this.lbl_gmail = new System.Windows.Forms.Label();
-<<<<<<< HEAD
-            this.txt_indice = new System.Windows.Forms.TextBox();
+           // this.txt_indice = new System.Windows.Forms.TextBox();
             this.btn_limpiarBusqueda = new FontAwesome.Sharp.IconButton();
             this.btn_busqueda = new FontAwesome.Sharp.IconButton();
             this.btn_eliminar = new FontAwesome.Sharp.IconButton();
             this.btn_limpiar = new FontAwesome.Sharp.IconButton();
             this.btn_guardar = new FontAwesome.Sharp.IconButton();
-=======
-
-          //  this.txt_indice = new System.Windows.Forms.TextBox();
-
->>>>>>> origin
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_listaUsuario)).BeginInit();
             this.SuspendLayout();
             // 
@@ -135,7 +129,7 @@
             // 
             // txt_nombreUsuario
             // 
-            this.txt_nombreUsuario.Location = new System.Drawing.Point(55, 79);
+            this.txt_nombreUsuario.Location = new System.Drawing.Point(56, 82);
             this.txt_nombreUsuario.Name = "txt_nombreUsuario";
             this.txt_nombreUsuario.Size = new System.Drawing.Size(191, 20);
             this.txt_nombreUsuario.TabIndex = 5;
@@ -231,71 +225,7 @@
             this.lbl_estadoUsuario.Size = new System.Drawing.Size(40, 13);
             this.lbl_estadoUsuario.TabIndex = 13;
             this.lbl_estadoUsuario.Text = "Estado";
-<<<<<<< HEAD
             this.lbl_estadoUsuario.Click += new System.EventHandler(this.lbl_estadoUsuario_Click);
-=======
-            // 
-            // btn_guardar
-            // 
-            this.btn_guardar.BackColor = System.Drawing.Color.ForestGreen;
-            this.btn_guardar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_guardar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btn_guardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_guardar.ForeColor = System.Drawing.Color.White;
-            this.btn_guardar.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
-            this.btn_guardar.IconColor = System.Drawing.Color.White;
-            this.btn_guardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btn_guardar.IconSize = 16;
-            this.btn_guardar.Location = new System.Drawing.Point(9, 438);
-            this.btn_guardar.Name = "btn_guardar";
-            this.btn_guardar.Size = new System.Drawing.Size(87, 23);
-            this.btn_guardar.TabIndex = 15;
-            this.btn_guardar.Text = "Guardar";
-            this.btn_guardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_guardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_guardar.UseVisualStyleBackColor = false;
-            this.btn_guardar.Click += new System.EventHandler(this.btn_guardar_Click);
-            // 
-            // brt_editar
-            // 
-            this.brt_editar.BackColor = System.Drawing.Color.RoyalBlue;
-            this.brt_editar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.brt_editar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.brt_editar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.brt_editar.ForeColor = System.Drawing.Color.White;
-            this.brt_editar.IconChar = FontAwesome.Sharp.IconChar.Edit;
-            this.brt_editar.IconColor = System.Drawing.Color.White;
-            this.brt_editar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.brt_editar.IconSize = 16;
-            this.brt_editar.Location = new System.Drawing.Point(102, 438);
-            this.brt_editar.Name = "brt_editar";
-            this.brt_editar.Size = new System.Drawing.Size(79, 23);
-            this.brt_editar.TabIndex = 16;
-            this.brt_editar.Text = "Editar";
-            this.brt_editar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.brt_editar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.brt_editar.UseVisualStyleBackColor = false;
-            // 
-            // btn_eliminar
-            // 
-            this.btn_eliminar.BackColor = System.Drawing.Color.Firebrick;
-            this.btn_eliminar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_eliminar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btn_eliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_eliminar.ForeColor = System.Drawing.Color.White;
-            this.btn_eliminar.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
-            this.btn_eliminar.IconColor = System.Drawing.Color.White;
-            this.btn_eliminar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btn_eliminar.IconSize = 16;
-            this.btn_eliminar.Location = new System.Drawing.Point(187, 438);
-            this.btn_eliminar.Name = "btn_eliminar";
-            this.btn_eliminar.Size = new System.Drawing.Size(91, 23);
-            this.btn_eliminar.TabIndex = 17;
-            this.btn_eliminar.Text = "Eliminar";
-            this.btn_eliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_eliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_eliminar.UseVisualStyleBackColor = false;
->>>>>>> origin
             // 
             // lbl_detallaUsuario
             // 
@@ -312,40 +242,15 @@
             // dataGrid_listaUsuario
             // 
             this.dataGrid_listaUsuario.AllowUserToAddRows = false;
-<<<<<<< HEAD
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGrid_listaUsuario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
-=======
-//<<<<<<< HEAD
-           // this.dataGrid_listaUsuario.BackgroundColor = System.Drawing.Color.White;
-           // dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-           // dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-           // dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-          //  dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-          //  dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
-          //  dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-          //  dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-          //  dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-           // this.dataGrid_listaUsuario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-//=======
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGrid_listaUsuario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-//>>>>>>> 1668acd97448a56b29b583d58100f295c5a443b0
->>>>>>> origin
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGrid_listaUsuario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGrid_listaUsuario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGrid_listaUsuario.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btn_seleccionar,
@@ -363,9 +268,9 @@
             this.dataGrid_listaUsuario.MultiSelect = false;
             this.dataGrid_listaUsuario.Name = "dataGrid_listaUsuario";
             this.dataGrid_listaUsuario.ReadOnly = true;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGrid_listaUsuario.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGrid_listaUsuario.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGrid_listaUsuario.RowTemplate.Height = 28;
             this.dataGrid_listaUsuario.Size = new System.Drawing.Size(805, 399);
             this.dataGrid_listaUsuario.TabIndex = 19;
@@ -443,79 +348,6 @@
             this.estado.Name = "estado";
             this.estado.ReadOnly = true;
             // 
-            // btn_seleccionar
-            // 
-            this.btn_seleccionar.HeaderText = "";
-            this.btn_seleccionar.Name = "btn_seleccionar";
-            this.btn_seleccionar.ReadOnly = true;
-            this.btn_seleccionar.Width = 30;
-            // 
-            // id
-            // 
-           // this.id.HeaderText = "IdUsuario";
-           // this.id.Name = "id";
-           // this.id.ReadOnly = true;
-           // this.id.Visible = false;
-            // 
-            // documento
-            // 
-            this.documento.HeaderText = "Numero Documento";
-            this.documento.Name = "documento";
-            this.documento.ReadOnly = true;
-            this.documento.Width = 150;
-            // 
-            // nombre
-            // 
-            this.nombre.HeaderText = "Nombre";
-            this.nombre.Name = "nombre";
-            this.nombre.ReadOnly = true;
-            // 
-            // apellido
-            // 
-            this.apellido.HeaderText = "Apellido";
-            this.apellido.Name = "apellido";
-            this.apellido.ReadOnly = true;
-            // 
-            // gmail
-            // 
-            this.gmail.HeaderText = "Correo Electronico";
-            this.gmail.Name = "gmail";
-            this.gmail.ReadOnly = true;
-            this.gmail.Width = 180;
-            // 
-            // contraseña
-            // 
-            this.contraseña.HeaderText = "Contraseña";
-            this.contraseña.Name = "contraseña";
-            this.contraseña.ReadOnly = true;
-            this.contraseña.Visible = false;
-            // 
-            // id_rol
-            // 
-            this.id_rol.HeaderText = "IdRol";
-            this.id_rol.Name = "id_rol";
-            this.id_rol.ReadOnly = true;
-            this.id_rol.Visible = false;
-            // 
-            // rol
-            // 
-            this.rol.HeaderText = "Rol";
-            this.rol.Name = "rol";
-            this.rol.ReadOnly = true;
-            // 
-            // estadoValor
-            // 
-            this.estadoValor.HeaderText = "Estado Valor";
-            this.estadoValor.Name = "estadoValor";
-            this.estadoValor.ReadOnly = true;
-            this.estadoValor.Visible = false;
-            // 
-            // estado
-            // 
-            this.estado.HeaderText = "Estado";
-            this.estado.Name = "estado";
-            this.estado.ReadOnly = true;
-            // 
             // label3
             // 
             this.label3.BackColor = System.Drawing.Color.White;
@@ -532,7 +364,7 @@
             // 
             // txt_id
             // 
-            this.txt_id.Location = new System.Drawing.Point(213, 53);
+            this.txt_id.Location = new System.Drawing.Point(212, 56);
             this.txt_id.Name = "txt_id";
             this.txt_id.Size = new System.Drawing.Size(33, 20);
             this.txt_id.TabIndex = 21;
@@ -590,13 +422,12 @@
             // 
             // txt_indice
             // 
-            this.txt_indice.Location = new System.Drawing.Point(173, 52);
-            this.txt_indice.Name = "txt_indice";
-            this.txt_indice.Size = new System.Drawing.Size(33, 20);
-            this.txt_indice.TabIndex = 29;
-            this.txt_indice.Text = "0";
-            this.txt_indice.Visible = false;
-            this.txt_indice.TextChanged += new System.EventHandler(this.txt_indice_TextChanged);
+            //this.txt_indice.Location = new System.Drawing.Point(173, 52);
+           // this.txt_indice.Name = "txt_indice";
+            //this.txt_indice.Size = new System.Drawing.Size(33, 20);
+           // this.txt_indice.TabIndex = 29;
+           // this.txt_indice.Text = "0";
+            //this.txt_indice.TextChanged += new System.EventHandler(this.txt_indice_TextChanged);
             // 
             // btn_limpiarBusqueda
             // 
@@ -676,7 +507,6 @@
             this.btn_limpiar.UseVisualStyleBackColor = false;
             this.btn_limpiar.Click += new System.EventHandler(this.btn_limpiar_Click);
             // 
-<<<<<<< HEAD
             // btn_guardar
             // 
             this.btn_guardar.BackColor = System.Drawing.Color.ForestGreen;
@@ -697,16 +527,6 @@
             this.btn_guardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_guardar.UseVisualStyleBackColor = false;
             this.btn_guardar.Click += new System.EventHandler(this.btn_guardar_Click);
-=======
-
-            // txt_indice
-            // 
-            //this.txt_indice.Location = new System.Drawing.Point(173, 52);
-           // this.txt_indice.Name = "txt_indice";
-           // this.txt_indice.Size = new System.Drawing.Size(33, 20);
-           // this.txt_indice.TabIndex = 29;
-           // this.txt_indice.Text = "0";
->>>>>>> origin
             // 
             // frm_usuarios
             // 
@@ -762,6 +582,7 @@
         private System.Windows.Forms.TextBox txt_contraseñaUsuario;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txt_apellidoUsuario;
+        //private System.Windows.Forms.TextBox txt_indice;
         private System.Windows.Forms.TextBox txt_confirmarContraseña;
         private System.Windows.Forms.Label lbl_confirmarContraseña;
         private System.Windows.Forms.Label lbl_rolUsuario;
