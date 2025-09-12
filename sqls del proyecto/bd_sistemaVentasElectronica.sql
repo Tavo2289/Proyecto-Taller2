@@ -186,3 +186,5 @@ values ('iara','perez esquivel', '44212382','vendedor123',null ,1,2,'iaraperez@g
 
 
 select * from Usuario; /*muestra todos los datos de usuarios*/
+
+DROP TABLE Producto;

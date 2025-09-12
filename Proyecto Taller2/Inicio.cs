@@ -106,7 +106,7 @@ namespace Proyecto_Taller2
         private void subMenu_registrarCompra_Click(object sender, EventArgs e)
         {
 
-            abrirFormulario(iconCompras, new frm_compras());
+            abrirFormulario(iconCompras, new frm_compras(usuarioActual));
 
         }
 
@@ -129,6 +129,11 @@ namespace Proyecto_Taller2
         private void iconReportes_Click(object sender, EventArgs e)
         {
             abrirFormulario((IconMenuItem)sender, new frm_reportes()); //abre el formulario de reportes al hacer clic en el icono de reportes
+        }
+
+        private void subMenu_negocio_Click(object sender, EventArgs e)
+        {
+            abrirFormulario(iconMantenedor, new frm_negocio()); //abre el formulario de negocio al hacer clic en el submenu negocio
         }
     }
 }
