@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txt_indice = new System.Windows.Forms.TextBox();
             this.btn_limpiarBusqueda = new FontAwesome.Sharp.IconButton();
             this.btn_busqueda = new FontAwesome.Sharp.IconButton();
@@ -53,7 +54,12 @@
             this.txt_descripcion = new System.Windows.Forms.TextBox();
             this.lblDescripcion = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.errorDescripcion = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorEstado = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btn_modificar = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_listaCategoria)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorDescripcion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorEstado)).BeginInit();
             this.SuspendLayout();
             // 
             // txt_indice
@@ -215,15 +221,15 @@
             // dataGrid_listaCategoria
             // 
             this.dataGrid_listaCategoria.AllowUserToAddRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGrid_listaCategoria.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGrid_listaCategoria.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGrid_listaCategoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGrid_listaCategoria.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btn_seleccionar,
@@ -235,9 +241,9 @@
             this.dataGrid_listaCategoria.MultiSelect = false;
             this.dataGrid_listaCategoria.Name = "dataGrid_listaCategoria";
             this.dataGrid_listaCategoria.ReadOnly = true;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGrid_listaCategoria.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGrid_listaCategoria.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGrid_listaCategoria.RowTemplate.Height = 28;
             this.dataGrid_listaCategoria.Size = new System.Drawing.Size(799, 298);
             this.dataGrid_listaCategoria.TabIndex = 49;
@@ -315,6 +321,7 @@
             this.txt_descripcion.Name = "txt_descripcion";
             this.txt_descripcion.Size = new System.Drawing.Size(191, 20);
             this.txt_descripcion.TabIndex = 35;
+            this.txt_descripcion.Leave += new System.EventHandler(this.txtdescripcion_Leave);
             // 
             // lblDescripcion
             // 
@@ -336,11 +343,42 @@
             this.label1.Size = new System.Drawing.Size(283, 406);
             this.label1.TabIndex = 30;
             // 
+            // errorDescripcion
+            // 
+            this.errorDescripcion.ContainerControl = this;
+            // 
+            // errorEstado
+            // 
+            this.errorEstado.ContainerControl = this;
+            // 
+            // btn_modificar
+            // 
+            this.btn_modificar.BackColor = System.Drawing.Color.ForestGreen;
+            this.btn_modificar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_modificar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_modificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_modificar.ForeColor = System.Drawing.Color.White;
+            this.btn_modificar.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
+            this.btn_modificar.IconColor = System.Drawing.Color.White;
+            this.btn_modificar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_modificar.IconSize = 16;
+            this.btn_modificar.Location = new System.Drawing.Point(45, 185);
+            this.btn_modificar.Name = "btn_modificar";
+            this.btn_modificar.Size = new System.Drawing.Size(191, 23);
+            this.btn_modificar.TabIndex = 60;
+            this.btn_modificar.Text = "Modificar";
+            this.btn_modificar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_modificar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_modificar.UseVisualStyleBackColor = false;
+            this.btn_modificar.Visible = false;
+            this.btn_modificar.Click += new System.EventHandler(this.btn_modificar_Click);
+            // 
             // frm_categoria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1115, 406);
+            this.Controls.Add(this.btn_modificar);
             this.Controls.Add(this.txt_indice);
             this.Controls.Add(this.btn_limpiarBusqueda);
             this.Controls.Add(this.btn_busqueda);
@@ -363,6 +401,8 @@
             this.Text = "Formulario Categoria";
             this.Load += new System.EventHandler(this.frm_categoria_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_listaCategoria)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorDescripcion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorEstado)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -393,5 +433,8 @@
         private System.Windows.Forms.TextBox txt_descripcion;
         private System.Windows.Forms.Label lblDescripcion;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ErrorProvider errorDescripcion;
+        private System.Windows.Forms.ErrorProvider errorEstado;
+        private FontAwesome.Sharp.IconButton btn_modificar;
     }
 }

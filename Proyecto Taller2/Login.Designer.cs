@@ -37,6 +37,7 @@
             this.txt_contraseñaLogin = new System.Windows.Forms.TextBox();
             this.btn_ingresar = new FontAwesome.Sharp.IconButton();
             this.btn_cancelar = new FontAwesome.Sharp.IconButton();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.iconLogin)).BeginInit();
             this.SuspendLayout();
             // 
@@ -77,7 +78,7 @@
             // lbl_domentoLogin
             // 
             this.lbl_domentoLogin.AutoSize = true;
-            this.lbl_domentoLogin.Location = new System.Drawing.Point(309, 55);
+            this.lbl_domentoLogin.Location = new System.Drawing.Point(300, 81);
             this.lbl_domentoLogin.Name = "lbl_domentoLogin";
             this.lbl_domentoLogin.Size = new System.Drawing.Size(82, 13);
             this.lbl_domentoLogin.TabIndex = 3;
@@ -86,7 +87,7 @@
             // lbl_contraseñaLogin
             // 
             this.lbl_contraseñaLogin.AutoSize = true;
-            this.lbl_contraseñaLogin.Location = new System.Drawing.Point(309, 133);
+            this.lbl_contraseñaLogin.Location = new System.Drawing.Point(300, 159);
             this.lbl_contraseñaLogin.Name = "lbl_contraseñaLogin";
             this.lbl_contraseñaLogin.Size = new System.Drawing.Size(61, 13);
             this.lbl_contraseñaLogin.TabIndex = 4;
@@ -94,14 +95,14 @@
             // 
             // txt_NroDocumento
             // 
-            this.txt_NroDocumento.Location = new System.Drawing.Point(299, 82);
+            this.txt_NroDocumento.Location = new System.Drawing.Point(290, 108);
             this.txt_NroDocumento.Name = "txt_NroDocumento";
             this.txt_NroDocumento.Size = new System.Drawing.Size(189, 20);
             this.txt_NroDocumento.TabIndex = 5;
             // 
             // txt_contraseñaLogin
             // 
-            this.txt_contraseñaLogin.Location = new System.Drawing.Point(299, 161);
+            this.txt_contraseñaLogin.Location = new System.Drawing.Point(290, 187);
             this.txt_contraseñaLogin.Name = "txt_contraseñaLogin";
             this.txt_contraseñaLogin.PasswordChar = '*';
             this.txt_contraseñaLogin.Size = new System.Drawing.Size(189, 20);
@@ -149,11 +150,22 @@
             this.btn_cancelar.UseVisualStyleBackColor = false;
             this.btn_cancelar.Click += new System.EventHandler(this.btn_cancelar_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(287, 32);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(118, 20);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Iniciar Sesion";
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(533, 272);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.btn_cancelar);
             this.Controls.Add(this.btn_ingresar);
             this.Controls.Add(this.txt_contraseñaLogin);
@@ -184,5 +196,6 @@
         private System.Windows.Forms.TextBox txt_contraseñaLogin;
         private FontAwesome.Sharp.IconButton btn_ingresar;
         private FontAwesome.Sharp.IconButton btn_cancelar;
+        private System.Windows.Forms.Label label2;
     }
 }

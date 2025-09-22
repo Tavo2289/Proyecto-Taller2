@@ -10,11 +10,16 @@ namespace CapaEntidad
     {
 
 
-        public int id_venta { get; set; }
-        public Cliente id_cliente { get; set; } // Propiedad de tipo Cliente para representar la relación
-        public Usuario id_usuario { get; set; } // Propiedad de tipo Usuario para representar la relación
-        public decimal importe_total { get; set; }
-        public string fecha_venta { get; set; }
-
+        public int IdVenta { get; set; }
+        public Usuario oUsuario { get; set; }
+        public string TipoDocumento { get; set; }
+        public string NumeroDocumento { get; set; }
+        public string DocumentoCliente { get; set; }
+        public string NombreCliente { get; set; }
+        public decimal MontoPago { get; set; }
+        public decimal MontoCambio { get; set; }
+        public decimal MontoTotal { get; set; }
+        public string FechaRegistro { get; set; }
+        public List<DetalleVenta> oDetalleVenta { get; set; }
     }
 }

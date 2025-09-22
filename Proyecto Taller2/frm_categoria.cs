@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -27,7 +28,7 @@ namespace Proyecto_Taller2
             comboEstado.Items.Add(new OpcionCombo() { Valor = 0, Texto = "No Activo" });
             comboEstado.DisplayMember = "Texto";// mostrar el texto en el combo
             comboEstado.ValueMember = "Valor";// asociar el valor al texto
-            comboEstado.SelectedIndex = 0;// seleccionar la primera opcion del combo
+            comboEstado.SelectedIndex = -1;// seleccionar la primera opcion del combo
 
             foreach (DataGridViewColumn columna in dataGrid_listaCategoria.Columns)
             {  // recorrer las columnas del datagrid
@@ -58,6 +59,8 @@ namespace Proyecto_Taller2
 
         private void btn_guardar_Click(object sender, EventArgs e)
         {
+            if (!verificar_campos_Registrar()) { return; }
+
             string mensaje = string.Empty; // variable para almacenar el mensaje de error
 
             Categoria obj = new Categoria()
@@ -79,36 +82,25 @@ namespace Proyecto_Taller2
                     ((OpcionCombo)comboEstado.SelectedItem).Valor.ToString(),
                     ((OpcionCombo)comboEstado.SelectedItem).Texto.ToString()
                     });
+                    MessageBox.Show("La Categoria "+txt_descripcion.Text+" Registrada Correctamente","Categoria Registrada",MessageBoxButtons.OK,MessageBoxIcon.Information);
                     limpiar();
                 }
                 else
                 {
-                    MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); // mostrar el mensaje de error
+                    MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); // mostrar el mensaje de error
                 }
             }
-            else
-            {
-                bool resultado = new CN_Categoria().Editar(obj, out mensaje);
-
-                if (resultado)
-                {
-                    DataGridViewRow row = dataGrid_listaCategoria.Rows[Convert.ToInt32(txt_indice.Text)];// dgvdata remplace por dataGrid_listaUsuario
-                    row.Cells["id"].Value = txt_id.Text;
-                    row.Cells["Descripcion"].Value = txt_descripcion.Text;
-                    row.Cells["estadoValor"].Value = ((OpcionCombo)comboEstado.SelectedItem).Valor.ToString();
-                    row.Cells["estado"].Value = ((OpcionCombo)comboEstado.SelectedItem).Texto.ToString();
-
-                    limpiar();
-                }
-                else
-                {
-                    MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); // mostrar el mensaje de error
-                }
-            }
+           
         }
 
             private void limpiar()
         {
+            //activa boton eliminar y desactiva boton modificar
+            btn_modificar.Visible = false;
+            btn_guardar.Visible = true;
+
+
+
             txt_indice.Text = "-1";
             txt_id.Text = "0";
             txt_descripcion.Text = "";
@@ -139,7 +131,8 @@ namespace Proyecto_Taller2
         {
             if (dataGrid_listaCategoria.Columns[e.ColumnIndex].Name == "btn_seleccionar")
             {
-
+                btn_modificar.Visible = true;
+                btn_guardar.Visible = false;
                 int indiceFila = e.RowIndex; // obtener el indice de la fila seleccionada
 
                 if (indiceFila >= 0)
@@ -219,14 +212,295 @@ namespace Proyecto_Taller2
             }
         }
 
-        private void brt_limpiar_Click(object sender, EventArgs e)
-        {
-            limpiar();
-        }
+      
 
         private void btn_limpiar_Click(object sender, EventArgs e)
         {
             limpiar();
         }
+
+
+
+       
+
+        private void txtdescripcion_Leave(object sender, EventArgs e)
+        {
+            txt_descripcion.Text = FormatearTexto(txt_descripcion.Text);
+        }
+        private string FormatearTexto(string texto)
+        {
+            if (string.IsNullOrWhiteSpace(texto))
+                return string.Empty;
+
+            texto = texto.Trim().ToLower(); // todo minúscula y sin espacios sobrantes
+            return char.ToUpper(texto[0]) + texto.Substring(1);
+        }
+
+
+
+
+        public bool verificar_campos_Registrar()
+        {
+            // Limpia errores y colores de todos los campos al inicio
+            errorDescripcion.Clear();
+            errorEstado.Clear();
+            txt_descripcion.BackColor = System.Drawing.Color.White;
+            comboEstado.BackColor = System.Drawing.Color.White;
+
+
+            bool respuesta = true; // Bandera para indicar si hay algún campo vacío o algun error
+
+            // Lista de todos los TextBoxes
+            TextBox[] textboxes = {  txt_descripcion };
+
+            // Paso 1: Verificar si todos los campos están vacíos
+            if (textboxes.All(tb => string.IsNullOrWhiteSpace(tb.Text)) && comboEstado.SelectedIndex == -1 )
+            {
+
+                errorDescripcion.SetError(txt_descripcion, "Ingrese la Descripcion.");
+                txt_descripcion.BackColor = System.Drawing.Color.MistyRose;
+                errorEstado.SetError(comboEstado, "Seleccione un Estado.");
+                comboEstado.BackColor = System.Drawing.Color.MistyRose;
+
+
+                MessageBox.Show("Todos los campos están vacíos. Por favor, complete la información.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            bool algúnCampoVacio = false;
+
+            // Paso 2: Verificación de cada campo individualmente
+            // Se valida cada campo y se activa la bandera si está vacío o no es válido
+
+
+
+            //verificacion de descripcion
+
+            if (string.IsNullOrWhiteSpace(txt_descripcion.Text))
+            {
+                errorDescripcion.SetError(txt_descripcion, "Ingrese el Descripcion.");
+                txt_descripcion.BackColor = System.Drawing.Color.MistyRose;
+                algúnCampoVacio = true;
+            }
+            else if (!Regex.IsMatch(txt_descripcion.Text, @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s\.]+$"))
+            {
+                errorDescripcion.SetError(txt_descripcion, "La Descripcion solo debe contener letras o puntos.");
+                txt_descripcion.BackColor = System.Drawing.Color.MistyRose;
+                MessageBox.Show("La Descripcion solo debe contener letras , puntos o numeros.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                respuesta = false;
+            }
+            else if (DescripcionExiste())
+            {
+                errorDescripcion.SetError(txt_descripcion, "La Descripcion ya existe.");
+                txt_descripcion.BackColor = System.Drawing.Color.MistyRose;
+                MessageBox.Show("La Descripcion ya existe.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                respuesta = false;
+            }
+
+
+
+
+
+            if (comboEstado.SelectedIndex == -1)
+            {
+                if (algúnCampoVacio == true) // si algun campo antes de combo estado ya estaba vacio , no mostrar mensaje
+                {
+
+                    errorEstado.SetError(comboEstado, "Seleccione un Estado.");
+                    comboEstado.BackColor = System.Drawing.Color.MistyRose;
+
+                    algúnCampoVacio = true;
+
+                }
+                else
+                {
+
+                    errorEstado.SetError(comboEstado, "Seleccione un Estado.");
+                    comboEstado.BackColor = System.Drawing.Color.MistyRose;
+                    MessageBox.Show("Seleccione un Estado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    respuesta = false;
+
+                }
+            }
+
+            // Paso 3: Al finalizar, si algún campo está vacío, se muestra el MessageBox
+            if (algúnCampoVacio)
+            {
+                MessageBox.Show("Todos los campos deben estar completos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                respuesta = false;
+            }
+
+            // Si todas las validaciones pasan, el método devuelve true
+            return respuesta;
+        }
+
+        // validacion para modificar
+
+        public bool verificar_campos_Modificar()
+        {
+            // Limpia errores y colores de todos los campos al inicio
+            errorDescripcion.Clear();
+            errorEstado.Clear();
+            txt_descripcion.BackColor = System.Drawing.Color.White;
+            comboEstado.BackColor = System.Drawing.Color.White;
+
+
+            bool respuesta = true; // Bandera para indicar si hay algún campo vacío o algun error
+
+            // Lista de todos los TextBoxes
+            TextBox[] textboxes = { txt_descripcion };
+
+            // Paso 1: Verificar si todos los campos están vacíos
+            if (textboxes.All(tb => string.IsNullOrWhiteSpace(tb.Text)) && comboEstado.SelectedIndex == -1)
+            {
+
+                errorDescripcion.SetError(txt_descripcion, "Ingrese la Descripcion.");
+                txt_descripcion.BackColor = System.Drawing.Color.MistyRose;
+                errorEstado.SetError(comboEstado, "Seleccione un Estado.");
+                comboEstado.BackColor = System.Drawing.Color.MistyRose;
+
+
+                MessageBox.Show("Todos los campos están vacíos. Por favor, complete la información.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            bool algúnCampoVacio = false;
+
+            // Paso 2: Verificación de cada campo individualmente
+            // Se valida cada campo y se activa la bandera si está vacío o no es válido
+
+
+
+            //verificacion de descripcion
+
+            if (string.IsNullOrWhiteSpace(txt_descripcion.Text))
+            {
+                errorDescripcion.SetError(txt_descripcion, "Ingrese el Descripcion.");
+                txt_descripcion.BackColor = System.Drawing.Color.MistyRose;
+                algúnCampoVacio = true;
+            }
+            else if (!Regex.IsMatch(txt_descripcion.Text, @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s\.]+$"))
+            {
+                errorDescripcion.SetError(txt_descripcion, "La Descripcion solo debe contener letras o puntos.");
+                txt_descripcion.BackColor = System.Drawing.Color.MistyRose;
+                MessageBox.Show("La Descripcion solo debe contener letras , puntos o numeros.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                respuesta = false;
+            }
+            else if (DescripcionExisteModificar())
+            {
+                errorDescripcion.SetError(txt_descripcion, "La Descripcion ya existe.");
+                txt_descripcion.BackColor = System.Drawing.Color.MistyRose;
+                MessageBox.Show("La Descripcion ya existe.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                respuesta = false;
+            }
+
+
+
+
+
+            if (comboEstado.SelectedIndex == -1)
+            {
+                if (algúnCampoVacio == true) // si algun campo antes de combo estado ya estaba vacio , no mostrar mensaje
+                {
+
+                    errorEstado.SetError(comboEstado, "Seleccione un Estado.");
+                    comboEstado.BackColor = System.Drawing.Color.MistyRose;
+
+                    algúnCampoVacio = true;
+
+                }
+                else
+                {
+
+                    errorEstado.SetError(comboEstado, "Seleccione un Estado.");
+                    comboEstado.BackColor = System.Drawing.Color.MistyRose;
+                    MessageBox.Show("Seleccione un Estado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    respuesta = false;
+
+                }
+            }
+
+            // Paso 3: Al finalizar, si algún campo está vacío, se muestra el MessageBox
+            if (algúnCampoVacio)
+            {
+                MessageBox.Show("Todos los campos deben estar completos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                respuesta = false;
+            }
+
+            // Si todas las validaciones pasan, el método devuelve true
+            return respuesta;
+        }
+
+
+
+
+        private bool DescripcionExisteModificar()
+        {
+            foreach (DataGridViewRow row in dataGrid_listaCategoria.Rows)
+            {
+                if (row.Cells["Descripcion"].Value != null && row.Cells["Descripcion"].Value.ToString() == txt_descripcion.Text && row.Cells["id"].Value.ToString() != txt_id.Text)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+        private bool DescripcionExiste()
+        {
+            foreach (DataGridViewRow row in dataGrid_listaCategoria.Rows)
+            {
+                if (row.Cells["Descripcion"].Value != null && row.Cells["Descripcion"].Value.ToString() == txt_descripcion.Text )
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private void btn_modificar_Click(object sender, EventArgs e)
+        {
+            if (!verificar_campos_Modificar()) { return; }
+            string mensaje = string.Empty; // variable para almacenar el mensaje de error
+
+            Categoria obj = new Categoria()
+            {  // crear un objeto de tipo usuario y asignar los valores de los campos del formulario
+                id_categoria = Convert.ToInt32(txt_id.Text),
+                nombre_categoria = txt_descripcion.Text,// asignar el valor del textbox documento
+                estado = Convert.ToInt32(((OpcionCombo)comboEstado.SelectedItem).Valor) == 1 ? true : false
+            };
+
+
+            bool resultado = new CN_Categoria().Editar(obj, out mensaje);
+
+                if (resultado)
+                {
+                    DataGridViewRow row = dataGrid_listaCategoria.Rows[Convert.ToInt32(txt_indice.Text)];// dgvdata remplace por dataGrid_listaUsuario
+                    row.Cells["id"].Value = txt_id.Text;
+                    row.Cells["Descripcion"].Value = txt_descripcion.Text;
+                    row.Cells["estadoValor"].Value = ((OpcionCombo)comboEstado.SelectedItem).Valor.ToString();
+                    row.Cells["estado"].Value = ((OpcionCombo)comboEstado.SelectedItem).Texto.ToString();
+                MessageBox.Show("La Categoria " + txt_descripcion.Text + " Modificada Correctamente", "Categoria Modificada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                limpiar();
+                }
+                else
+                {
+                    MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); // mostrar el mensaje de error
+                }
+            }
+
+
+
+
+
+
+
+
+
+        }
     }
-}

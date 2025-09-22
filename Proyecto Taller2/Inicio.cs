@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaEntidad; // referencia capa de entidad
 using FontAwesome.Sharp;  // referencia a plugin de iconos
-using CapaNegocio; // referencia a capa de negocio
+using CapaNegocio;
+using Proyecto_Taller2.Modales; // referencia a capa de negocio
 
 namespace Proyecto_Taller2
 {
@@ -95,7 +96,7 @@ namespace Proyecto_Taller2
 
         private void subMenu_registrar_Click(object sender, EventArgs e)
         {
-            abrirFormulario(iconVentas, new frm_venta());
+            abrirFormulario(iconVentas, new frm_venta(usuarioActual));
         }
 
         private void subMenu_verDetalles_Click(object sender, EventArgs e) //submenu ver detalles de venta
@@ -106,7 +107,7 @@ namespace Proyecto_Taller2
         private void subMenu_registrarCompra_Click(object sender, EventArgs e)
         {
 
-            abrirFormulario(iconCompras, new frm_compras());
+            abrirFormulario(iconCompras, new frm_compras(usuarioActual));
 
         }
 
@@ -126,9 +127,37 @@ namespace Proyecto_Taller2
             abrirFormulario((IconMenuItem)sender, new frm_proveedores()); //abre el formulario de proveedores al hacer clic en el icono de proveedores
         }
 
-        private void iconReportes_Click(object sender, EventArgs e)
+     
+
+        private void subMenu_negocio_Click(object sender, EventArgs e)
         {
-            abrirFormulario((IconMenuItem)sender, new frm_reportes()); //abre el formulario de reportes al hacer clic en el icono de reportes
+            abrirFormulario(iconMantenedor, new frm_negocio()); //abre el formulario de negocio al hacer clic en el submenu negocio
+        }
+
+        private void subMenu_reporteCompras_Click(object sender, EventArgs e)
+        {
+            abrirFormulario(iconReportes, new frm_reporteCompras());//abre el formulario de categorias al hacer clic en el submenu categoria
+
+        }
+
+        private void subMenu_reporteVentas_Click(object sender, EventArgs e)
+        {
+            abrirFormulario(iconReportes, new frm_reporteVentas());//abre el formulario de categorias al hacer clic en el submenu categoria
+
+        }
+
+        private void iconAcercaDe_Click(object sender, EventArgs e)
+        {
+            MD_acercade md = new MD_acercade();
+            md.ShowDialog();
+        }
+
+        private void btn_cerrarApp_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿Desea Cerrar la Applicacion?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                this.Close();
+            }
         }
     }
 }

@@ -31,11 +31,13 @@ namespace Proyecto_Taller2
         private void frm_usuarios_Load(object sender, EventArgs e)// cargar el formulario
         {
             //1 representa true y 0 representa false
+            txt_nombreUsuario.Focus(); // colocar el foco en el textbox nombre
+
             comboEstado.Items.Add(new OpcionCombo() { Valor = 1, Texto = "Activo" });// agregar una opcion al combo con valor 1
             comboEstado.Items.Add(new OpcionCombo() { Valor = 0, Texto = "No Activo" });
             comboEstado.DisplayMember = "Texto";// mostrar el texto en el combo
             comboEstado.ValueMember = "Valor";// asociar el valor al texto
-            comboEstado.SelectedIndex = 0;// seleccionar la primera opcion del combo
+            comboEstado.SelectedIndex = -1;// seleccionar la primera opcion del combo
 
             List<Rol> listaRol = new CN_rol().Listar(); // se crea una lista de roles y se llama al metodo listar de la clase CN_rol que esta en la capa de negocio
 
@@ -48,7 +50,7 @@ namespace Proyecto_Taller2
             }
             comboRol.DisplayMember = "Texto";// mostrar el texto en el combo
             comboRol.ValueMember = "Valor";// asociar el valor al texto
-            comboRol.SelectedIndex = 0;// seleccionar la primera opcion del combo
+            comboRol.SelectedIndex = -1;// seleccionar la primera opcion del combo
 
             foreach (DataGridViewColumn columna in dataGrid_listaUsuario.Columns)
             {  // recorrer las columnas del datagrid
@@ -91,7 +93,7 @@ namespace Proyecto_Taller2
         private void btn_guardar_Click(object sender, EventArgs e)
         {
 
-            if (!verificar_campos()) { return; } // si la verificación falla, salimos del método
+            if (!verificar_campos_Registrar()) { return; } // si la verificación falla, salimos del método
             string mensaje = string.Empty; // variable para almacenar el mensaje de error
             Usuario usuario = new Usuario()
             {  // crear un objeto de tipo usuario y asignar los valores de los campos del formulario
@@ -120,43 +122,51 @@ namespace Proyecto_Taller2
                     ((OpcionCombo)comboEstado.SelectedItem).Texto.ToString()
                     });
                     limpiar();
+                    MessageBox.Show("El Usuario "+txt_nombreUsuario.Text+ " " + txt_apellidoUsuario.Text +" a sido Registrado Correctamnete","Registro de Usuario Exitoso",MessageBoxButtons.OK, MessageBoxIcon.Information );
                 }
                 else
                 {
-                    MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); // mostrar el mensaje de error
+                    MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); // mostrar el mensaje de error
                 }
             }
-            else
-            { // si no es 0 es porque ya existe y se va a editar 
-
-                bool resultado = new CN_usuario().Editar(usuario, out mensaje); // llamar al metodo editar de la clase CN_usuario que esta en la capa de negocio
-
-                if (resultado)    // si el resultado es true
-                {
-                    DataGridViewRow row = dataGrid_listaUsuario.Rows[Convert.ToInt32(txt_indice.Text)];// dgvdata remplace por dataGrid_listaUsuario
-                    row.Cells["id"].Value = txt_id.Text;
-                    row.Cells["documento"].Value = txt_documentoUsuario.Text;
-                    row.Cells["nombre"].Value = txt_nombreUsuario.Text;
-                    row.Cells["apellido"].Value = txt_apellidoUsuario.Text;
-                    row.Cells["gmail"].Value = txt_gmail.Text;
-                    row.Cells["contraseña"].Value = txt_contraseñaUsuario.Text;
-                    row.Cells["id_rol"].Value = ((OpcionCombo)comboRol.SelectedItem).Valor.ToString();
-                    row.Cells["rol"].Value = ((OpcionCombo)comboRol.SelectedItem).Texto.ToString();
-                    row.Cells["estadoValor"].Value = ((OpcionCombo)comboEstado.SelectedItem).Valor.ToString();
-                    row.Cells["estado"].Value = ((OpcionCombo)comboEstado.SelectedItem).Texto.ToString();
-
-                    limpiar();// limpiar los campos del formulario
-                }
-                else 
-                {
-                    MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); // mostrar el mensaje de error
-                }
-            }
+           
         }
 
 
         private void limpiar()
         {
+            /*activa boton de guardar y oculta el boton de modificar*/
+            btn_modificar.Visible = false;
+            btn_guardar.Visible = true;
+            // activa el campo documento 
+
+
+
+
+
+
+            /*Borra errones provaider*/
+            errorNombre.Clear();
+            errorApellido.Clear();
+            errorDocumento.Clear();
+            errorContraseña.Clear();
+            errorConfirmarContraseña.Clear();
+            errorCorreo.Clear();
+            errorRol.Clear();
+            errorEstado.Clear();
+
+            /*colores de los txt pone en blanco*/
+            txt_nombreUsuario.BackColor = System.Drawing.Color.White;
+            txt_apellidoUsuario.BackColor = System.Drawing.Color.White;
+            txt_documentoUsuario.BackColor = System.Drawing.Color.White;
+            txt_contraseñaUsuario.BackColor = System.Drawing.Color.White;
+            txt_confirmarContraseña.BackColor = System.Drawing.Color.White;
+            txt_gmail.BackColor = System.Drawing.Color.White;
+            comboRol.BackColor = System.Drawing.Color.White;
+            comboEstado.BackColor = System.Drawing.Color.White;
+            /*fin colores*/
+
+
             txt_indice.Text = "-1";
             txt_id.Text = "0";
             txt_documentoUsuario.Text = "";
@@ -165,13 +175,13 @@ namespace Proyecto_Taller2
             txt_gmail.Text = "";
             txt_contraseñaUsuario.Text = "";
             txt_confirmarContraseña.Text = "";
-            comboRol.SelectedIndex = 0; // seleccionar la primera opcion del combo
-            comboEstado.SelectedIndex = 0;// seleccionar la primera opcion del combo
+            comboRol.SelectedIndex = -1; // seleccionar la primera opcion del combo
+            comboEstado.SelectedIndex = -1;// seleccionar la primera opcion del combo
 
             txt_nombreUsuario.Select(); // colocar el foco en el textbox documento
         }
 
-        private void txt_documentoUsuario_TextChanged(object sender, EventArgs e)
+        private void txt_documentoUsuarioUsuarioUsuario_TextChanged(object sender, EventArgs e)
         {
 
         }
@@ -197,6 +207,9 @@ namespace Proyecto_Taller2
         {
             if (dataGrid_listaUsuario.Columns[e.ColumnIndex].Name == "btn_seleccionar")
             {
+                LimpiarErroresYColores(); // limpiar errores y colores de todos los campos
+                btn_modificar.Visible = true; // mostrar el boton modificar
+                // desactiva el campo documento para que no se pueda modificar
 
                 int indiceFila = e.RowIndex; // obtener el indice de la fila seleccionada
 
@@ -245,82 +258,292 @@ namespace Proyecto_Taller2
 
         }
 
-        /******************VALIDACIONES DE CAMPOS**********************/
+       
 
-        public bool verificar_campos()
-        {// metodo para verificar que los campos no esten vacios y que el numero de documento sea numerico
 
-            if (new[] { txt_nombreUsuario, txt_apellidoUsuario, txt_documentoUsuario, txt_contraseñaUsuario, txt_confirmarContraseña, txt_gmail }.Any(tb => string.IsNullOrWhiteSpace(tb.Text))) // verifica que los campos no esten vacios
+        public bool verificar_campos_Registrar()
+        {
+            // Limpia errores y colores de todos los campos al inicio
+            LimpiarErroresYColores();
+            bool respuesta = true; // Bandera para indicar si hay algún campo vacío o algun error
+
+            // Lista de todos los TextBoxes
+            TextBox[] textboxes = { txt_nombreUsuario, txt_apellidoUsuario, txt_documentoUsuario, txt_contraseñaUsuario, txt_confirmarContraseña, txt_gmail };
+
+            // Paso 1: Verificar si todos los campos están vacíos
+            if (textboxes.All(tb => string.IsNullOrWhiteSpace(tb.Text)) && comboRol.SelectedIndex == -1 && comboEstado.SelectedIndex == -1)
             {
-                MessageBox.Show("Todos los campos deben estar completos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MarcarTodosLosCampos();
+                MessageBox.Show("Todos los campos están vacíos. Por favor, complete la información.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
-            if (int.TryParse(txt_documentoUsuario.Text, out _)) { } //int.tryparse verificar que el valor ingresado sea numerico
+            bool algúnCampoVacio = false;
 
-            else
+            // Paso 2: Verificación de cada campo individualmente
+            // Se valida cada campo y se activa la bandera si está vacío o no es válido
+
+            // Verificación de Nombre
+            if (string.IsNullOrWhiteSpace(txt_nombreUsuario.Text))
             {
+                errorNombre.SetError(txt_nombreUsuario, "Ingrese el Nombre.");
+                txt_nombreUsuario.BackColor = System.Drawing.Color.MistyRose;
+                algúnCampoVacio = true;
+            }
+            else if (!Regex.IsMatch(txt_nombreUsuario.Text, @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"))
+            {
+                errorNombre.SetError(txt_nombreUsuario, "El Nombre solo debe contener letras.");
+                txt_nombreUsuario.BackColor = System.Drawing.Color.MistyRose;
+                MessageBox.Show("El nombre solo debe contener letras", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-                MessageBox.Show("El Documento debe ser Numerico", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                respuesta = false; // Retorna false inmediatamente si el formato es incorrecto
+            }
+
+            // Verificación de Apellido
+            if (string.IsNullOrWhiteSpace(txt_apellidoUsuario.Text))
+            {
+                errorApellido.SetError(txt_apellidoUsuario, "Ingrese el Apellido.");
+                txt_apellidoUsuario.BackColor = System.Drawing.Color.MistyRose;
+                algúnCampoVacio = true;
+            }
+            else if (!Regex.IsMatch(txt_apellidoUsuario.Text, @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"))
+            {
+                errorApellido.SetError(txt_apellidoUsuario, "El Apellido solo debe contener letras.");
+                txt_apellidoUsuario.BackColor = System.Drawing.Color.MistyRose;
+                MessageBox.Show("El apellido solo debe contener letras", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                respuesta =  false;
+            }
+
+            // Verificación de DNI
+            if (string.IsNullOrWhiteSpace(txt_documentoUsuario.Text))
+            {
+                errorDocumento.SetError(txt_documentoUsuario, "Ingrese el Documento.");
+                txt_documentoUsuario.BackColor = System.Drawing.Color.MistyRose;
+                algúnCampoVacio = true;
+            }
+            else if (txt_documentoUsuario.Text.Length > 8 || !int.TryParse(txt_documentoUsuario.Text, out int documento) || documento < 15000000 || documento > 47000000)
+            {
+                errorDocumento.SetError(txt_documentoUsuario, "El DNI no es válido o está fuera de rango.");
+                    txt_documentoUsuario.BackColor = System.Drawing.Color.MistyRose;
+                MessageBox.Show("El DNI no es válido o está fuera de rango.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                respuesta = false;
+            }
+            else if (DocumentoExiste()) {
+
+
+                errorDocumento.SetError(txt_documentoUsuario, "Este Documento ya fue registrado por otro Usuario");
+                txt_documentoUsuario.BackColor = System.Drawing.Color.MistyRose;
+                MessageBox.Show("Este Documento ya fue registrado por otro Usuario.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+
+                respuesta = false;
+
             }
 
 
-            //verficar campos apellido y nombre solo contengan letras
 
-            if (Regex.IsMatch(txt_apellidoUsuario.Text, @"^[a-zA-Z]+$")) //verifica que solo contenga letras (mayúsculas o minúsculas)
+            // Verificación de Email y duplicados
+            if (string.IsNullOrWhiteSpace(txt_gmail.Text))
             {
-                // Es solo texto (letras mayúsculas o minúsculas)
-
+                errorCorreo.SetError(txt_gmail, "Ingrese el Gmail.");
+                txt_gmail.BackColor = System.Drawing.Color.MistyRose;
+                algúnCampoVacio = true;
             }
-            else
+            else if (!Regex.IsMatch(txt_gmail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
             {
-                MessageBox.Show("Ingresa correctamente su Apellido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                errorCorreo.SetError(txt_gmail, "El formato del correo es incorrecto.");
+                txt_gmail.BackColor = System.Drawing.Color.MistyRose;
+                MessageBox.Show("El formato del correo es incorrecto", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                respuesta = false;
             }
-
-            if (Regex.IsMatch(txt_nombreUsuario.Text, @"^[a-zA-Z]+$"))
+            else if (CorreoExiste()) // Método para verificar duplicado, si es necesario
             {
-                // Es solo texto (letras mayúsculas o minúsculas)
-
-            }
-            else
-            {
-
-                MessageBox.Show("Ingresa correctamente su Nombre", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                errorCorreo.SetError(txt_gmail, "Este correo ya existe en la base de datos.");
+                txt_gmail.BackColor = System.Drawing.Color.MistyRose;
+                MessageBox.Show("Este correo ya existe en la base de datos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                respuesta = false;
             }
 
-
-            //verificamos que el gmail tenga un formato correcto
-
-            if (Regex.IsMatch(txt_gmail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$")) //verifica que el formato del gmail sea correcto
+            // Verificación de Contraseñas
+            if (string.IsNullOrWhiteSpace(txt_contraseñaUsuario.Text) || string.IsNullOrWhiteSpace(txt_confirmarContraseña.Text))
             {
-                // El formato del correo electrónico es válido
+                errorContraseña.SetError(txt_contraseñaUsuario, "Ingrese una contraseña.");
+                errorConfirmarContraseña.SetError(txt_confirmarContraseña, "Confirme la contraseña.");
+                txt_contraseñaUsuario.BackColor = System.Drawing.Color.MistyRose;
+                txt_confirmarContraseña.BackColor = System.Drawing.Color.MistyRose;
+                algúnCampoVacio = true;
+            }
+            else if (txt_contraseñaUsuario.Text != txt_confirmarContraseña.Text)
+            {
+                errorContraseña.SetError(txt_contraseñaUsuario, "Las contraseñas no coinciden.");
+                errorConfirmarContraseña.SetError(txt_confirmarContraseña, "Las contraseñas no coinciden.");
+                txt_contraseñaUsuario.BackColor = System.Drawing.Color.MistyRose;
+                txt_confirmarContraseña.BackColor = System.Drawing.Color.MistyRose;
+                MessageBox.Show("Las contraseñas no coinciden", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                respuesta = false;
+            }
+
+
+
+
+            // Verificación de ComboBox
+            if (comboRol.SelectedIndex == -1)
+            {
+                if (algúnCampoVacio == true) // si algun campo antes de combo rol ya estaba vacio , no mostrar mensaje
+                {
+
+                    errorRol.SetError(comboRol, "Seleccione un Rol.");
+                    comboRol.BackColor = System.Drawing.Color.MistyRose;
+
+                    algúnCampoVacio = true;
+
+
+
+                }
+                else {
+
+                    errorRol.SetError(comboRol, "Seleccione un Rol.");
+                    comboRol.BackColor = System.Drawing.Color.MistyRose;
+                    MessageBox.Show("Seleccione un Rol.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    respuesta = false;
+                }
+
 
             }
-            else
+
+            if (comboEstado.SelectedIndex == -1)
             {
-                MessageBox.Show("El formato del Gmail es incorrecto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                if (algúnCampoVacio == true) // si algun campo antes de combo estado ya estaba vacio , no mostrar mensaje
+                {
+
+                    errorEstado.SetError(comboEstado, "Seleccione un Estado.");
+                    comboEstado.BackColor = System.Drawing.Color.MistyRose;
+
+                    algúnCampoVacio = true;
+
+                }
+                else
+                {
+
+                    errorEstado.SetError(comboEstado, "Seleccione un Estado.");
+                    comboEstado.BackColor = System.Drawing.Color.MistyRose;
+                    MessageBox.Show("Seleccione un Estado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    respuesta = false;
+
+                }
             }
 
-
-            //verificamos que las contraseñas sean iguales
-
-            if (txt_contraseñaUsuario.Text != txt_confirmarContraseña.Text) // verifica que las contraseñas sean iguales
+                // Paso 3: Al finalizar, si algún campo está vacío, se muestra el MessageBox
+                if (algúnCampoVacio)
             {
-                MessageBox.Show("Las contraseñas no coinciden", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                MessageBox.Show("Todos los campos deben estar completos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                respuesta = false;
             }
-            else
-            {
 
-
-                return true; // si todo esta bien devuelve true
-
-            }
+            // Si todas las validaciones pasan, el método devuelve true
+            return respuesta;
         }
+
+        // Métodos auxiliares para la lógica anterior
+        private void LimpiarErroresYColores()
+        {
+            // Lógica para limpiar todos los errores y restablecer los colores
+            errorNombre.Clear();
+            errorApellido.Clear();
+            errorDocumento.Clear();
+            errorContraseña.Clear();
+            errorConfirmarContraseña.Clear();
+            errorCorreo.Clear();
+            errorRol.Clear();
+            errorEstado.Clear();
+
+            txt_nombreUsuario.BackColor = System.Drawing.Color.White;
+            txt_apellidoUsuario.BackColor = System.Drawing.Color.White;
+            txt_documentoUsuario.BackColor = System.Drawing.Color.White;
+            txt_contraseñaUsuario.BackColor = System.Drawing.Color.White;
+            txt_confirmarContraseña.BackColor = System.Drawing.Color.White;
+            txt_gmail.BackColor = System.Drawing.Color.White;
+            comboRol.BackColor = System.Drawing.Color.White;
+            comboEstado.BackColor = System.Drawing.Color.White;
+        }
+
+        private void MarcarTodosLosCampos()
+        {
+            // Lógica para marcar todos los campos vacíos con color y error
+            errorNombre.SetError(txt_nombreUsuario, "Este campo es requerido.");
+            errorApellido.SetError(txt_apellidoUsuario, "Este campo es requerido.");
+            errorDocumento.SetError(txt_documentoUsuario, "Este campo es requerido.");
+            errorContraseña.SetError(txt_contraseñaUsuario, "Este campo es requerido.");
+            errorConfirmarContraseña.SetError(txt_confirmarContraseña, "Este campo es requerido.");
+            errorCorreo.SetError(txt_gmail, "Este campo es requerido.");
+            errorRol.SetError(comboRol, "Este campo es requerido.");
+            errorEstado.SetError(comboEstado, "Este campo es requerido.");
+
+            txt_nombreUsuario.BackColor = System.Drawing.Color.MistyRose;
+            txt_apellidoUsuario.BackColor = System.Drawing.Color.MistyRose;
+            txt_documentoUsuario.BackColor = System.Drawing.Color.MistyRose;
+            txt_contraseñaUsuario.BackColor = System.Drawing.Color.MistyRose;
+            txt_confirmarContraseña.BackColor = System.Drawing.Color.MistyRose;
+            txt_gmail.BackColor = System.Drawing.Color.MistyRose;
+            comboRol.BackColor = System.Drawing.Color.MistyRose;
+            comboEstado.BackColor = System.Drawing.Color.MistyRose;
+        }
+
+        private bool CorreoExiste()
+        {
+            foreach (DataGridViewRow row in dataGrid_listaUsuario.Rows)
+            {
+                if (row.Cells["gmail"].Value != null && row.Cells["gmail"].Value.ToString() == txt_gmail.Text)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+        private bool DocumentoExiste()
+        {
+            foreach (DataGridViewRow row in dataGrid_listaUsuario.Rows)
+            {
+                if (row.Cells["documento"].Value != null && row.Cells["documento"].Value.ToString() == txt_documentoUsuario.Text)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+
+
+
+        // Método para limpiar errores y colores de todos los campos
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         /*poner la primera letra en mayusculas*/
 
@@ -410,110 +633,7 @@ namespace Proyecto_Taller2
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbl_documentoUsuario_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbl_nombreUsuario_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbl_contraseñaUsuario_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt_nombreUsuario_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt_contraseñaUsuario_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt_apellidoUsuario_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt_confirmarContraseña_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbl_confirmarContraseña_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbl_rolUsuario_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboRol_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboEstado_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbl_estadoUsuario_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt_id_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbl_buscar_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox_busqueda_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt_busqueda_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt_gmail_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbl_gmail_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt_indice_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+     
 
         private void brt_limpiar_Click(object sender, EventArgs e)
         {
@@ -524,8 +644,267 @@ namespace Proyecto_Taller2
         {
             limpiar(); // limpiar los campos del formulario
         }
+
+        private void btn_modificar_Click(object sender, EventArgs e)
+        {
+            if (!verificar_campos_modificar()) { return; } // si la verificación falla, salimos del método
+
+            string mensaje = string.Empty; // variable para almacenar el mensaje de error
+            Usuario usuario = new Usuario()
+            {  // crear un objeto de tipo usuario y asignar los valores de los campos del formulario
+                id_usuario = Convert.ToInt32(txt_id.Text),
+                nro_documento = txt_documentoUsuario.Text,// asignar el valor del textbox documento
+                nombre = txt_nombreUsuario.Text,
+                apellido = txt_apellidoUsuario.Text,
+                gmail = txt_gmail.Text,
+                contraseña = txt_contraseñaUsuario.Text,
+                id_rol = new Rol() { id_rol = Convert.ToInt32(((OpcionCombo)comboRol.SelectedItem).Valor) },
+                estado = Convert.ToInt32(((OpcionCombo)comboEstado.SelectedItem).Valor) == 1 ? true : false
+            };
+
+
+            bool resultado = new CN_usuario().Editar(usuario, out mensaje); // llamar al metodo editar de la clase CN_usuario que esta en la capa de negocio
+
+            if (resultado)    // si el resultado es true
+            {
+                DataGridViewRow row = dataGrid_listaUsuario.Rows[Convert.ToInt32(txt_indice.Text)];// dgvdata remplace por dataGrid_listaUsuario
+                row.Cells["id"].Value = txt_id.Text;
+                row.Cells["documento"].Value = txt_documentoUsuario.Text;
+                row.Cells["nombre"].Value = txt_nombreUsuario.Text;
+                row.Cells["apellido"].Value = txt_apellidoUsuario.Text;
+                row.Cells["gmail"].Value = txt_gmail.Text;
+                row.Cells["contraseña"].Value = txt_contraseñaUsuario.Text;
+                row.Cells["id_rol"].Value = ((OpcionCombo)comboRol.SelectedItem).Valor.ToString();
+                row.Cells["rol"].Value = ((OpcionCombo)comboRol.SelectedItem).Texto.ToString();
+                row.Cells["estadoValor"].Value = ((OpcionCombo)comboEstado.SelectedItem).Valor.ToString();
+                row.Cells["estado"].Value = ((OpcionCombo)comboEstado.SelectedItem).Texto.ToString();
+
+                MessageBox.Show("El Usuario " + txt_nombreUsuario.Text + " " + txt_apellidoUsuario.Text + " a sido Modificado Correctamnete", "Modificacion del Usuario Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                limpiar();// limpiar los campos del formulario
+            }
+            else
+            {
+                MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); // mostrar el mensaje de error
+            }
+        }
+
+
+
+        public bool verificar_campos_modificar()
+        {
+            // Limpia errores y colores de todos los campos al inicio
+            LimpiarErroresYColores();
+            bool respuesta = true; // Bandera para indicar si hay algún campo vacío o algun error
+
+            // Lista de todos los TextBoxes
+            TextBox[] textboxes = { txt_nombreUsuario, txt_apellidoUsuario, txt_documentoUsuario, txt_contraseñaUsuario, txt_confirmarContraseña, txt_gmail };
+
+            // Paso 1: Verificar si todos los campos están vacíos
+            if (textboxes.All(tb => string.IsNullOrWhiteSpace(tb.Text)) && comboRol.SelectedIndex == -1 && comboEstado.SelectedIndex == -1)
+            {
+                MarcarTodosLosCampos();
+                MessageBox.Show("Todos los campos están vacíos. Por favor, complete la información.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            bool algúnCampoVacio = false;
+
+            // Paso 2: Verificación de cada campo individualmente
+            // Se valida cada campo y se activa la bandera si está vacío o no es válido
+
+            // Verificación de Nombre
+            if (string.IsNullOrWhiteSpace(txt_nombreUsuario.Text))
+            {
+                errorNombre.SetError(txt_nombreUsuario, "Ingrese el Nombre.");
+                txt_nombreUsuario.BackColor = System.Drawing.Color.MistyRose;
+                algúnCampoVacio = true;
+            }
+            else if (!Regex.IsMatch(txt_nombreUsuario.Text, @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"))
+            {
+                errorNombre.SetError(txt_nombreUsuario, "El Nombre solo debe contener letras.");
+                txt_nombreUsuario.BackColor = System.Drawing.Color.MistyRose;
+                MessageBox.Show("El nombre solo debe contener letras", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                respuesta = false; // Retorna false inmediatamente si el formato es incorrecto
+            }
+
+            // Verificación de Apellido
+            if (string.IsNullOrWhiteSpace(txt_apellidoUsuario.Text))
+            {
+                errorApellido.SetError(txt_apellidoUsuario, "Ingrese el Apellido.");
+                txt_apellidoUsuario.BackColor = System.Drawing.Color.MistyRose;
+                algúnCampoVacio = true;
+            }
+            else if (!Regex.IsMatch(txt_apellidoUsuario.Text, @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"))
+            {
+                errorApellido.SetError(txt_apellidoUsuario, "El Apellido solo debe contener letras.");
+                txt_apellidoUsuario.BackColor = System.Drawing.Color.MistyRose;
+                MessageBox.Show("El apellido solo debe contener letras", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                respuesta = false;
+            }
+
+
+            // Verificación de DNI
+            if (string.IsNullOrWhiteSpace(txt_documentoUsuario.Text))
+            {
+                errorDocumento.SetError(txt_documentoUsuario, "Ingrese el Documento.");
+                txt_documentoUsuario.BackColor = System.Drawing.Color.MistyRose;
+                algúnCampoVacio = true;
+            }
+            else if (txt_documentoUsuario.Text.Length > 8 || !int.TryParse(txt_documentoUsuario.Text, out int documento) || documento < 15000000 || documento > 47000000)
+            {
+                errorDocumento.SetError(txt_documentoUsuario, "El DNI no es válido o está fuera de rango.");
+                txt_documentoUsuario.BackColor = System.Drawing.Color.MistyRose;
+                MessageBox.Show("El DNI no es válido o está fuera de rango.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                respuesta = false;
+            }
+            else if (DocumentoExisteModificar())
+            {
+
+
+                errorDocumento.SetError(txt_documentoUsuario, "Este Documento ya fue registrado por otro Usuario");
+                txt_documentoUsuario.BackColor = System.Drawing.Color.MistyRose;
+                MessageBox.Show("Este Documento ya fue registrado por otro Usuario.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+
+                respuesta = false;
+
+            }
+
+            // Verificación de Email y duplicados
+            if (string.IsNullOrWhiteSpace(txt_gmail.Text))
+            {
+                errorCorreo.SetError(txt_gmail, "Ingrese el Gmail.");
+                txt_gmail.BackColor = System.Drawing.Color.MistyRose;
+                algúnCampoVacio = true;
+            }
+            else if (!Regex.IsMatch(txt_gmail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                errorCorreo.SetError(txt_gmail, "El formato del correo es incorrecto.");
+                txt_gmail.BackColor = System.Drawing.Color.MistyRose;
+                MessageBox.Show("El formato del correo es incorrecto", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                respuesta = false;
+            }
+            else if (CorreoExisteModificar()) // Método para verificar duplicado, si es necesario
+            {
+                errorCorreo.SetError(txt_gmail, "Este correo ya existe en la base de datos.");
+                txt_gmail.BackColor = System.Drawing.Color.MistyRose;
+                MessageBox.Show("Este correo ya existe en la base de datos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                respuesta = false;
+            }
+
+            // Verificación de Contraseñas
+            if (string.IsNullOrWhiteSpace(txt_contraseñaUsuario.Text) || string.IsNullOrWhiteSpace(txt_confirmarContraseña.Text))
+            {
+                errorContraseña.SetError(txt_contraseñaUsuario, "Ingrese una contraseña.");
+                errorConfirmarContraseña.SetError(txt_confirmarContraseña, "Confirme la contraseña.");
+                txt_contraseñaUsuario.BackColor = System.Drawing.Color.MistyRose;
+                txt_confirmarContraseña.BackColor = System.Drawing.Color.MistyRose;
+                algúnCampoVacio = true;
+            }
+            else if (txt_contraseñaUsuario.Text != txt_confirmarContraseña.Text)
+            {
+                errorContraseña.SetError(txt_contraseñaUsuario, "Las contraseñas no coinciden.");
+                errorConfirmarContraseña.SetError(txt_confirmarContraseña, "Las contraseñas no coinciden.");
+                txt_contraseñaUsuario.BackColor = System.Drawing.Color.MistyRose;
+                txt_confirmarContraseña.BackColor = System.Drawing.Color.MistyRose;
+                MessageBox.Show("Las contraseñas no coinciden", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                respuesta = false;
+            }
+
+
+
+
+            // Verificación de ComboBox
+            if (comboRol.SelectedIndex == -1)
+            {
+                if (algúnCampoVacio == true) // si algun campo antes de combo rol ya estaba vacio , no mostrar mensaje
+                {
+
+                    errorRol.SetError(comboRol, "Seleccione un Rol.");
+                    comboRol.BackColor = System.Drawing.Color.MistyRose;
+
+                    algúnCampoVacio = true;
+
+
+
+                }
+                else
+                {
+
+                    errorRol.SetError(comboRol, "Seleccione un Rol.");
+                    comboRol.BackColor = System.Drawing.Color.MistyRose;
+                    MessageBox.Show("Seleccione un Rol.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    respuesta = false;
+                }
+
+
+            }
+
+            if (comboEstado.SelectedIndex == -1)
+            {
+                if (algúnCampoVacio == true) // si algun campo antes de combo estado ya estaba vacio , no mostrar mensaje
+                {
+
+                    errorEstado.SetError(comboEstado, "Seleccione un Estado.");
+                    comboEstado.BackColor = System.Drawing.Color.MistyRose;
+
+                    algúnCampoVacio = true;
+
+                }
+                else
+                {
+
+                    errorEstado.SetError(comboEstado, "Seleccione un Estado.");
+                    comboEstado.BackColor = System.Drawing.Color.MistyRose;
+                    MessageBox.Show("Seleccione un Estado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    respuesta = false;
+
+                }
+            }
+
+            // Paso 3: Al finalizar, si algún campo está vacío, se muestra el MessageBox
+            if (algúnCampoVacio)
+            {
+                MessageBox.Show("Todos los campos deben estar completos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                respuesta = false;
+            }
+
+            // Si todas las validaciones pasan, el método devuelve true
+            return respuesta;
+        }
+
+        private bool DocumentoExisteModificar()
+        {
+            foreach (DataGridViewRow row in dataGrid_listaUsuario.Rows)
+            {
+                //si el gmail existe y el id es diferente al del usuario que se esta modificando
+                if (row.Cells["documento"].Value != null && row.Cells["documento"].Value.ToString() == txt_documentoUsuario.Text && row.Cells["id"].Value.ToString() != txt_id.Text)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        private bool CorreoExisteModificar()
+        {
+            foreach (DataGridViewRow row in dataGrid_listaUsuario.Rows)
+            {
+                //si el gmail existe y el id es diferente al del usuario que se esta modificando
+                if (row.Cells["gmail"].Value != null && row.Cells["gmail"].Value.ToString() == txt_gmail.Text && row.Cells["id"].Value.ToString() != txt_id.Text)
+                {  
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+
+
     }
-
-
-
 }

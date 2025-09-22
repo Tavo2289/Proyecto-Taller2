@@ -1,0 +1,3 @@
+FontAwesome.Sharp--->PARA ICONOS
+ClosedXML.Parse ----> PARA EXPORTAR EXCEL
+iTextSharp ---> PARA EXPORTAR PDF

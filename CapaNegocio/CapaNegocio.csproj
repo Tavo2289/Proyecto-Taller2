@@ -42,9 +42,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CN_Categoria.cs" />
+    <Compile Include="CN_clientes.cs" />
+    <Compile Include="CN_compras.cs" />
+    <Compile Include="CN_negocio.cs" />
     <Compile Include="CN_permisos.cs" />
+    <Compile Include="CN_producto.cs" />
+    <Compile Include="CN_proveedor.cs" />
+    <Compile Include="CN_reportes.cs" />
     <Compile Include="CN_rol.cs" />
     <Compile Include="CN_usuario.cs" />
+    <Compile Include="CN_venta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
