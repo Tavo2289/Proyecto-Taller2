@@ -156,6 +156,7 @@
             this.txt_idProveedor.Name = "txt_idProveedor";
             this.txt_idProveedor.Size = new System.Drawing.Size(26, 20);
             this.txt_idProveedor.TabIndex = 27;
+            this.txt_idProveedor.Visible = false;
             // 
             // btn_busquedaProveedor
             // 
@@ -323,6 +324,7 @@
             this.txt_idProducto.Name = "txt_idProducto";
             this.txt_idProducto.Size = new System.Drawing.Size(26, 20);
             this.txt_idProducto.TabIndex = 33;
+            this.txt_idProducto.Visible = false;
             // 
             // label6
             // 

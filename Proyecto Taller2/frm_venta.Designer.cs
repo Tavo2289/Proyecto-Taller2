@@ -44,6 +44,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGrid_detalleVenta = new System.Windows.Forms.DataGridView();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btn_eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btn_agregar = new FontAwesome.Sharp.IconButton();
@@ -65,12 +71,6 @@
             this.label12 = new System.Windows.Forms.Label();
             this.txt_cambio = new System.Windows.Forms.TextBox();
             this.btn_registrar = new FontAwesome.Sharp.IconButton();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btn_eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_detalleVenta)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -94,6 +94,7 @@
             this.txt_idCliente.Name = "txt_idCliente";
             this.txt_idCliente.Size = new System.Drawing.Size(26, 20);
             this.txt_idCliente.TabIndex = 27;
+            this.txt_idCliente.Visible = false;
             // 
             // btn_busquedaCliente
             // 
@@ -235,6 +236,46 @@
             this.dataGrid_detalleVenta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGrid_detalleVenta_CellContentClick);
             this.dataGrid_detalleVenta.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dataGrid_detalleVenta_CellPainting);
             // 
+            // id
+            // 
+            this.id.HeaderText = "Id";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Visible = false;
+            // 
+            // producto
+            // 
+            this.producto.HeaderText = "Producto";
+            this.producto.Name = "producto";
+            this.producto.ReadOnly = true;
+            this.producto.Width = 180;
+            // 
+            // precio
+            // 
+            this.precio.HeaderText = "Precio Unitario";
+            this.precio.Name = "precio";
+            this.precio.ReadOnly = true;
+            this.precio.Width = 150;
+            // 
+            // cantidad
+            // 
+            this.cantidad.HeaderText = "Cantidad";
+            this.cantidad.Name = "cantidad";
+            this.cantidad.ReadOnly = true;
+            // 
+            // subtotal
+            // 
+            this.subtotal.HeaderText = "SubTotal";
+            this.subtotal.Name = "subtotal";
+            this.subtotal.ReadOnly = true;
+            // 
+            // btn_eliminar
+            // 
+            this.btn_eliminar.HeaderText = "";
+            this.btn_eliminar.Name = "btn_eliminar";
+            this.btn_eliminar.ReadOnly = true;
+            this.btn_eliminar.Width = 30;
+            // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.White;
@@ -353,6 +394,7 @@
             this.txt_idProducto.Name = "txt_idProducto";
             this.txt_idProducto.Size = new System.Drawing.Size(26, 20);
             this.txt_idProducto.TabIndex = 33;
+            this.txt_idProducto.Visible = false;
             // 
             // label6
             // 
@@ -482,46 +524,6 @@
             this.btn_registrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_registrar.UseVisualStyleBackColor = false;
             this.btn_registrar.Click += new System.EventHandler(this.btn_registrar_Click);
-            // 
-            // id
-            // 
-            this.id.HeaderText = "Id";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Visible = false;
-            // 
-            // producto
-            // 
-            this.producto.HeaderText = "Producto";
-            this.producto.Name = "producto";
-            this.producto.ReadOnly = true;
-            this.producto.Width = 180;
-            // 
-            // precio
-            // 
-            this.precio.HeaderText = "Precio Unitario";
-            this.precio.Name = "precio";
-            this.precio.ReadOnly = true;
-            this.precio.Width = 150;
-            // 
-            // cantidad
-            // 
-            this.cantidad.HeaderText = "Cantidad";
-            this.cantidad.Name = "cantidad";
-            this.cantidad.ReadOnly = true;
-            // 
-            // subtotal
-            // 
-            this.subtotal.HeaderText = "SubTotal";
-            this.subtotal.Name = "subtotal";
-            this.subtotal.ReadOnly = true;
-            // 
-            // btn_eliminar
-            // 
-            this.btn_eliminar.HeaderText = "";
-            this.btn_eliminar.Name = "btn_eliminar";
-            this.btn_eliminar.ReadOnly = true;
-            this.btn_eliminar.Width = 30;
             // 
             // frm_venta
             // 

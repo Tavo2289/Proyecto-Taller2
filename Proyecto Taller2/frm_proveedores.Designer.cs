@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txt_indice = new System.Windows.Forms.TextBox();
             this.btn_limpiarBusqueda = new FontAwesome.Sharp.IconButton();
             this.btn_busqueda = new FontAwesome.Sharp.IconButton();
@@ -84,6 +84,7 @@
             this.txt_indice.Size = new System.Drawing.Size(33, 20);
             this.txt_indice.TabIndex = 82;
             this.txt_indice.Text = "0";
+            this.txt_indice.Visible = false;
             // 
             // btn_limpiarBusqueda
             // 
@@ -154,6 +155,7 @@
             this.txt_id.Size = new System.Drawing.Size(33, 20);
             this.txt_id.TabIndex = 81;
             this.txt_id.Text = "0";
+            this.txt_id.Visible = false;
             // 
             // lbl_tituloLista
             // 
@@ -341,15 +343,15 @@
             // dataGrid_listaProveedor
             // 
             this.dataGrid_listaProveedor.AllowUserToAddRows = false;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGrid_listaProveedor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGrid_listaProveedor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGrid_listaProveedor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGrid_listaProveedor.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btn_seleccionar,
@@ -364,9 +366,9 @@
             this.dataGrid_listaProveedor.MultiSelect = false;
             this.dataGrid_listaProveedor.Name = "dataGrid_listaProveedor";
             this.dataGrid_listaProveedor.ReadOnly = true;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGrid_listaProveedor.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGrid_listaProveedor.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGrid_listaProveedor.RowTemplate.Height = 28;
             this.dataGrid_listaProveedor.Size = new System.Drawing.Size(805, 458);
             this.dataGrid_listaProveedor.TabIndex = 85;

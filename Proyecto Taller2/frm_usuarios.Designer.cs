@@ -375,6 +375,7 @@
             this.txt_id.Size = new System.Drawing.Size(33, 20);
             this.txt_id.TabIndex = 21;
             this.txt_id.Text = "0";
+            this.txt_id.Visible = false;
             // 
             // lbl_buscar
             // 
@@ -426,6 +427,8 @@
             this.txt_indice.Size = new System.Drawing.Size(33, 20);
             this.txt_indice.TabIndex = 29;
             this.txt_indice.Text = "0";
+            this.txt_indice.UseWaitCursor = true;
+            this.txt_indice.Visible = false;
             // 
             // btn_limpiarBusqueda
             // 
