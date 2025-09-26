@@ -28,8 +28,35 @@ namespace Proyecto_Taller2
         private void btn_ingresar_Click(object sender, EventArgs e)
         {
 
-           // if (!verificar_campos()) { return;  } // si la verificación falla, salimos del método
-               
+            // if (!verificar_campos()) { return;  } // si la verificación falla, salimos del método
+
+            limpiarErrores();
+
+            if (txt_NroDocumento.Text == "" && txt_contraseñaLogin.Text == "") {
+
+                pintarErrores();
+
+                MessageBox.Show("Ingrese un Numero de Documento y Contraseña","Ingrese Datos",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                return;
+            }
+
+
+            if (txt_NroDocumento.Text == "") {
+
+                txt_NroDocumento.BackColor = Color.MistyRose;
+                MessageBox.Show("Ingrese un Numero de Documento ", "Ingrese Datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (txt_contraseñaLogin.Text == "")
+            {
+
+                txt_contraseñaLogin.BackColor = Color.MistyRose;
+                MessageBox.Show("Ingrese la Contraseña ", "Ingrese Datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+
 
             //se crea un objeto usuario que busca en la lista de usuarios el que coincida con el número de documento y la contraseña ingresados
             Usuario usuario = new CN_usuario().Listar().Where(u => u.nro_documento == txt_NroDocumento.Text && u.contraseña == txt_contraseñaLogin.Text ).FirstOrDefault(); // busca el usuario en la lista de usuarios que coincida con el número de documento y la contraseña ingresados
@@ -43,12 +70,36 @@ namespace Proyecto_Taller2
 
                 formulario.FormClosed += new FormClosedEventHandler(frm_closing); //evento que se ejecuta al cerrar el formulario
             }
-            else { MessageBox.Show("Usuario Incorrecto","Error de Sesion",MessageBoxButtons.OK,MessageBoxIcon.Error); } // si el usuario no existe muestra un mensaje de error
+            else { MessageBox.Show("Usuario o Contraseña Incorrecto","Error de Sesion",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                     pintarErrores();
+                     limpiarCampos();
+            } // si el usuario no existe muestra un mensaje de error
 
 
         }
 
 
+        private void pintarErrores() {
+            txt_NroDocumento.BackColor = Color.MistyRose;
+            txt_contraseñaLogin.BackColor = Color.MistyRose;
+            txt_NroDocumento.Focus();
+
+
+        }
+        private void limpiarErrores()
+        {
+            txt_NroDocumento.BackColor = Color.White;
+            txt_contraseñaLogin.BackColor = Color.White;
+            txt_NroDocumento.Focus();
+
+        }
+
+
+        private void limpiarCampos() {
+            txt_NroDocumento.Clear();
+            txt_contraseñaLogin.Clear();
+            txt_NroDocumento.Focus();
+        }
 
         private void frm_closing(object sender, FormClosedEventArgs e)
         {
@@ -79,6 +130,22 @@ namespace Proyecto_Taller2
 
             return true; // si todo esta bien devuelve true
 
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            txt_NroDocumento.Select();
+        }
+
+
+
+        private void txt_soloNumeros_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo permitir dígitos y la tecla de retroceso
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloquea la tecla
+            }
         }
     }
 }

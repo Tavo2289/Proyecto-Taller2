@@ -256,7 +256,7 @@
             // 
             this.numeric_cantidad.Location = new System.Drawing.Point(641, 50);
             this.numeric_cantidad.Maximum = new decimal(new int[] {
-            10,
+            20,
             0,
             0,
             0});

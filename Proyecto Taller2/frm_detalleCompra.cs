@@ -19,9 +19,17 @@ namespace Proyecto_Taller2
 {
     public partial class frm_detalleCompra : Form
     {
-        public frm_detalleCompra()
+        public frm_detalleCompra(string numeroDocumento)
         {
             InitializeComponent();
+            if (numeroDocumento == "")
+            {
+                txt_nroDocumento.Text = "";
+            }
+            else
+            {
+                txt_nroDocumento.Text = numeroDocumento;
+            }
         }
 
         private void btn_busqueda_Click(object sender, EventArgs e)

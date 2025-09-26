@@ -49,7 +49,7 @@ go
 select * from Venta
 select * from DETALLE_VENTA
 
-create PROC sp_ReporteVentas(
+alter PROC sp_ReporteVentas(
 @fechainicio varchar(10),
 @fechafin varchar(10)
 )
@@ -58,6 +58,7 @@ begin
 
 SET DATEFORMAT dmy;
 select
+id_venta,
 convert(char(10),v.FechaRegistro,103)[FechaRegistro],v.TipoDocumento,v.NumeroDocumento,v.MontoTotal,
 u.nombre, u.apellido,
 v.DocumentoCliente,v.NombreCliente,

@@ -322,9 +322,9 @@ namespace Proyecto_Taller2
                 txt_documentoUsuario.BackColor = System.Drawing.Color.MistyRose;
                 algúnCampoVacio = true;
             }
-            else if (txt_documentoUsuario.Text.Length > 8 || !int.TryParse(txt_documentoUsuario.Text, out int documento) || documento < 15000000 || documento > 47000000)
+            else if (txt_documentoUsuario.Text.Length > 8 || !int.TryParse(txt_documentoUsuario.Text, out int documento) || documento <= 15000000 || documento > 47000000)
             {
-                errorDocumento.SetError(txt_documentoUsuario, "El DNI no es válido o está fuera de rango.");
+                errorDocumento.SetError(txt_documentoUsuario, "El DNI no es válido o está fuera de rango,rango permitido desde 15000000 , hasta 47000000 ");
                     txt_documentoUsuario.BackColor = System.Drawing.Color.MistyRose;
                 MessageBox.Show("El DNI no es válido o está fuera de rango.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
@@ -643,6 +643,7 @@ namespace Proyecto_Taller2
         private void btn_limpiar_Click(object sender, EventArgs e)
         {
             limpiar(); // limpiar los campos del formulario
+            LimpiarErroresYColores();
         }
 
         private void btn_modificar_Click(object sender, EventArgs e)

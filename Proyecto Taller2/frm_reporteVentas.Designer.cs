@@ -36,6 +36,14 @@
             this.label6 = new System.Windows.Forms.Label();
             this.comboBox_busqueda = new System.Windows.Forms.ComboBox();
             this.dataGrid = new System.Windows.Forms.DataGridView();
+            this.id_venta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechaRegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tipoDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.montoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.usuarioRegistrado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.documento_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_busquedaVenta = new FontAwesome.Sharp.IconButton();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -43,20 +51,15 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txt_fechaInicio = new System.Windows.Forms.DateTimePicker();
-            this.fechaRegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tipoDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.montoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.usuarioRegistrado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.documentoCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.codProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precioVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comboVendedor = new System.Windows.Forms.ComboBox();
+            this.lbl_vendedor = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_exportar
@@ -153,23 +156,61 @@
             this.dataGrid.AllowUserToAddRows = false;
             this.dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.id_venta,
             this.fechaRegistro,
             this.tipoDocumento,
             this.documento,
             this.montoTotal,
             this.usuarioRegistrado,
-            this.documentoCliente,
-            this.nombreCliente,
-            this.codProducto,
-            this.nombreProducto,
-            this.categoria,
-            this.precioVenta,
-            this.cantidad,
-            this.subtotal});
-            this.dataGrid.Location = new System.Drawing.Point(31, 152);
+            this.documento_cliente,
+            this.id_cliente});
+            this.dataGrid.Location = new System.Drawing.Point(31, 172);
             this.dataGrid.Name = "dataGrid";
-            this.dataGrid.Size = new System.Drawing.Size(1079, 351);
+            this.dataGrid.Size = new System.Drawing.Size(614, 331);
             this.dataGrid.TabIndex = 94;
+            this.dataGrid.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGrid_CellContentDoubleClick);
+            // 
+            // id_venta
+            // 
+            this.id_venta.HeaderText = "id";
+            this.id_venta.Name = "id_venta";
+            this.id_venta.Visible = false;
+            // 
+            // fechaRegistro
+            // 
+            this.fechaRegistro.HeaderText = "Fecha Registro";
+            this.fechaRegistro.Name = "fechaRegistro";
+            // 
+            // tipoDocumento
+            // 
+            this.tipoDocumento.HeaderText = "Tipo Documento";
+            this.tipoDocumento.Name = "tipoDocumento";
+            // 
+            // documento
+            // 
+            this.documento.HeaderText = "Numero Documento";
+            this.documento.Name = "documento";
+            // 
+            // montoTotal
+            // 
+            this.montoTotal.HeaderText = "Monto Total";
+            this.montoTotal.Name = "montoTotal";
+            // 
+            // usuarioRegistrado
+            // 
+            this.usuarioRegistrado.HeaderText = "Usuario Registrado";
+            this.usuarioRegistrado.Name = "usuarioRegistrado";
+            // 
+            // documento_cliente
+            // 
+            this.documento_cliente.HeaderText = "Documento Cliente";
+            this.documento_cliente.Name = "documento_cliente";
+            // 
+            // id_cliente
+            // 
+            this.id_cliente.HeaderText = "ID Cliente";
+            this.id_cliente.Name = "id_cliente";
+            this.id_cliente.Visible = false;
             // 
             // btn_busquedaVenta
             // 
@@ -182,7 +223,7 @@
             this.btn_busquedaVenta.IconColor = System.Drawing.Color.Black;
             this.btn_busquedaVenta.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_busquedaVenta.IconSize = 16;
-            this.btn_busquedaVenta.Location = new System.Drawing.Point(507, 67);
+            this.btn_busquedaVenta.Location = new System.Drawing.Point(724, 62);
             this.btn_busquedaVenta.Name = "btn_busquedaVenta";
             this.btn_busquedaVenta.Size = new System.Drawing.Size(40, 21);
             this.btn_busquedaVenta.TabIndex = 93;
@@ -247,76 +288,66 @@
             this.txt_fechaInicio.Size = new System.Drawing.Size(123, 20);
             this.txt_fechaInicio.TabIndex = 85;
             // 
-            // fechaRegistro
+            // dataGridView1
             // 
-            this.fechaRegistro.HeaderText = "Fecha Registro";
-            this.fechaRegistro.Name = "fechaRegistro";
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn11,
+            this.dataGridViewTextBoxColumn12,
+            this.dataGridViewTextBoxColumn13});
+            this.dataGridView1.Location = new System.Drawing.Point(663, 172);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(439, 331);
+            this.dataGridView1.TabIndex = 102;
             // 
-            // tipoDocumento
+            // dataGridViewTextBoxColumn9
             // 
-            this.tipoDocumento.HeaderText = "Tipo Documento";
-            this.tipoDocumento.Name = "tipoDocumento";
+            this.dataGridViewTextBoxColumn9.HeaderText = "Nombre Producto";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
             // 
-            // documento
+            // dataGridViewTextBoxColumn11
             // 
-            this.documento.HeaderText = "Numero Documento";
-            this.documento.Name = "documento";
+            this.dataGridViewTextBoxColumn11.HeaderText = "Precio Venta";
+            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
             // 
-            // montoTotal
+            // dataGridViewTextBoxColumn12
             // 
-            this.montoTotal.HeaderText = "Monto Total";
-            this.montoTotal.Name = "montoTotal";
+            this.dataGridViewTextBoxColumn12.HeaderText = "Cantidad";
+            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
             // 
-            // usuarioRegistrado
+            // dataGridViewTextBoxColumn13
             // 
-            this.usuarioRegistrado.HeaderText = "Usuario Registrado";
-            this.usuarioRegistrado.Name = "usuarioRegistrado";
+            this.dataGridViewTextBoxColumn13.HeaderText = "Sub Total";
+            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
             // 
-            // documentoCliente
+            // comboVendedor
             // 
-            this.documentoCliente.HeaderText = "Documento Cliente";
-            this.documentoCliente.Name = "documentoCliente";
+            this.comboVendedor.FormattingEnabled = true;
+            this.comboVendedor.Location = new System.Drawing.Point(561, 63);
+            this.comboVendedor.Name = "comboVendedor";
+            this.comboVendedor.Size = new System.Drawing.Size(157, 21);
+            this.comboVendedor.TabIndex = 104;
             // 
-            // nombreCliente
+            // lbl_vendedor
             // 
-            this.nombreCliente.HeaderText = "Nombre Cliente";
-            this.nombreCliente.Name = "nombreCliente";
-            // 
-            // codProducto
-            // 
-            this.codProducto.HeaderText = "Codigo Producto";
-            this.codProducto.Name = "codProducto";
-            // 
-            // nombreProducto
-            // 
-            this.nombreProducto.HeaderText = "Nombre Producto";
-            this.nombreProducto.Name = "nombreProducto";
-            // 
-            // categoria
-            // 
-            this.categoria.HeaderText = "Categoria";
-            this.categoria.Name = "categoria";
-            // 
-            // precioVenta
-            // 
-            this.precioVenta.HeaderText = "Precio Venta";
-            this.precioVenta.Name = "precioVenta";
-            // 
-            // cantidad
-            // 
-            this.cantidad.HeaderText = "Cantidad";
-            this.cantidad.Name = "cantidad";
-            // 
-            // subtotal
-            // 
-            this.subtotal.HeaderText = "Sub Total";
-            this.subtotal.Name = "subtotal";
+            this.lbl_vendedor.AutoSize = true;
+            this.lbl_vendedor.BackColor = System.Drawing.Color.White;
+            this.lbl_vendedor.Location = new System.Drawing.Point(487, 67);
+            this.lbl_vendedor.Name = "lbl_vendedor";
+            this.lbl_vendedor.Size = new System.Drawing.Size(56, 13);
+            this.lbl_vendedor.TabIndex = 103;
+            this.lbl_vendedor.Text = "Vendedor:";
             // 
             // frm_reporteVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1140, 528);
+            this.Controls.Add(this.comboVendedor);
+            this.Controls.Add(this.lbl_vendedor);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btn_exportar);
             this.Controls.Add(this.btn_limpiarBusqueda);
             this.Controls.Add(this.btn_busqueda);
@@ -336,6 +367,7 @@
             this.Text = "frm_reporteVentas";
             this.Load += new System.EventHandler(this.frm_reporteVentas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -358,18 +390,20 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker txt_fechaInicio;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
+        private System.Windows.Forms.ComboBox comboVendedor;
+        private System.Windows.Forms.Label lbl_vendedor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_venta;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaRegistro;
         private System.Windows.Forms.DataGridViewTextBoxColumn tipoDocumento;
         private System.Windows.Forms.DataGridViewTextBoxColumn documento;
         private System.Windows.Forms.DataGridViewTextBoxColumn montoTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn usuarioRegistrado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn documentoCliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombreCliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codProducto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombreProducto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn categoria;
-        private System.Windows.Forms.DataGridViewTextBoxColumn precioVenta;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cantidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn subtotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn documento_cliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_cliente;
     }
 }

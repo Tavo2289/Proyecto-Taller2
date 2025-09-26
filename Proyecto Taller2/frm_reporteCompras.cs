@@ -111,14 +111,8 @@ namespace Proyecto_Taller2
                  rc.MontoTotal,
                  rc.UsuarioRegistro,
                  rc.DocumentoProveedor,
-                 rc.RazonSocial,
-                 rc.CodigoProducto,
-                 rc.NombreProducto,
-                 rc.Categoria,
-                 rc.PrecioCompra,
-                 rc.PrecioVenta,
-                 rc.Cantidad,
-                 rc.SubTotal
+                 rc.RazonSocial
+                
                 });
             }
 

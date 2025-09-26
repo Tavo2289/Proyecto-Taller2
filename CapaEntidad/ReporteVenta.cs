@@ -8,6 +8,7 @@ namespace CapaEntidad
 {
     public class ReporteVenta
     {
+        public string Id { get; set; }
         public string FechaRegistro { get; set; }
         public string TipoDocumento { get; set; }
         public string NumeroDocumento { get; set; }

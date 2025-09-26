@@ -19,9 +19,17 @@ namespace Proyecto_Taller2
 {
     public partial class frm_detalleVenta : Form
     {
-        public frm_detalleVenta()
+        public frm_detalleVenta(string numeroDocumento)
         {
             InitializeComponent();
+            if (numeroDocumento == "")
+            {
+                txt_nroDocumento.Text = "";
+            }
+            else
+            {
+                txt_nroDocumento.Text = numeroDocumento;
+            }
         }
 
         private void frm_detalleVenta_Load(object sender, EventArgs e)

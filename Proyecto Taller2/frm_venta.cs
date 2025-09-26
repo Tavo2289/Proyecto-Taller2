@@ -27,6 +27,8 @@ namespace Proyecto_Taller2
 
         private void frm_venta_Load(object sender, EventArgs e)
         {
+
+            
             //desactivar los textbox que no se deben editar
             txt_precio.Enabled = false;
             txt_stock.Enabled = false;
@@ -619,11 +621,20 @@ namespace Proyecto_Taller2
                 }
 
 
-                MessageBox.Show("Venta Registrada Exitosamente", "Venta Registrada", MessageBoxButtons.OK, MessageBoxIcon.Information); // Muestra el mensaje de éxito.
+                var generaComprobante = MessageBox.Show("Venta Registrada Exitosamente, Desea Generar el comprobante?", "Venta Registrada", MessageBoxButtons.YesNo, MessageBoxIcon.Information); // Muestra el mensaje de éxito.
 
                 // Limpia los campos de texto del cliente y el DataGridView.
                 limpiarTodo();
                 limpiarColores();
+
+                if (generaComprobante == DialogResult.Yes)
+                {
+                    frm_detalleVenta detalleVenta = new frm_detalleVenta(numeroDocumento);
+
+                    detalleVenta.Show(); // Muestra el formulario de detalles de la venta.
+                }
+               
+
             }
             else // Si la operación de registro falló...
             {

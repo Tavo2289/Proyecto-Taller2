@@ -1,6 +1,7 @@
 ﻿using CapaEntidad;
 using CapaNegocio;
 using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Office2010.Excel;
 using Proyecto_Taller2.Utilidades;
 using System;
 using System.Collections.Generic;
@@ -16,19 +17,75 @@ namespace Proyecto_Taller2
 {
     public partial class frm_reporteVentas : Form
     {
-        public frm_reporteVentas()
+        private Usuario _usuario;
+
+        public frm_reporteVentas(Usuario usuario)
         {
             InitializeComponent();
+            _usuario = usuario;
         }
 
         private void frm_reporteVentas_Load(object sender, EventArgs e)
         {
+
+            //mostrar combo box de vendedor solo a administrador
+
+            if (_usuario.id_rol.id_rol != 2 ) // si el usuario no es administrador
+            {
+
+                lbl_vendedor.Visible = true;
+                comboVendedor.Visible = true;
+            }
+            else
+            {
+                lbl_vendedor.Visible = false;
+                comboVendedor.Visible = false;
+                btn_busquedaVenta.Location = new Point(487, 62);
+
+            }
+
+
             // Configurar la fecha máxima para ambos DateTimePicker para evitar fechas futuras
             txt_fechaInicio.MaxDate = DateTime.Today;
             txt_fechaFin.MaxDate = DateTime.Today;
 
             // Configurar la fecha mínima para el DateTimePicker de inicio
             txt_fechaInicio.MinDate = DateTime.Today.AddYears(-1);
+
+
+            List<Usuario> lista = new CN_usuario().Listar();
+            string nombreVendedor = "";
+            comboVendedor.Items.Add(new OpcionCombo() { Valor = 0, Texto = "TODOS" });
+            foreach (Usuario item in lista)
+            {
+                if (item.id_rol.id_rol == 2) {
+
+                    nombreVendedor= item.nombre + " " + item.apellido;  
+                    comboVendedor.Items.Add(new OpcionCombo() { Valor = item.id_usuario, Texto = nombreVendedor });
+
+
+                }
+
+
+
+                // si el rol es 1, es administrador
+
+            }
+            comboVendedor.DisplayMember = "Texto";
+            comboVendedor.ValueMember = "Valor";
+            comboVendedor.SelectedIndex = 0;
+
+
+
+
+
+
+
+
+
+
+
+
 
             foreach (DataGridViewColumn columna in dataGrid.Columns)
             {
@@ -82,19 +139,13 @@ namespace Proyecto_Taller2
             foreach (ReporteVenta rv in lista)
             {
                 dataGrid.Rows.Add(new object[] {
+                rv.Id,
                 rv.FechaRegistro,
                 rv.TipoDocumento,
                 rv.NumeroDocumento,
                 rv.MontoTotal,
                 rv.UsuarioRegistro,
-                rv.DocumentoCliente,
-                rv.NombreCliente,
-                rv.CodigoProducto,
-                rv.NombreProducto,
-                rv.Categoria,
-                rv.PrecioVenta,
-                rv.Cantidad,
-                rv.SubTotal
+                rv.DocumentoCliente
     });
             }
         }
@@ -199,6 +250,14 @@ namespace Proyecto_Taller2
                     }
                 }
             }
+        }
+
+        private void dataGrid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+
+
+
         }
     }
 }

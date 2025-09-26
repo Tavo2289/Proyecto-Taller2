@@ -20,6 +20,7 @@ namespace Proyecto_Taller2
         private static Usuario usuarioActual; //variable estatica de tipo usuario para almacenar el usuario que ha iniciado sesión
         private static IconMenuItem menuActivo = null; // representa a los iconos del menu de formularios
         private static Form formularioActivo = null; //indica el formulario que va estar activo
+        private static string numeroDocumento = ""; // variable estatica para almacenar el numero de documento de la venta o compra seleccionada
         public Inicio(Usuario objUsuario =null)
         {
 
@@ -101,7 +102,7 @@ namespace Proyecto_Taller2
 
         private void subMenu_verDetalles_Click(object sender, EventArgs e) //submenu ver detalles de venta
         {
-            abrirFormulario(iconVentas, new frm_detalleVenta()); 
+            abrirFormulario(iconVentas, new frm_detalleVenta( numeroDocumento)); 
         }
 
         private void subMenu_registrarCompra_Click(object sender, EventArgs e)
@@ -113,7 +114,7 @@ namespace Proyecto_Taller2
 
         private void subMenu_verDetallesCompra_Click(object sender, EventArgs e)
         {
-            abrirFormulario(iconCompras, new frm_detalleCompra());
+            abrirFormulario(iconCompras, new frm_detalleCompra(numeroDocumento));
         }
 
         private void iconClientes_Click(object sender, EventArgs e)
@@ -134,17 +135,7 @@ namespace Proyecto_Taller2
             abrirFormulario(iconMantenedor, new frm_negocio()); //abre el formulario de negocio al hacer clic en el submenu negocio
         }
 
-        private void subMenu_reporteCompras_Click(object sender, EventArgs e)
-        {
-            abrirFormulario(iconReportes, new frm_reporteCompras());//abre el formulario de categorias al hacer clic en el submenu categoria
-
-        }
-
-        private void subMenu_reporteVentas_Click(object sender, EventArgs e)
-        {
-            abrirFormulario(iconReportes, new frm_reporteVentas());//abre el formulario de categorias al hacer clic en el submenu categoria
-
-        }
+     
 
         private void iconAcercaDe_Click(object sender, EventArgs e)
         {
@@ -158,6 +149,24 @@ namespace Proyecto_Taller2
             {
                 this.Close();
             }
+        }
+
+        private void iconReporteCompras_Click(object sender, EventArgs e)
+        {
+            abrirFormulario(iconReporteCompras, new frm_reporteCompras());//abre el formulario de categorias al hacer clic en el submenu categoria
+
+        }
+
+        private void iconReporteVentas_Click(object sender, EventArgs e)
+        {
+            abrirFormulario(iconReporteVentas, new frm_reporteVentas(usuarioActual));//abre el formulario de categorias al hacer clic en el submenu categoria
+
+        }
+
+        private void iconBackup_Click(object sender, EventArgs e)
+        {
+            abrirFormulario(iconBackup, new frm_copiaSeguridad());//abre el formulario de categorias al hacer clic en el submenu categoria
+
         }
     }
 }

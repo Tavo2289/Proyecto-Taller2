@@ -191,7 +191,40 @@ namespace Proyecto_Taller2
 
             }
 
+            if (txt_precioCompra.Text == "" && txt_precioVenta.Text == "") {
+                MessageBox.Show("Debe Ingresar el Precio de Compra y Venta", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txt_precioCompra.BackColor = Color.MistyRose;
+                txt_precioVenta.BackColor = Color.MistyRose;
 
+                txt_precioCompra.Select();
+                return;
+
+
+            }
+
+            if (txt_precioCompra.Text == "" )
+            {
+                MessageBox.Show("Debe Ingresar el Precio de Compra", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txt_precioCompra.BackColor = Color.MistyRose;
+
+                txt_precioCompra.Select();
+                return;
+
+
+            }
+
+
+
+            if (txt_precioVenta.Text == "")
+            {
+                MessageBox.Show("Debe Ingresar el Precio de Venta", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txt_precioVenta.BackColor = Color.MistyRose;
+
+                txt_precioVenta.Select();
+                return;
+
+
+            }
 
 
             if (decimal.TryParse(txt_precioCompra.Text, out precioCompra) == false || precioCompra <= 0)
@@ -431,11 +464,26 @@ namespace Proyecto_Taller2
                     Clipboard.SetText(numeroDocumento);
                 }
 
-                // Limpia los campos de texto del proveedor y el DataGridView.
-                txt_idProveedor.Text = "0";
-                txt_documentoProveedor.Text = "";
-                txt_razonSocial.Text = "";
-                dataGrid_detalleCompra.Rows.Clear();
+
+
+                var generaComprobante = MessageBox.Show("Compra Registrada Exitosamente, Desea Generar el comprobante?", "Compra Registrada", MessageBoxButtons.YesNo, MessageBoxIcon.Information); // Muestra el mensaje de éxito.
+
+                // Limpia los campos de texto del cliente y el DataGridView.
+                limpiarTodo();
+                limpiarErrores();
+
+                if (generaComprobante == DialogResult.Yes)
+                {
+                    frm_detalleCompra detalleCompra = new frm_detalleCompra(numeroDocumento);
+
+                    detalleCompra.Show(); // Muestra el formulario de detalles de la venta.
+                }
+
+
+
+
+
+               
 
                 // Llama al método 'calcularTotal()' para recalcular el total, que probablemente será 0 después de limpiar el DataGridView.
                 calcularTotal();
@@ -450,6 +498,26 @@ namespace Proyecto_Taller2
 
         }
 
-      
+
+        private void limpiarTodo() {
+            // Limpia los campos de texto del proveedor y el DataGridView.
+            txt_idProveedor.Text = "0";
+            txt_documentoProveedor.Text = "";
+            txt_razonSocial.Text = "";
+            dataGrid_detalleCompra.Rows.Clear();
+            txt_codProducto.Text = "";
+            txt_precioCompra.Text = "";
+            txt_precioVenta.Text = "";
+            txt_producto.Text = "";
+            numeric_cantidad.Value = 1;
+
+        }
+
+
+       
+
+
+
+
     }
 }

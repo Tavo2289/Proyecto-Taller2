@@ -99,6 +99,7 @@
             this.txt_NroDocumento.Name = "txt_NroDocumento";
             this.txt_NroDocumento.Size = new System.Drawing.Size(189, 20);
             this.txt_NroDocumento.TabIndex = 5;
+            this.txt_NroDocumento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_soloNumeros_KeyPress);
             // 
             // txt_contraseñaLogin
             // 
@@ -179,6 +180,7 @@
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
+            this.Load += new System.EventHandler(this.Login_Load);
             ((System.ComponentModel.ISupportInitialize)(this.iconLogin)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
